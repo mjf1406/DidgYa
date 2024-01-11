@@ -8,3 +8,13 @@ Did you do it? Did you experience it? DidgYa is an app designed to simplify the 
 - **Data Visualization:** Access insightful graphs and tables displaying the history of your task completions, helping you understand your habits and patterns.
 - **User-Friendly Dashboard:** An intuitive main screen lists all your tasks, with quick access to log, view data, or edit settings.
 Customizable Notifications: Set reminders for your tasks to ensure you never miss a beat.
+
+## Dependencies
+- [TailwindCSS](https://tailwindcss.com/)
+- [Tippy.js](https://github.com/atomiks/tippyjs)
+- [Toastify.js](https://github.com/aleab/toastify)
+- [Color.js](https://colorjs.io/)
+- [Badge Generator](https://michaelcurrin.github.io/badge-generator/#/generic) - Badges created with this webapp
+
+## Attributions
+- Thank you, Sarah, for coming up with the name! 🫰
