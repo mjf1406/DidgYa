@@ -3,6 +3,9 @@ A website that is meant to be displayed on a large monitor for students to see h
 
 ## Change Log
 - 2024/1/xx
+    - Integrated Supabase to store the data
+    - Integrated Supabase Auth
+- 2024/1/xx
     - added settings for the general app
     - added edit modal for the clicked DidgYa
     - added delete confirmation modal for the clicked DidgYa
