@@ -20,4 +20,5 @@ A website that is meant to be displayed on a large monitor for students to see h
 - [TailwindCSS](https://tailwindcss.com/)
 - [Tippy.js](https://github.com/atomiks/tippyjs)
 - [Toastify.js](https://github.com/aleab/toastify)
-- [Color.js](https://colorjs.io/)
+- [FontAwesome](https://fontawesome.com/)
+- [FlowBite](https://flowbite.com/)
