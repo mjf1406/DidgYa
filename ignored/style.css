@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    color-scheme: light dark;
+    scroll-behavior: auto;
+}
+body {
+    font-family: "quicksand", sans-serif;
+    overflow: hidden;
+}
+@media (min-width: 768px) { /* Adjust breakpoint as needed */
+    html {
+      scroll-behavior: smooth;
+    }
+}
+@media screen and (max-width: 950px) {
+    .main-content {
+        display: none;
+    }
+    .mobile-content {
+        display: block;
+    }
+}
+.text-2xs {
+    font-size: 0.6rem; /* 10px */
+    line-height: 0.9rem; /* 14px */
+}
+.text-3xs {
+    font-size: 0.5rem; /* 8px */
+    line-height: 0.6rem; /* 10px */
+}
+.text-10xl {
+    font-size: 10rem; /* 160px */
+    line-height: 1; /* 16px */
+}
+.text-11xl {
+    font-size: 12rem; /* 192px */
+    line-height: 1; /* 16px */
+}
+.text-12xl {
+    font-size: 14rem; /* 224px */
+    line-height: 1; /* 16px */
+}
+.text-13xl {    
+    font-size: 16rem; /* 256px */
+    line-height: 1; /* 16px */
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#animated-icons i {
+    position: absolute;
+    color: rgba(0, 0, 0, 0.15); /* Semi-transparent */
+}
+
+@keyframes changeSize {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(2); }
+    100% { transform: scale(1); }
+}
