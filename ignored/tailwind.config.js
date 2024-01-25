@@ -4,7 +4,7 @@ module.exports = {
     // darkMode: 'class',
     content: [
       '../index.html',
-      '../wordSearch.js'
+      '../app.js'
     ],
     theme: {
       extend: {

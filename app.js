@@ -1,32 +1,117 @@
-function saveDidgYa(name, unit, amount, unitType) {
-    if (amount == "" || amount == 0 || amount == null) {
+async function saveDidgYa(name, unit, quantity, inputs, timed, unitType, emoji) {
+    if (quantity == "" || quantity == 0 || quantity == null) {
         unit = null
         unitType = null
+        quantity = null
     }
-    const data = {
-        id: generateId(),
+    const newDidgYa = {
+        // id: generateId(),
         name: name,
         unit: unit,
-        amount: amount,
+        quantity: quantity,
+        inputs: inputs,
+        timed: timed,
         unitType: unitType,
-        records: [], // Array of Date() objects
+        emoji: emoji,
+        records: [],
+        active: false,
+        timedInstances: [],
+        created_at: new Date(),
     }
 
+
+    const { error } = await _supabase
+        .from('didgyas')
+        .insert([
+            {
+                name: name,
+                unit: unit,
+                quantity: quantity,
+                inputs: inputs,
+                timed: timed,
+                unitType: unitType,
+                emoji: emoji,
+                records: [],
+                active: false,
+                timedInstances: [],
+            }
+        ])
+    
+    if (error) {
+        console.error('DidgYa -- Copy this line', error)
+        makeToast('An error occurred, please try again in a moment.', 'error')
+        return error
+    }
+        
+
     const didgYas = JSON.parse(localStorage.getItem('didgYas'))
-    didgYas.push(data)
+    didgYas.push(newDidgYa)
     localStorage.setItem('didgYas', JSON.stringify(didgYas))
 
     makeToast(`The <b>${name}</b> DidgYa was created successfully!`,'success')
+}
+function deleteDidgYa(didgYaId) {
+    const didgYas = JSON.parse(localStorage.getItem('didgYas'))
+    const didgYaIndex = didgYas.findIndex(i => i.id == didgYaId)
+    makeToast(`The <b>${didgYas[didgYaIndex].name}</b> DidgYa was deleted successfully!`,'success')
+    didgYas.splice(didgYaIndex, 1)
+    localStorage.setItem('didgYas', JSON.stringify(didgYas))
+
+}
+function stopDidgYa(didgYaId) {
+    const endTime = new Date()
+    const didgYas = JSON.parse(localStorage.getItem('didgYas'))
+    const didgYaIndex = didgYas.findIndex(element => element.id == didgYaId)
+
+    const didgYaData = didgYas[didgYaIndex]
+    const startTime = new Date(didgYaData.records.last())
+    const duration = endTime - startTime
+
+    didgYaData.timedInstances.push({
+        startTime: startTime,
+        endTime: endTime,
+    })
+    if (didgYaData.timed == true) didgYas[didgYaIndex].active = false
+
+    didgYas[didgYaIndex] = didgYaData
+    localStorage.setItem('didgYas', JSON.stringify(didgYas))
+
+    makeToast(`You <b>${didgYas[didgYaIndex].name}</b>'d for <i>${formatMillisecondsToReadable(duration, false)}</i>`,'success')
 }
 function clickDidgYa(didgYaId) {
     const now = new Date()
     const didgYas = JSON.parse(localStorage.getItem('didgYas'))
     const didgYaIndex = didgYas.findIndex(element => element.id == didgYaId)
-    didgYas[didgYaIndex].records.push(now)
+
+    const didgYaData = didgYas[didgYaIndex]
+
+    didgYaData.records.push(now)
+    if (didgYaData.timed == true) didgYas[didgYaIndex].active = true
+
+    didgYas[didgYaIndex] = didgYaData
     localStorage.setItem('didgYas', JSON.stringify(didgYas))
 
     makeToast(`You DidgYa'd <b>${didgYas[didgYaIndex].name}</b>!`,'success')
 }
+function editDidgYa(didgYaId) {
+    const now = new Date()
+    const didgYas = JSON.parse(localStorage.getItem('didgYas'))
+    const didgYaIndex = didgYas.findIndex(element => element.id == didgYaId)
+
+    const didgYaData = didgYas[didgYaIndex]
+
+    makeToast(`Editing <b>${didgYas[didgYaIndex].name}</b>!`,'success')
+}
+function viewDidgYa(didgYaId) {
+    const now = new Date()
+    const didgYas = JSON.parse(localStorage.getItem('didgYas'))
+    const didgYaIndex = didgYas.findIndex(element => element.id == didgYaId)
+
+    const didgYaData = didgYas[didgYaIndex]
+
+    makeToast(`Viewing <b>${didgYas[didgYaIndex].name}</b>!`,'success')
+}
+
 function getDidgYas() {
     const didgYas = JSON.parse(localStorage.getItem('didgYas'))
     if (didgYas == null) {
@@ -35,10 +120,12 @@ function getDidgYas() {
     return didgYas
 }
 function populateDidgYaList(didgYas) {
+    const now = new Date()
+
     const didgYaList = document.getElementById('DidgYa-list')
     didgYaList.innerHTML = ''
 
-    if (didgYas.length == 0) didgYaList.innerHTML = `
+    if (didgYas.length == 0) return didgYaList.innerHTML = `
         <div class="list-group-item rounded-xl p-2 bg-cyan-950 text-center text-3xl m-4">
             Click the <i class="fas fa-plus"></i> button to create a DidgYa!
         </div>`
@@ -46,36 +133,161 @@ function populateDidgYaList(didgYas) {
     for (let i = 0; i < didgYas.length; i++) {
         const didgYa = didgYas[i]
         const didgYaListItem = document.createElement('div')
-        didgYaListItem.classList.add('list-group-item','list-group-item-action','rounded-xl','p-2','bg-cyan-950','px-5','flex','flex-row','justify-between','gap-1','items-center')
-        didgYaListItem.setAttribute('data-toggle','modal')
-        didgYaListItem.setAttribute('data-target', '#modal-delete-DidgYa')
-        didgYaListItem.setAttribute('data-id', i)
+        didgYaListItem.classList.add('flex','flex-row','gap-4','px-3','py-0.5','bg-cyan-950','items-center','justify-between','text-3xl','flex-no-wrap','max-w-md','w-full')
 
-        didgYaListItem.innerHTML += `<span class="text-base">${didgYa.name}</span>`
-        if(didgYa.amount > 0) didgYaListItem.innerHTML += `<span class="text-sm">(${didgYa.amount} ${didgYa.unit})</span>`
-        
-        didgYaListItem.innerHTML += `
-            <span id="click-${didgYa.id}" class="text-3xl ml-4 cursor-pointer"><i class="fa-solid fa-play"></i></span>
-            <span id="view-${didgYa.id}" class="text-3xl ml-1 cursor-pointer"><i class="fa-solid fa-eye"></i></span>
-            <span id="edit-${didgYa.id}" class="text-3xl ml-1 cursor-pointer"><i class="fa-regular fa-pen-to-square"></i></span>
-            <span id="delete-${didgYa.id}" class="text-red-600 text-3xl ml-1 cursor-pointer"><i class="fa-solid fa-trash "></i></span>
-        `
+        if (didgYa.emoji) {
+            const emoji = document.createElement('div')
+            emoji.classList.add('text-2xl')
+            emoji.id = `emoji-${didgYa.id}`
+            emoji.innerHTML = didgYa.emoji
+            didgYaListItem.appendChild(emoji)
+        }
+
+        const text = document.createElement('div')
+        text.classList.add('grow','shrink-0','text-left','justify-start','mr-auto','flex','flex-col','gap-px','items-left')
+
+        // Name and Quantity + Unit
+        const nameQuantity = document.createElement('div')
+        nameQuantity.classList.add('flex','flex-row','gap-1','items-center','justify-start') 
+
+        if (didgYa.name) {
+            const name = document.createElement('span')
+            name.classList.add('text-base')
+            name.id = `name-${didgYa.id}`
+            name.innerHTML = didgYa.name
+            nameQuantity.appendChild(name)
+        }
+        if (didgYa.quantity > 0) {
+            const quantity = document.createElement('span')
+            quantity.classList.add('text-2xs')
+            quantity.id = `quantity-${didgYa.id}`
+            quantity.innerHTML = `(${didgYa.quantity} ${didgYa.unit})`
+            nameQuantity.appendChild(quantity)
+        }
+        if (didgYa.active === true) {
+            const active = document.createElement('span')
+            active.classList.add('text-xs')
+            active.id = `active-${didgYa.id}`
+            const startTime = new Date(didgYa.records.last())
+            const now = new Date()
+            let elapsedTime = now - startTime
+            active.innerHTML = `(${formatMillisecondsToReadable(elapsedTime, false)})`
+            setInterval(() => {
+                elapsedTime += 1000
+                active.innerHTML = `(${formatMillisecondsToReadable(elapsedTime, false)})`
+            }, 1000)
+            nameQuantity.appendChild(active)
+        }
+        text.appendChild(nameQuantity)
+
+        // Completed Today Quantity
+        let todaysRecords = didgYa.records
+        todaysRecords = todaysRecords.filter(record => {
+            const recordDate = new Date(record);
+            return recordDate.getDate() === now.getDate() &&
+                    recordDate.getMonth() === now.getMonth() &&
+                    recordDate.getFullYear() === now.getFullYear();
+        });
+
+        const performedToday = document.createElement('div')
+        performedToday.classList.add('text-xs')
+        performedToday.id = `performedToday-${didgYa.id}`
+        const timeString = (todaysRecords.length == 1)? 'time' : 'times'
+        performedToday.innerHTML = `<b>${todaysRecords.length}</b> ${timeString} today`
+        text.appendChild(performedToday)
+
+
+        didgYaListItem.appendChild(text)
+
+        const buttons = document.createElement('div')
+        buttons.classList.add('flex','flex-row','gap-2','text-2xl','items-center')
+
+        const stop = document.createElement('span')
+        stop.classList.add('text-blue-400','cursor-pointer')
+        stop.id = `stop-${didgYa.id}`
+        stop.innerHTML = '<i class="fa-solid fa-stop"></i>'
+        stop.classList.add('hidden')
+        if (didgYa.timed === true && didgYa.active === true) stop.classList.remove('hidden')
+        buttons.appendChild(stop)
+
+        const play = document.createElement('span')
+        play.classList.add('text-green-400','cursor-pointer')
+        play.innerHTML = '<i class="fa-solid fa-play"></i>'
+        play.id = `play-${didgYa.id}`
+        if (didgYa.active === true) play.classList.add('hidden')
+        buttons.appendChild(play)
+
+
+        const viewIcon = document.createElement('span')
+        viewIcon.classList.add('cursor-pointer','text-lg')
+        viewIcon.innerHTML = '<i class="fa-solid fa-eye"></i>'
+        viewIcon.id = `view-${didgYa.id}`
+        buttons.appendChild(viewIcon)
+
+        const editIcon = document.createElement('span')
+        editIcon.classList.add('cursor-pointer','text-lg')
+        editIcon.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>'
+        editIcon.id = `edit-${didgYa.id}`
+        buttons.appendChild(editIcon)
+
+        const deleteIcon = document.createElement('span')
+        deleteIcon.classList.add('text-red-500','cursor-pointer','text-lg')
+        deleteIcon.innerHTML = '<i class="fa-solid fa-trash"></i>'
+        deleteIcon.id = `delete-${didgYa.id}`
+        buttons.appendChild(deleteIcon)
+
+        didgYaListItem.appendChild(buttons)
         didgYaList.appendChild(didgYaListItem)
 
-        const click = document.getElementById(`click-${didgYa.id}`)
-        click.addEventListener('click', function(){
+        const buttonStop = document.getElementById(`stop-${didgYa.id}`)
+        buttonStop.addEventListener('click', function(){
+            console.log(`Stopped ${didgYa.name} : ${didgYa.id}`)
+            stopDidgYa(didgYa.id)
+            const didgYas = getDidgYas()
+            populateDidgYaList(didgYas)
+        })
+
+        const buttonPlay = document.getElementById(`play-${didgYa.id}`)
+        buttonPlay.addEventListener('click', function(){
             console.log(`Clicked ${didgYa.name} : ${didgYa.id}`)
             clickDidgYa(didgYa.id)
+            const didgYas = getDidgYas()
+            populateDidgYaList(didgYas)
         })
 
         const view = document.getElementById(`view-${didgYa.id}`)
         view.addEventListener('click', function(){
             console.log(`Viewing ${didgYa.name} : ${didgYa.id}`)
+            viewDidgYa(didgYa.id)
         })
 
         const edit = document.getElementById(`edit-${didgYa.id}`)
         edit.addEventListener('click', function(){
             console.log(`Editing ${didgYa.name} : ${didgYa.id}`)
+            editDidgYa(didgYa.id)
+            const didgYas = getDidgYas()
+            populateDidgYaList(didgYas)
+        })
+
+        const deleteButton = document.getElementById(`delete-${didgYa.id}`)
+        deleteButton.addEventListener('click', function(){
+            const modal = document.getElementById('modal-delete-DidgYa')
+            modal.classList.remove('hidden')
+
+            const toBeDeletedNameElements = document.getElementsByName('DidgYa-to-delete-name')
+            toBeDeletedNameElements.forEach(element => {
+                element.innerHTML = `the <b>${didgYa.name}</b> DidgYa`
+            });
+
+            const buttonDeleteDidgYa = document.getElementById('button-delete-DidgYa')
+            buttonDeleteDidgYa.addEventListener('click', function(e){
+                e.preventDefault()
+
+                deleteDidgYa(didgYa.id)
+                const didgYas = getDidgYas()
+                populateDidgYaList(didgYas)
+                modal.classList.add('hidden')
+            })
         })
     }
 }

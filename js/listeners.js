@@ -28,19 +28,24 @@ unitTypes.forEach(element => {
 });
 
 const buttonCreateDidgYa = document.getElementById('create-DidgYa')
-buttonCreateDidgYa.addEventListener('click', function(e){
+buttonCreateDidgYa.addEventListener('click', async function(e){
     e.preventDefault()
 
     const name = document.getElementById('modal-create-DidgYa-name')
     const unit = document.getElementById('modal-create-DidgYa-unit')
-    const amount = document.getElementById('modal-create-DidgYa-quantity')
+    const quantity = document.getElementById('modal-create-DidgYa-quantity')
+    const emoji = document.getElementById('modal-create-DidgYa-emoji')
     const unitType = getSelectedValueFromRadioGroup('modal-create-DidgYa-unit-type').replace("modal-create-DidgYa-","")
+    const inputs = []
+    const timed = false
 
-    saveDidgYa(name.value, unit.value, amount.value, unitType)
+    await saveDidgYa(name.value, unit.value, quantity.value, inputs, timed, unitType, emoji.value)
 
     name.value = ''
+    emoji.value = ''
     unit.value = ''
-    amount.value = ''
+    quantity.value = ''
+
     const modal = document.getElementById('modal-create-DidgYa')
     modal.classList.add('hidden')
 
@@ -52,7 +57,7 @@ const buttonDeleteAllData = document.getElementById('delete-all-data')
 buttonDeleteAllData.addEventListener('click', function(e){
     e.preventDefault()
 
-    localStorage.setItem('didgYas', JSON.stringify([]))
+    localStorage.setItem('didgYas', JSON.stringify(DEFAULT_DIDGYAS))
 
     const modal = document.getElementById('modal-delete-all')
     modal.classList.add('hidden')
