@@ -22,3 +22,4 @@ A website that is meant to be displayed on a large monitor for students to see h
 - [Toastify.js](https://github.com/aleab/toastify)
 - [FontAwesome](https://fontawesome.com/)
 - [FlowBite](https://flowbite.com/)
+- [Chart.js](https://www.chartjs.org/)
