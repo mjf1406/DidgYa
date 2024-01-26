@@ -10,6 +10,7 @@ const DEFAULT_DIDGYAS = [
         unitType: 'volume',
         records: [],
         active: null,
+        location: 'local',
         timedInstances: null
     },
     {
@@ -28,6 +29,7 @@ const DEFAULT_DIDGYAS = [
         unitType: 'weight',
         records: [],
         active: null,
+        location: 'local',
         timedInstances: null
     },
     {
@@ -120,6 +122,7 @@ const DEFAULT_DIDGYAS = [
         timed: false,
         records: [],
         active: null,
+        location: 'local',
         timedInstances: null
     },
     {
@@ -133,6 +136,7 @@ const DEFAULT_DIDGYAS = [
         unitType: null,
         records: [],
         active: false,
+        location: 'local',
         timedInstances: []
     },
     {
@@ -146,6 +150,7 @@ const DEFAULT_DIDGYAS = [
         unitType: null,
         records: [],
         active: null,
+        location: 'local',
         timedInstances: null
     }
 ]

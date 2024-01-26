@@ -1,62 +1,26 @@
-async function saveDidgYa(name, unit, quantity, inputs, timed, unitType, emoji) {
+async function createDidgYa(name, unit, quantity, inputs, timed, unitType, emoji, user) {
     if (quantity == "" || quantity == 0 || quantity == null) {
         unit = null
         unitType = null
         quantity = null
     }
-    const newDidgYa = {
-        // id: generateId(),
-        name: name,
-        unit: unit,
-        quantity: quantity,
-        inputs: inputs,
-        timed: timed,
-        unitType: unitType,
-        emoji: emoji,
-        records: [],
-        active: false,
-        timedInstances: [],
-        created_at: new Date(),
-    }
 
+    if (!user) user = {id: 'anon'}
 
-    const { error } = await _supabase
-        .from('didgyas')
-        .insert([
-            {
-                name: name,
-                unit: unit,
-                quantity: quantity,
-                inputs: inputs,
-                timed: timed,
-                unitType: unitType,
-                emoji: emoji,
-                records: [],
-                active: false,
-                timedInstances: [],
-            }
-        ])
-    
-    if (error) {
-        console.error('DidgYa -- Copy this line', error)
-        makeToast('An error occurred, please try again in a moment.', 'error')
-        return error
-    }
-        
-
-    const didgYas = JSON.parse(localStorage.getItem('didgYas'))
-    didgYas.push(newDidgYa)
-    localStorage.setItem('didgYas', JSON.stringify(didgYas))
-
+    const createToCloud = await createCloudDidgYa(name, unit, quantity, inputs, timed, unitType, emoji, user)
+    if (createToCloud) return makeToast(`An error occurred while creating the <b>${name}</b> DidgYa. Please try again in a moment.`, 'error')
+    createLocalDidgYa(name, unit, quantity, inputs, timed, unitType, emoji, user)
     makeToast(`The <b>${name}</b> DidgYa was created successfully!`,'success')
 }
-function deleteDidgYa(didgYaId) {
+async function deleteDidgYa(didgYaId) {
     const didgYas = JSON.parse(localStorage.getItem('didgYas'))
     const didgYaIndex = didgYas.findIndex(i => i.id == didgYaId)
-    makeToast(`The <b>${didgYas[didgYaIndex].name}</b> DidgYa was deleted successfully!`,'success')
-    didgYas.splice(didgYaIndex, 1)
-    localStorage.setItem('didgYas', JSON.stringify(didgYas))
+    const name = didgYas[didgYaIndex].name
 
+    const deleteFromCloud = await deleteCloudDidgYa(didgYaId)
+    if (deleteFromCloud) return makeToast(`An error occurred while deleting the <b>${name}</b> DidgYa. Please try again in a moment.`, 'error')
+    deleteLocalDidgYa(didgYas, didgYaIndex)
+    makeToast(`The <b>${didgYas[didgYaIndex].name}</b> DidgYa was deleted successfully!`,'success')
 }
 function stopDidgYa(didgYaId) {
     const endTime = new Date()
@@ -133,7 +97,7 @@ function populateDidgYaList(didgYas) {
     for (let i = 0; i < didgYas.length; i++) {
         const didgYa = didgYas[i]
         const didgYaListItem = document.createElement('div')
-        didgYaListItem.classList.add('flex','flex-row','gap-4','px-3','py-0.5','bg-cyan-950','items-center','justify-between','text-3xl','flex-no-wrap','max-w-md','w-full')
+        didgYaListItem.classList.add('flex','flex-row','gap-4','pl-3','pr-1','py-0.5','bg-cyan-950','items-center','justify-between','text-3xl','flex-no-wrap','max-w-md','w-full')
 
         if (didgYa.emoji) {
             const emoji = document.createElement('div')
@@ -237,7 +201,32 @@ function populateDidgYaList(didgYas) {
         buttons.appendChild(deleteIcon)
 
         didgYaListItem.appendChild(buttons)
+
+        const location = document.createElement('div')
+        location.classList.add('text-xs','self-start','justify-start')
+        location.name = 'DidgYa-location'
+        location.id = `location-${didgYa.id}`
+        if (didgYa.location === 'local') {
+            fetchInlineSvg('data/img/icons/cloud-solid-x.svg')
+                .then(svgString => {
+                    location.innerHTML = svgString
+                    location.style.width = '15px'
+                    location.classList.add('fill-orange-300')
+                    location.appendChild(cloudSolidX)
+                })
+        } 
+        if (didgYa.location === 'cloud') {
+            location.classList.add('text-blue-400')
+            location.innerHTML = `<i class="fa-solid fa-cloud"></i>`
+        } 
+        didgYaListItem.appendChild(location)
+
         didgYaList.appendChild(didgYaListItem)
+
+
+
+
+        // --- Listeners ---
 
         const buttonStop = document.getElementById(`stop-${didgYa.id}`)
         buttonStop.addEventListener('click', function(){
@@ -288,6 +277,12 @@ function populateDidgYaList(didgYas) {
                 populateDidgYaList(didgYas)
                 modal.classList.add('hidden')
             })
+        })
+
+        const locationMessage = (didgYa.location === 'local')? `The <b>${didgYa.name}</b> DidgYa is stored <i><b>locally</b></i> and is only accessible through this browser` : `The <b>${didgYa.name}</b> DidgYa is stored in the <i><b>cloud</b></i>`
+        tippy(location, {
+            content: locationMessage,
+            allowHTML: true,
         })
     }
 }

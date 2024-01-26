@@ -4,9 +4,15 @@ A website that is meant to be displayed on a large monitor for students to see h
 ## Change Log
 - 2024/1/xx
     - Integrated Supabase to store the data
+       - [x] createDidgYa
+       - [x] deleteDidgYa
+       - [ ] editDidgYa
+       - [ ] clickDidgYa
+       - [ ] stopDidgYa
+       - [ ] getDidgYas
     - Integrated Supabase Auth
     - added profile modal
-    - 5 DidgYas for free, but others can be set to local. Somehow indicate this in the UI
+    - 5 DidgYas for free in the cloud and save others to localStorage
 - 2024/1/xx
     - added edit modal for the clicked DidgYa
     - added view modal for the clicked DidgYa
@@ -14,6 +20,9 @@ A website that is meant to be displayed on a large monitor for students to see h
     - added duration to `createDidgYa()`
     - added inputs to `clickDidgYa()`
     - need to make sure duplicate names cannot be added
+- 2024/1/26
+    - added icon to show where the DidgYa is stored
+    - created `cloudDatabase.js` and `localDatabase.js` in prep for pushing data to the DB if they user decides to register and for showing which DidgYas are stored locally and which are stored in the cloud.
 - 2024/1/25
     - added emoji to `createDidgYa()`
     - added elapsed time to DidgYas with `duration = true`

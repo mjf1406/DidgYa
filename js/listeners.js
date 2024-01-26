@@ -39,7 +39,7 @@ buttonCreateDidgYa.addEventListener('click', async function(e){
     const inputs = []
     const timed = false
 
-    await saveDidgYa(name.value, unit.value, quantity.value, inputs, timed, unitType, emoji.value)
+    await createDidgYa(name.value, unit.value, quantity.value, inputs, timed, unitType, emoji.value)
 
     name.value = ''
     emoji.value = ''

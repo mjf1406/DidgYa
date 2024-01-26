@@ -31,7 +31,7 @@ function getSelectedValueFromRadioGroup(radioGroupName) {
 }
 function generateId() { // Function to generate a random ID
     // Source: https://stackoverflow.com/a/44622300
-    return Array.from(Array(16), () =>
+    return Array.from(Array(32), () => // The length of the generated id is 32 characters
         Math.floor(Math.random() * 36).toString(36)
     ).join("");
 }
@@ -53,6 +53,20 @@ async function fetchLocalJson(JSON) {
     const response = await fetch(`${JSON}.json`);
     const data = await response.json()
     return data 
+}
+
+async function fetchInlineSvg(svgPath) {
+    try {
+        const response = await fetch(svgPath);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const svgText = await response.text();
+        return svgText;
+    } catch (error) {
+        console.error('Error fetching the SVG:', error);
+        return null; // or you can throw the error again if you prefer
+    }
 }
 
 Array.prototype.random = function() {
