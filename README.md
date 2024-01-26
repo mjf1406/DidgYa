@@ -6,6 +6,7 @@ A website that is meant to be displayed on a large monitor for students to see h
     - Integrated Supabase to store the data
     - Integrated Supabase Auth
     - added profile modal
+    - 5 DidgYas for free, but others can be set to local. Somehow indicate this in the UI
 - 2024/1/xx
     - added edit modal for the clicked DidgYa
     - added view modal for the clicked DidgYa
