@@ -7,8 +7,8 @@ async function createDidgYa(name, unit, quantity, inputs, timed, unitType, emoji
 
     if (!user) user = {id: 'anon'}
 
-    const createToCloud = await createCloudDidgYa(name, unit, quantity, inputs, timed, unitType, emoji, user)
-    if (createToCloud) return makeToast(`An error occurred while creating the <b>${name}</b> DidgYa. Please try again in a moment.`, 'error')
+    // const createToCloud = await createCloudDidgYa(name, unit, quantity, inputs, timed, unitType, emoji, user)
+    // if (createToCloud) return makeToast(`An error occurred while creating the <b>${name}</b> DidgYa. Please try again in a moment.`, 'error')
     createLocalDidgYa(name, unit, quantity, inputs, timed, unitType, emoji, user)
     makeToast(`The <b>${name}</b> DidgYa was created successfully!`,'success')
 }
@@ -17,8 +17,8 @@ async function deleteDidgYa(didgYaId) {
     const didgYaIndex = didgYas.findIndex(i => i.id == didgYaId)
     const name = didgYas[didgYaIndex].name
 
-    const deleteFromCloud = await deleteCloudDidgYa(didgYaId)
-    if (deleteFromCloud) return makeToast(`An error occurred while deleting the <b>${name}</b> DidgYa. Please try again in a moment.`, 'error')
+    // const deleteFromCloud = await deleteCloudDidgYa(didgYaId)
+    // if (deleteFromCloud) return makeToast(`An error occurred while deleting the <b>${name}</b> DidgYa. Please try again in a moment.`, 'error')
     deleteLocalDidgYa(didgYas, didgYaIndex)
     makeToast(`The <b>${didgYas[didgYaIndex].name}</b> DidgYa was deleted successfully!`,'success')
 }
