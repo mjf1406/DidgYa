@@ -39,7 +39,8 @@ buttonCreateDidgYa.addEventListener('click', async function(e){
     const inputs = []
     const timed = false
 
-    await createDidgYa(name.value, unit.value, quantity.value, inputs, timed, unitType, emoji.value)
+    const created = await createDidgYa(name.value, unit.value, quantity.value, inputs, timed, unitType, emoji.value)
+    if (created == 'error') return makeToast(`A Didgya with the name <b>${name.value}</b> already exists!`, 'error')
 
     name.value = ''
     emoji.value = ''
@@ -49,7 +50,7 @@ buttonCreateDidgYa.addEventListener('click', async function(e){
     const modal = document.getElementById('modal-create-DidgYa')
     modal.classList.add('hidden')
 
-    const didgYas = getDidgYas()
+    const didgYas = getAllLocalDidgYas()
     populateDidgYaList(didgYas)
 })
 
@@ -62,6 +63,6 @@ buttonDeleteAllData.addEventListener('click', function(e){
     const modal = document.getElementById('modal-delete-all')
     modal.classList.add('hidden')
 
-    const didgYas = getDidgYas()
+    const didgYas = getAllLocalDidgYas()
     populateDidgYaList(didgYas)
 })

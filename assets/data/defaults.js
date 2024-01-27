@@ -41,40 +41,43 @@ const DEFAULT_DIDGYAS = [
         inputs: [
             {
                 name: 'Bristol Stool Type',
-                type: 'option',
+                type: 'select',
                 selects: [
                     {
-                        type: 1,
+                        value: 'Select stool type...'
+                    },
+                    {
+                        value: 1,
                         description: 'separate hard lumps',
                         name: 'severe constipation'
                     },
                     {
-                        type: 2,
+                        value: 2,
                         description: 'lumpy and sausage like',
                         name: 'mild constipation'
                     },
                     {
-                        type: 3,
+                        value: 3,
                         description: 'a sausage shape with cracks in the surface',
                         name: 'normal'
                     },
                     {
-                        type: 4,
+                        value: 4,
                         description: 'like a smooth, soft sausage or snake',
                         name: 'normal'
                     },
                     {
-                        type: 5,
+                        value: 5,
                         description: 'soft blobs with clear-cut edges',
                         name: 'lacking fibre'
                     },
                     {
-                        type: 6,
+                        value: 6,
                         description: 'mushy consistency with ragged edges',
                         name: 'mild diarrhea'
                     },
                     {
-                        type: 7,
+                        value: 7,
                         description: 'liquid consistency with no solid pieces',
                         name: 'severe diarrhea'
                     },
@@ -82,37 +85,34 @@ const DEFAULT_DIDGYAS = [
             },
             {
                 name: 'Color',
-                type: 'option',
+                type: 'select',
                 selects: [
                     {
-                        name: 'pale, light, or white',
+                        value: 'Select stool color...',
+                    },
+                    {
+                        value: 'pale, light, or white',
                         hex: '#f7e2c9',
-                        description: 'anti-diarrheal medication, lack of bile',
                     },
                     {
-                        name: 'yellowish',
+                        value: 'yellowish',
                         hex: '#b59c2b',
-                        description: 'small intestine infection, excess fat',
                     },
                     {
-                        name: 'brown',
+                        value: 'brown',
                         hex: '#61352d',
-                        description: 'healthy',
                     },
                     {
-                        name: 'green',
+                        value: 'green',
                         hex: '#5a6133',
-                        description: 'eating green dye, eating green vegetables, antibiotics, or bacterial infection',
                     },
                     {
-                        name: 'bright red',
+                        value: 'bright red',
                         hex: '#e15b40',
-                        description: 'bleeding lower digestive tract, hemorrhoids, red food coloring',
                     },
                     {
-                        name: 'black or dark brown',
+                        value: 'black or dark brown',
                         hex: '#241f21',
-                        description: 'bleeding upper digestive tract, iron supplements, biusmuth subsalicylate',
                     },
 
                 ]

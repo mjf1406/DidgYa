@@ -69,6 +69,16 @@ async function fetchInlineSvg(svgPath) {
     }
 }
 
+Node.prototype.replaceInPlace = function() {
+    const clone = this.cloneNode(true);
+    this.parentNode.replaceChild(clone, this);
+    return clone;
+};
+
+Object.prototype.isString = function() {
+    return typeof this === 'string' || this instanceof String;
+};
+
 Array.prototype.random = function() {
     if (this.length === 0) return null;
     const randomIndex = Math.floor(Math.random() * this.length);
@@ -77,7 +87,47 @@ Array.prototype.random = function() {
 Array.prototype.last = function() {
     return this[this.length - 1];
 };
+
 Audio.prototype.stop = function() {
     this.pause();
     this.currentTime = 0;
+};
+
+String.prototype.toTitleCase = function () {
+    // Define a list of words not to be capitalized
+    const doNotCapitalize = [
+        "a",
+        "an",
+        "the",
+        "for",
+        "and",
+        "nor",
+        "but",
+        "or",
+        "yet",
+        "so",
+        "at",
+        "around",
+        "by",
+        "after",
+        "along",
+        "for",
+        "from",
+        "of",
+        "on",
+        "to",
+        "with",
+        "without",
+    ];
+    // Split the string by spaces
+    return this.replace(/\w\S*/g, function (txt) {
+        if (doNotCapitalize.includes(txt)) {
+            return txt;
+        } else {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        }
+    });
+};
+String.prototype.reverse = function() {
+    return this.split('').reverse().join('');
 };

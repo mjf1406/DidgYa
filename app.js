@@ -9,53 +9,46 @@ async function createDidgYa(name, unit, quantity, inputs, timed, unitType, emoji
 
     // const createToCloud = await createCloudDidgYa(name, unit, quantity, inputs, timed, unitType, emoji, user)
     // if (createToCloud) return makeToast(`An error occurred while creating the <b>${name}</b> DidgYa. Please try again in a moment.`, 'error')
-    createLocalDidgYa(name, unit, quantity, inputs, timed, unitType, emoji, user)
+    const createToLocal = createLocalDidgYa(name, unit, quantity, inputs, timed, unitType, emoji, user)
+    if (createToLocal === 'error') return 'error'
     makeToast(`The <b>${name}</b> DidgYa was created successfully!`,'success')
 }
 async function deleteDidgYa(didgYaId) {
-    const didgYas = JSON.parse(localStorage.getItem('didgYas'))
-    const didgYaIndex = didgYas.findIndex(i => i.id == didgYaId)
-    const name = didgYas[didgYaIndex].name
-
+    const name = getLocalDidgYaName(didgYaId)
+    
     // const deleteFromCloud = await deleteCloudDidgYa(didgYaId)
     // if (deleteFromCloud) return makeToast(`An error occurred while deleting the <b>${name}</b> DidgYa. Please try again in a moment.`, 'error')
-    deleteLocalDidgYa(didgYas, didgYaIndex)
-    makeToast(`The <b>${didgYas[didgYaIndex].name}</b> DidgYa was deleted successfully!`,'success')
-}
-function stopDidgYa(didgYaId) {
-    const endTime = new Date()
-    const didgYas = JSON.parse(localStorage.getItem('didgYas'))
-    const didgYaIndex = didgYas.findIndex(element => element.id == didgYaId)
-
-    const didgYaData = didgYas[didgYaIndex]
-    const startTime = new Date(didgYaData.records.last())
-    const duration = endTime - startTime
-
-    didgYaData.timedInstances.push({
-        startTime: startTime,
-        endTime: endTime,
-    })
-    if (didgYaData.timed == true) didgYas[didgYaIndex].active = false
-
-    didgYas[didgYaIndex] = didgYaData
-    localStorage.setItem('didgYas', JSON.stringify(didgYas))
-
-    makeToast(`You <b>${didgYas[didgYaIndex].name}</b>'d for <i>${formatMillisecondsToReadable(duration, false)}</i>`,'success')
+    
+    deleteLocalDidgYa(didgYaId)
+    makeToast(`The <b>${name}</b> DidgYa was deleted successfully!`,'success')
 }
 function clickDidgYa(didgYaId) {
+    const name = getLocalDidgYaName(didgYaId)
     const now = new Date()
-    const didgYas = JSON.parse(localStorage.getItem('didgYas'))
-    const didgYaIndex = didgYas.findIndex(element => element.id == didgYaId)
 
-    const didgYaData = didgYas[didgYaIndex]
 
-    didgYaData.records.push(now)
-    if (didgYaData.timed == true) didgYas[didgYaIndex].active = true
 
-    didgYas[didgYaIndex] = didgYaData
-    localStorage.setItem('didgYas', JSON.stringify(didgYas))
+    // const startInCloud = await startCloudDidgya(didgYaId, now)
+    // if (startInCloud) return makeToast(`An error occurred while deleting the <b>${name}</b> DidgYa. Please try again in a moment.`, 'error')
+    
+    const error = startLocalDidgYa(didgYaId, now)
+    if (error) makeToast(`An error occurred while starting the <b>${name}</b> DidgYa. Please try again in a moment.`, 'error')
+}
+function stopDidgYa(didgYaId) {
+    const name = getLocalDidgYaName(didgYaId)
+    const endTime = new Date()
+    const startTime = getLocalStartTime(didgYaId)
+    const duration = endTime - startTime
 
-    makeToast(`You DidgYa'd <b>${didgYas[didgYaIndex].name}</b>!`,'success')
+    const instance = {
+        startTime: startTime,
+        endTime: endTime,
+    }
+
+    // const stopInCloud = await stopCloudDidgya(didgYaId, instance)
+    // if (stopInCloud) return makeToast(`An error occurred while deleting the <b>${name}</b> DidgYa. Please try again in a moment.`, 'error')
+    stopLocalDidgYa(didgYaId, instance)
+    makeToast(`You <b>${name}</b>'d for <i>${formatMillisecondsToReadable(duration, false)}</i>`,'success')
 }
 function editDidgYa(didgYaId) {
     const now = new Date()
@@ -71,18 +64,45 @@ function viewDidgYa(didgYaId) {
     const didgYas = JSON.parse(localStorage.getItem('didgYas'))
     const didgYaIndex = didgYas.findIndex(element => element.id == didgYaId)
 
-    const didgYaData = didgYas[didgYaIndex]
+    const didgYa = didgYas[didgYaIndex]
 
-    makeToast(`Viewing <b>${didgYas[didgYaIndex].name}</b>!`,'success')
+    const nameElements = document.getElementsByName('viewing-DidgYa')
+    nameElements.forEach(element => {
+        element.innerHTML = `${didgYa.emoji} <b>${didgYa.name}</b>`
+    });
+
+    const viewModal = document.getElementById('modal-view-DidgYa')
+    viewModal.classList.remove('hidden')
+
+    const deleteButton = document.getElementById('button-delete-view-DidgYa')
+    deleteButton.addEventListener('click', () => {
+        const modal = document.getElementById('modal-delete-DidgYa')
+        modal.classList.remove('hidden')
+
+        const toBeDeletedNameElements = document.getElementsByName('DidgYa-to-delete-name')
+        toBeDeletedNameElements.forEach(element => {
+            element.innerHTML = `the ${didgYa.emoji} <b>${didgYa.name}</b> DidgYa`
+        });
+
+        const buttonDeleteDidgYa = document.getElementById('button-delete-DidgYa')
+        buttonDeleteDidgYa.addEventListener('click', function(e){
+            e.preventDefault()
+
+            deleteDidgYa(didgYaId)
+            const didgYas = getAllLocalDidgYas()
+            populateDidgYaList(didgYas)
+            modal.classList.add('hidden')
+            viewModal.classList.add('hidden')
+        })
+    })
+
+    const editButton = document.getElementById('button-edit-view-DidgYa')
+    editButton.addEventListener('click', (e) => {
+        e.preventDefault()
+        editDidgYa(didgYaId)
+    })
 }
 
-function getDidgYas() {
-    const didgYas = JSON.parse(localStorage.getItem('didgYas'))
-    if (didgYas == null) {
-        return []
-    }
-    return didgYas
-}
 function populateDidgYaList(didgYas) {
     const now = new Date()
 
@@ -99,16 +119,18 @@ function populateDidgYaList(didgYas) {
         const didgYaListItem = document.createElement('div')
         didgYaListItem.classList.add('flex','flex-row','gap-4','pl-3','pr-1','py-0.5','bg-cyan-950','items-center','justify-between','text-3xl','flex-no-wrap','max-w-md','w-full')
 
-        if (didgYa.emoji) {
-            const emoji = document.createElement('div')
-            emoji.classList.add('text-2xl')
-            emoji.id = `emoji-${didgYa.id}`
-            emoji.innerHTML = didgYa.emoji
-            didgYaListItem.appendChild(emoji)
+        const emoji = document.createElement('div')
+        emoji.classList.add('text-2xl','cursor-pointer')
+        emoji.id = `emoji-${didgYa.id}`
+        if (didgYa.emoji) emoji.innerHTML = didgYa.emoji
+        else { 
+            emoji.innerHTML = '🤷'
+            emoji.classList.add('opacity-0')
         }
+        didgYaListItem.appendChild(emoji)
 
         const text = document.createElement('div')
-        text.classList.add('grow','shrink-0','text-left','justify-start','mr-auto','flex','flex-col','gap-px','items-left')
+        text.classList.add('grow','shrink-0','text-left','justify-start','mr-auto','flex','flex-col','gap-px','items-left','cursor-pointer')
 
         // Name and Quantity + Unit
         const nameQuantity = document.createElement('div')
@@ -144,10 +166,9 @@ function populateDidgYaList(didgYas) {
         }
         text.appendChild(nameQuantity)
 
-        // Completed Today Quantity
         let todaysRecords = didgYa.records
         todaysRecords = todaysRecords.filter(record => {
-            const recordDate = new Date(record);
+            const recordDate = (record.isString()) ? new Date(record) : new Date(record.dt);
             return recordDate.getDate() === now.getDate() &&
                     recordDate.getMonth() === now.getMonth() &&
                     recordDate.getFullYear() === now.getFullYear();
@@ -164,7 +185,7 @@ function populateDidgYaList(didgYas) {
         didgYaListItem.appendChild(text)
 
         const buttons = document.createElement('div')
-        buttons.classList.add('flex','flex-row','gap-2','text-2xl','items-center')
+        buttons.classList.add('flex','flex-row','gap-2','text-3xl','items-center')
 
         const stop = document.createElement('span')
         stop.classList.add('text-blue-400','cursor-pointer')
@@ -181,24 +202,23 @@ function populateDidgYaList(didgYas) {
         if (didgYa.active === true) play.classList.add('hidden')
         buttons.appendChild(play)
 
+        // const viewIcon = document.createElement('span')
+        // viewIcon.classList.add('cursor-pointer','text-lg')
+        // viewIcon.innerHTML = '<i class="fa-solid fa-eye"></i>'
+        // viewIcon.id = `view-${didgYa.id}`
+        // buttons.appendChild(viewIcon)
 
-        const viewIcon = document.createElement('span')
-        viewIcon.classList.add('cursor-pointer','text-lg')
-        viewIcon.innerHTML = '<i class="fa-solid fa-eye"></i>'
-        viewIcon.id = `view-${didgYa.id}`
-        buttons.appendChild(viewIcon)
+        // const editIcon = document.createElement('span')
+        // editIcon.classList.add('cursor-pointer','text-lg')
+        // editIcon.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>'
+        // editIcon.id = `edit-${didgYa.id}`
+        // buttons.appendChild(editIcon)
 
-        const editIcon = document.createElement('span')
-        editIcon.classList.add('cursor-pointer','text-lg')
-        editIcon.innerHTML = '<i class="fa-regular fa-pen-to-square"></i>'
-        editIcon.id = `edit-${didgYa.id}`
-        buttons.appendChild(editIcon)
-
-        const deleteIcon = document.createElement('span')
-        deleteIcon.classList.add('text-red-500','cursor-pointer','text-lg')
-        deleteIcon.innerHTML = '<i class="fa-solid fa-trash"></i>'
-        deleteIcon.id = `delete-${didgYa.id}`
-        buttons.appendChild(deleteIcon)
+        // const deleteIcon = document.createElement('span')
+        // deleteIcon.classList.add('text-red-500','cursor-pointer','text-lg')
+        // deleteIcon.innerHTML = '<i class="fa-solid fa-trash"></i>'
+        // deleteIcon.id = `delete-${didgYa.id}`
+        // buttons.appendChild(deleteIcon)
 
         didgYaListItem.appendChild(buttons)
 
@@ -227,11 +247,18 @@ function populateDidgYaList(didgYas) {
 
         // --- Listeners ---
 
+        emoji.addEventListener('click', function(){
+            viewDidgYa(didgYa.id)
+        })
+        text.addEventListener('click', function(){
+            viewDidgYa(didgYa.id)
+        })
+
         const buttonStop = document.getElementById(`stop-${didgYa.id}`)
         buttonStop.addEventListener('click', function(){
             console.log(`Stopped ${didgYa.name} : ${didgYa.id}`)
             stopDidgYa(didgYa.id)
-            const didgYas = getDidgYas()
+            const didgYas = getAllLocalDidgYas()
             populateDidgYaList(didgYas)
         })
 
@@ -239,44 +266,44 @@ function populateDidgYaList(didgYas) {
         buttonPlay.addEventListener('click', function(){
             console.log(`Clicked ${didgYa.name} : ${didgYa.id}`)
             clickDidgYa(didgYa.id)
-            const didgYas = getDidgYas()
+            const didgYas = getAllLocalDidgYas()
             populateDidgYaList(didgYas)
         })
 
-        const view = document.getElementById(`view-${didgYa.id}`)
-        view.addEventListener('click', function(){
-            console.log(`Viewing ${didgYa.name} : ${didgYa.id}`)
-            viewDidgYa(didgYa.id)
-        })
+        // const view = document.getElementById(`view-${didgYa.id}`)
+        // view.addEventListener('click', function(){
+        //     console.log(`Viewing ${didgYa.name} : ${didgYa.id}`)
+        //     viewDidgYa(didgYa.id)
+        // })
 
-        const edit = document.getElementById(`edit-${didgYa.id}`)
-        edit.addEventListener('click', function(){
-            console.log(`Editing ${didgYa.name} : ${didgYa.id}`)
-            editDidgYa(didgYa.id)
-            const didgYas = getDidgYas()
-            populateDidgYaList(didgYas)
-        })
+        // const edit = document.getElementById(`edit-${didgYa.id}`)
+        // edit.addEventListener('click', function(){
+        //     console.log(`Editing ${didgYa.name} : ${didgYa.id}`)
+        //     editDidgYa(didgYa.id)
+        //     const didgYas = getAllLocalDidgYas()
+        //     populateDidgYaList(didgYas)
+        // })
 
-        const deleteButton = document.getElementById(`delete-${didgYa.id}`)
-        deleteButton.addEventListener('click', function(){
-            const modal = document.getElementById('modal-delete-DidgYa')
-            modal.classList.remove('hidden')
+        // const deleteButton = document.getElementById(`delete-${didgYa.id}`)
+        // deleteButton.addEventListener('click', function(){
+        //     const modal = document.getElementById('modal-delete-DidgYa')
+        //     modal.classList.remove('hidden')
 
-            const toBeDeletedNameElements = document.getElementsByName('DidgYa-to-delete-name')
-            toBeDeletedNameElements.forEach(element => {
-                element.innerHTML = `the <b>${didgYa.name}</b> DidgYa`
-            });
+        //     const toBeDeletedNameElements = document.getElementsByName('DidgYa-to-delete-name')
+        //     toBeDeletedNameElements.forEach(element => {
+        //         element.innerHTML = `the <b>${didgYa.name}</b> DidgYa`
+        //     });
 
-            const buttonDeleteDidgYa = document.getElementById('button-delete-DidgYa')
-            buttonDeleteDidgYa.addEventListener('click', function(e){
-                e.preventDefault()
+        //     const buttonDeleteDidgYa = document.getElementById('button-delete-DidgYa')
+        //     buttonDeleteDidgYa.addEventListener('click', function(e){
+        //         e.preventDefault()
 
-                deleteDidgYa(didgYa.id)
-                const didgYas = getDidgYas()
-                populateDidgYaList(didgYas)
-                modal.classList.add('hidden')
-            })
-        })
+        //         deleteDidgYa(didgYa.id)
+        //         const didgYas = getAllLocalDidgYas()
+        //         populateDidgYaList(didgYas)
+        //         modal.classList.add('hidden')
+        //     })
+        // })
 
         const locationMessage = (didgYa.location === 'local')? `The <b>${didgYa.name}</b> DidgYa is stored <i><b>locally</b></i> and is only accessible through this browser` : `The <b>${didgYa.name}</b> DidgYa is stored in the <i><b>cloud</b></i>`
         tippy(location, {
@@ -284,4 +311,70 @@ function populateDidgYaList(didgYas) {
             allowHTML: true,
         })
     }
+}
+
+
+function setUpStartModal(didgYaData, divToPopulate){
+    divToPopulate.innerHTML = ''
+    const startDidgYaModal = document.getElementById('modal-start-DidgYa')
+    const inputs = didgYaData.inputs
+
+    if (inputs.length > 0) {
+        startDidgYaModal.classList.remove('hidden')
+
+        const nameElements = document.getElementsByName('starting-DidgYa')
+        nameElements.forEach(element => {
+            element.innerHTML = `${didgYaData.emoji} <b>${didgYaData.name}</b>`
+        });
+
+        for (let index = 0; index < inputs.length; index++) {
+            const element = inputs[index];
+            const name = element.name
+            const type = element.type
+            const selects = element.selects ? element.selects : null
+            const input = createInput(type, name, selects, index)
+            divToPopulate.appendChild(input)
+        }
+    }
+}
+function createInput(inputType, name, selects, index){
+    const div = document.createElement('div')
+    div.classList.add('mb-5')
+
+    const label = document.createElement('label')
+    label.classList.add('block','mb-2','text-sm','font-medium','text-gray-900','dark:text-white')
+    label.innerHTML = name.toTitleCase()
+    label.setAttribute('for',`input-${name}`)
+
+    const input = (inputType === 'select') ? document.createElement(inputType) : document.createElement('input')
+    input.id = `input-${index}-${name}`
+
+    if (inputType === 'select') {
+        input.classList.add('"bg-gray-50','border','border-gray-300','text-gray-900','text-sm','rounded-lg','focus:ring-blue-500','focus:border-blue-500','block','w-full','p-2.5','dark:bg-gray-700','dark:border-gray-600','dark:placeholder-gray-400','dark:text-white','dark:focus:ring-blue-500','dark:focus:border-blue-500')
+       selects.forEach(element => {
+            const option = document.createElement('option')
+            const description = element.description ? `- ${element.description}` : ''
+            option.value = element.value
+            option.innerHTML = `<span class="shadow-md shadow-black">${element.value}</span> ${description}`
+
+            const hex = element.hex ? element.hex : false
+            if (hex) {
+                option.style.backgroundColor = hex
+            }
+            input.append(option)
+        });
+    }
+
+    if (inputType === 'number') {
+        input.classList.add('bg-gray-50','border','border-gray-300','text-gray-900','text-sm','rounded-lg','focus:ring-blue-500','focus:border-blue-500','block','w-full','p-2.5','dark:bg-gray-700','dark:border-gray-600','dark:placeholder-gray-400','dark:text-white','dark:focus:ring-blue-500','dark:focus:border-blue-500')
+        input.type = 'number'
+        input.min = 0
+        input.max = 1000
+        input.step = 1
+        input.placeholder = `Input ${name}...`
+    }
+
+    div.appendChild(label)
+    div.appendChild(input)
+    return div
 }

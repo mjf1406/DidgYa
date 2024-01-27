@@ -7,19 +7,22 @@ A website that is meant to be displayed on a large monitor for students to see h
        - [x] createDidgYa
        - [x] deleteDidgYa
        - [ ] editDidgYa
-       - [ ] clickDidgYa
-       - [ ] stopDidgYa
-       - [ ] getDidgYas
+       - [ ] viewDidgYa
+       - [x] clickDidgYa
+       - [x] stopDidgYa
     - Integrated Supabase Auth
     - added profile modal
     - 5 DidgYas for free in the cloud and save others to localStorage
 - 2024/1/xx
     - added edit modal for the clicked DidgYa
-    - added view modal for the clicked DidgYa
     - added inputs to `createDidgYa()`
     - added duration to `createDidgYa()`
     - added inputs to `clickDidgYa()`
+    - on clickDidgYa, only the elements that need to be updated are, e.g. only the count is updated for the clicked DidgYa, instead of the entire list.
+- 2024/1/27
     - need to make sure duplicate names cannot be added
+    - updated DidgYa list item so that clicking views the item and then from within the view, you can delete and edit
+    - added basic view modal for the clicked DidgYa which includes a delete and edit button
 - 2024/1/26
     - added icon to show where the DidgYa is stored
     - created `cloudDatabase.js` and `localDatabase.js` in prep for pushing data to the DB if they user decides to register and for showing which DidgYas are stored locally and which are stored in the cloud.

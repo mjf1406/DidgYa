@@ -252,7 +252,7 @@
         <div name="modal" id="modal-delete-DidgYa" tabindex="-1" aria-hidden="true" class="text-white flex items-center justify-center hidden backdrop-blur-sm fixed top-0 left-0 right-0 z-30 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative w-full max-w-md max-h-full">
                 <!-- Modal content -->
-                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <div class="relative bg-white rounded-lg shadow-2xl shadow-black dark:bg-gray-700">
                     <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="modal-delete-DidgYa">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
@@ -273,6 +273,75 @@
                                     Delete
                                 </button>
                                 <button type="submit" class="w-full text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" data-modal-hide="modal-delete-DidgYa">
+                                    <i class="mr-1 fa-solid fa-cancel"></i>
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div name="modal" id="modal-view-DidgYa" tabindex="-1" aria-hidden="true" class="text-white flex items-center justify-center hidden backdrop-blur-sm fixed top-0 left-0 right-0 z-10 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative w-full max-w-xl max-h-full">
+                <!-- Modal content -->
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                    <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="modal-view-DidgYa">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="px-6 py-6 lg:px-8">
+                        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">
+                            <span name="viewing-DidgYa"></span> 
+                        </h3>
+                        <div class="flex flex-row gap-2 mt-6">
+                            <button id="button-delete-view-DidgYa" class="w-full text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                <i class="mr-1 fa-solid fa-trash"></i>
+                                Delete <span name="viewing-DidgYa"></span>
+                            </button>
+                            <button id="button-edit-view-DidgYa" class="w-full text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" data-modal-hide="modal-view-DidgYa">
+                                <i class="mr-1 fa-regular fa-pen-to-square"></i>
+                                Edit <span name="viewing-DidgYa"></span>
+                            </button>
+                        </div>
+                        <form action="#">
+                            <span class="text-base h-fit"></span>
+                            <br>
+                            <div class="flex flex-row gap-2 mt-6">
+                                <button type="submit" class="w-full text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" data-modal-hide="modal-view-DidgYa">
+                                    <i class="mr-1 fa-solid fa-cancel"></i>
+                                    Close
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div name="modal" id="modal-start-DidgYa" tabindex="-1" aria-hidden="true" class="text-white flex items-center justify-center hidden backdrop-blur-sm fixed top-0 left-0 right-0 z-30 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative w-full max-w-md max-h-full">
+                <!-- Modal content -->
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                    <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="modal-start-DidgYa">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="px-6 py-6 lg:px-8">
+                        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">
+                            Do <span name="starting-DidgYa"></span>
+                        </h3>
+                        <form class="space-y-6" action="#">
+                            <div id="modal-start-DidgYa-content"></div>
+                            <div class="flex flex-row gap-2">
+                                <button type="submit" id="button-start-DidgYa" class="w-full text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    <i class="mr-1 fa-solid fa-plus"></i>
+                                    Do <span name="starting-DidgYa"></span>
+                                </button>
+                                <button type="submit" id="cancel-centers" class="w-full text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" data-modal-hide="modal-start-DidgYa">
                                     <i class="mr-1 fa-solid fa-cancel"></i>
                                     Cancel
                                 </button>
@@ -307,7 +376,7 @@
     if (!localStorage.getItem('didgYas')) localStorage.setItem('didgYas', JSON.stringify(DEFAULT_DIDGYAS))
     if (!localStorage.getItem('didgYas-backup')) localStorage.setItem('didgYas-backup', '[]')
 
-    const didgYas = getDidgYas()
+    const didgYas = getAllLocalDidgYas()
     populateDidgYaList(didgYas)
 </script>
 </html>
