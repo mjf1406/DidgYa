@@ -13,7 +13,7 @@ function createLocalDidgYa(name, unit, quantity, inputs, timed, unitType, emoji,
         records: [], // array of records
         active: false, // boolean
         timedInstances: [], // array of timed instances
-        location: 'cloud', // text
+        location: 'local', // text
         user_id: user.id, // text
     })
     localStorage.setItem('didgYas', JSON.stringify(didgYas))
