@@ -207,12 +207,11 @@ function populateDidgYaList(didgYas) {
         location.name = 'DidgYa-location'
         location.id = `location-${didgYa.id}`
         if (didgYa.location === 'local') {
-            fetchInlineSvg('data/img/icons/cloud-solid-x.svg')
+            fetchInlineSvg('assets/img/icons/cloud-solid-x.svg')
                 .then(svgString => {
                     location.innerHTML = svgString
                     location.style.width = '15px'
                     location.classList.add('fill-orange-300')
-                    location.appendChild(cloudSolidX)
                 })
         } 
         if (didgYa.location === 'cloud') {
