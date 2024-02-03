@@ -7,22 +7,48 @@ html {
     scroll-behavior: auto;
 }
 body {
-    font-family: "quicksand", sans-serif;
+    font-family: "Quicksand", sans-serif;
+    @apply bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark;
     overflow: hidden;
 }
-@media (min-width: 768px) { /* Adjust breakpoint as needed */
-    html {
-      scroll-behavior: smooth;
-    }
+
+.form-label {
+    @apply block text-lg font-semibold text-text-light dark:text-text-dark;
 }
-@media screen and (max-width: 950px) {
-    .main-content {
-        display: none;
-    }
-    .mobile-content {
-        display: block;
-    }
+.form-description {
+    @apply block mb-2 text-sm text-text-light dark:text-text-dark;
 }
+.form-input {
+    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
+}
+.form-input-container {
+    @apply flex flex-col gap-2 p-3 rounded-md shadow-sm bg-neutral-light/30 dark:bg-neutral-dark/30;
+}
+
+.number-input {
+    @apply w-12 bg-gray-50 border border-gray-300 text-center text-gray-900 text-sm focus:ring-primary-light focus:border-primary-light block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-dark dark:focus:border-primary-dark;
+}
+
+.didgya-list-item {
+    @apply flex flex-row gap-4 pl-3 pr-1 py-0.5 bg-neutral-light dark:bg-neutral-dark items-center justify-between text-3xl max-w-md w-full;
+}
+
+.didgya-list-item .text {
+    @apply flex flex-col justify-start gap-px mr-auto text-left cursor-pointer grow shrink-0;
+}
+
+.didgya-list-item .name-quantity {
+    @apply flex flex-row items-center justify-start gap-1;
+}
+
+.didgya-list-item .buttons {
+    @apply flex flex-row items-center gap-2 text-3xl;
+}
+
+.modal-content {
+    @apply relative rounded-lg shadow bg-neutral-light dark:bg-neutral-dark;
+}
+
 .text-2xs {
     font-size: 0.6rem; /* 10px */
     line-height: 0.9rem; /* 14px */
@@ -43,20 +69,20 @@ body {
     font-size: 14rem; /* 224px */
     line-height: 1; /* 16px */
 }
-.text-13xl {    
+.text-13xl {
     font-size: 16rem; /* 256px */
     line-height: 1; /* 16px */
 }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
+input[type="number"] {
+    -moz-appearance: textfield;
 }
 
 #animated-icons i {
@@ -65,7 +91,13 @@ input[type=number] {
 }
 
 @keyframes changeSize {
-    0%   { transform: scale(1); }
-    50%  { transform: scale(2); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(2);
+    }
+    100% {
+        transform: scale(1);
+    }
 }

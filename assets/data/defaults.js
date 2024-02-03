@@ -1,156 +1,141 @@
 const DEFAULT_DIDGYAS = [
     {
         id: generateId(),
-        emoji: '💦',
-        name: 'Water',
-        unit: 'ml',
+        emoji: "💦",
+        name: "Water",
+        unit: "ml",
         quantity: 250,
         inputs: null,
         timed: false,
-        unitType: 'volume',
         records: [],
         active: null,
-        location: 'local',
-        timedInstances: null
+        location: "local",
+        dailyGoal: 15,
+        timedInstances: null,
     },
     {
         id: generateId(),
-        emoji: '⚖️',
-        name: 'Weight',
-        unit: 'kg',
+        emoji: "⚖️",
+        name: "Weight",
+        unit: "kg",
         quantity: false,
         inputs: [
             {
-                name: 'kilogram',
-                type: 'number',
-            }
+                name: "kilogram",
+                type: "number",
+            },
         ],
         timed: false,
-        unitType: 'weight',
         records: [],
         active: null,
-        location: 'local',
-        timedInstances: null
+        location: "local",
+        dailyGoal: 1,
+        timedInstances: null,
     },
     {
         id: generateId(),
-        emoji: '💩',
-        name: 'Poop',
+        emoji: "💩",
+        name: "Poop",
         unit: null,
         quantity: null,
         inputs: [
             {
-                name: 'Bristol Stool Type',
-                type: 'select',
-                selects: [
+                name: "Bristol Stool Type",
+                type: "select",
+                options: [
                     {
-                        value: 'Select stool type...'
+                        name: "Select stool type...",
                     },
                     {
-                        value: 1,
-                        description: 'separate hard lumps',
-                        name: 'severe constipation'
+                        name: "1 -separate hard lumps",
                     },
                     {
-                        value: 2,
-                        description: 'lumpy and sausage like',
-                        name: 'mild constipation'
+                        name: "2 - lumpy and sausage like",
                     },
                     {
-                        value: 3,
-                        description: 'a sausage shape with cracks in the surface',
-                        name: 'normal'
+                        name: "3 - a sausage shape with cracks in the surface",
                     },
                     {
-                        value: 4,
-                        description: 'like a smooth, soft sausage or snake',
-                        name: 'normal'
+                        name: "4 - like a smooth, soft sausage or snake",
                     },
                     {
-                        value: 5,
-                        description: 'soft blobs with clear-cut edges',
-                        name: 'lacking fibre'
+                        name: "5 - soft blobs with clear-cut edges",
                     },
                     {
-                        value: 6,
-                        description: 'mushy consistency with ragged edges',
-                        name: 'mild diarrhea'
+                        name: "6 - mushy consistency with ragged edges",
                     },
                     {
-                        value: 7,
-                        description: 'liquid consistency with no solid pieces',
-                        name: 'severe diarrhea'
+                        name: "7 - liquid consistency with no solid pieces",
                     },
-                ]
+                ],
             },
             {
-                name: 'Color',
-                type: 'select',
-                selects: [
+                name: "Color",
+                type: "select",
+                options: [
                     {
-                        value: 'Select stool color...',
+                        name: "Select stool color...",
                     },
                     {
-                        value: 'pale, light, or white',
-                        hex: '#f7e2c9',
+                        name: "pale, light, or white",
+                        hex: "#f7e2c9",
                     },
                     {
-                        value: 'yellowish',
-                        hex: '#b59c2b',
+                        name: "yellowish",
+                        hex: "#b59c2b",
                     },
                     {
-                        value: 'brown',
-                        hex: '#61352d',
+                        name: "brown",
+                        hex: "#61352d",
                     },
                     {
-                        value: 'green',
-                        hex: '#5a6133',
+                        name: "green",
+                        hex: "#5a6133",
                     },
                     {
-                        value: 'bright red',
-                        hex: '#e15b40',
+                        name: "bright red",
+                        hex: "#e15b40",
                     },
                     {
-                        value: 'black or dark brown',
-                        hex: '#241f21',
+                        name: "black or dark brown",
+                        hex: "#241f21",
                     },
-
-                ]
-            }
+                ],
+            },
         ],
-        unitType: 'litre',
         timed: false,
         records: [],
         active: null,
-        location: 'local',
-        timedInstances: null
+        location: "local",
+        dailyGoal: null,
+        timedInstances: null,
     },
     {
         id: generateId(),
-        emoji: '🛏️',
-        name: 'Bed Time',
+        emoji: "🛏️",
+        name: "Bed Time",
         unit: null,
         quantity: null,
         inputs: null,
         timed: true,
-        unitType: null,
         records: [],
         active: false,
-        location: 'local',
-        timedInstances: []
+        location: "local",
+        dailyGoal: null,
+        timedInstances: [],
     },
     {
         id: generateId(),
-        emoji: '🪥',
-        name: 'Brush Teeth',
+        emoji: "🪥",
+        name: "Brush Teeth",
         unit: null,
         quantity: null,
         inputs: null,
         timed: false,
-        unitType: null,
         records: [],
         active: null,
-        location: 'local',
-        timedInstances: null
-    }
-]
+        location: "local",
+        dailyGoal: 2,
+        timedInstances: null,
+    },
+];
