@@ -22,6 +22,7 @@ A website that is meant to be displayed on a large monitor for students to see h
     -   updated modal button colors to align with palette
     -   added delete button to inputs and options for the Create DidgYa modal
     -   font now correctly loads on GitHub
+    -   models now no longer appear at the top, instead they appear in the center, on mobile
 -   2024/2/3
     -   added fotns to the project to remove googlefonts api call: about 200 + 150 ms saved
     -   added daily goal to each DidgYaListItem
