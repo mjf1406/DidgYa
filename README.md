@@ -21,6 +21,7 @@ A website that is meant to be displayed on a large monitor for students to see h
     -   on `editDidgya()`, only the items that were changed are updated in DidgYaList
     -   updated modal button colors to align with palette
     -   added delete button to inputs and options for the Create DidgYa modal
+    -   font now correctly loads on GitHub
 -   2024/2/3
     -   added fotns to the project to remove googlefonts api call: about 200 + 150 ms saved
     -   added daily goal to each DidgYaListItem
