@@ -22,6 +22,7 @@ A website that is meant to be displayed on a large monitor for students to see h
     -   updated modal button colors to align with palette
     -   added delete button to inputs and options for the Create DidgYa modal
 -   2024/2/3
+    -   added fotns to the project to remove googlefonts api call: about 200 + 150 ms saved
     -   added daily goal to each DidgYaListItem
     -   fixed the icons so they are properly positioned and properly colored
     -   downloaded FontAwesome Icon to reduce 500ms calls to their CDN

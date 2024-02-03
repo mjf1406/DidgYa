@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: "Quicksand";
+    src: url("../assets/fonts/Quicksand-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 html {
     color-scheme: light dark;
     scroll-behavior: auto;
