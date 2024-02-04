@@ -10,30 +10,30 @@ A [?] denotes that I am considering it, i.e. I'm not sure it should be implement
 
 #### Low Priority
 
-    -   Integrated Supabase to store the data
-        -   [x] createDidgYa
-        -   [x] deleteDidgYa
-        -   [ ] editDidgYa
-        -   [ ] viewDidgYa
-        -   [x] clickDidgYa
-        -   [x] stopDidgYa
-    -   integrated Supabase Auth
-    -   added profile modal
-    -   5 DidgYas for free in the cloud and save others to localStorage
+-   Integrated Supabase to store the data
+    -   [x] createDidgYa
+    -   [x] deleteDidgYa
+    -   [ ] editDidgYa
+    -   [ ] viewDidgYa
+    -   [x] clickDidgYa
+    -   [x] stopDidgYa
+-   integrated Supabase Auth
+-   added profile modal
+-   5 DidgYas for free in the cloud and save others to localStorage
 
 #### Medium Priority
 
-    -   added content in the view model; what do I add here?
-    -   on `editDidgya()`, only the items that were changed are updated in DidgYaList
-    -   added edit modal for the clicked DidgYa
-    -   notify the user about being offline
+-   added content in the view model; what do I add here?
+-   on `editDidgya()`, only the items that were changed are updated in DidgYaList
+-   added edit modal for the clicked DidgYa
+-   notify the user about being offline
 
 #### High Priority
 
-    -   [?] added a stopwatch for those with daily goals that shows last time it was done. Only do minutes and hours
-    -   updated modal button colors to align with palette
-    -   added icons to dropdowns : requires a custom dropdown for the SVG to display properly
-        - urine color, stool shape, stool color
+-   [?] added a stopwatch for those with daily goals that shows last time it was done. Only do minutes and hours
+-   updated modal button colors to align with palette
+-   added icons to dropdowns : requires a custom dropdown for the SVG to display properly
+    -   urine color, stool shape, stool color
 
 ### Complete
 
