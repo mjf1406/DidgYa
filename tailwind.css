@@ -594,6 +594,10 @@ video {
   z-index: 30;
 }
 
+.z-40 {
+  z-index: 40;
+}
+
 .m-0 {
   margin: 0px;
 }
@@ -660,6 +664,10 @@ video {
   margin-right: 0.25rem;
 }
 
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
 .mr-auto {
   margin-right: auto;
 }
@@ -682,10 +690,6 @@ video {
 
 .mt-6 {
   margin-top: 1.5rem;
-}
-
-.mr-2 {
-  margin-right: 0.5rem;
 }
 
 .block {
@@ -723,6 +727,10 @@ video {
 .h-fit {
   height: -moz-fit-content;
   height: fit-content;
+}
+
+.h-full {
+  height: 100%;
 }
 
 .h-screen {
@@ -1215,6 +1223,12 @@ video {
   opacity: 0.4;
 }
 
+.shadow {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .shadow-2xl {
   --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
   --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
@@ -1503,6 +1517,7 @@ body {
 
 .modal-content {
   position: relative;
+  height: 100%;
   border-radius: 0.5rem;
   --tw-bg-opacity: 1;
   background-color: hsl(210deg 16% 97% / var(--tw-bg-opacity));
@@ -1558,6 +1573,12 @@ body {
   /* 256px */
   line-height: 1;
   /* 16px */
+}
+
+.h-dvh {
+  height: 100vh;
+  /* Fallback */
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 /* Chrome, Safari, Edge, Opera */

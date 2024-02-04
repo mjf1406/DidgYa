@@ -52,7 +52,7 @@ body {
 }
 
 .modal-content {
-    @apply relative rounded-lg shadow bg-neutral-light dark:bg-neutral-dark;
+    @apply relative h-full rounded-lg shadow bg-neutral-light dark:bg-neutral-dark;
 }
 
 .text-2xs {
@@ -79,6 +79,11 @@ body {
     font-size: 16rem; /* 256px */
     line-height: 1; /* 16px */
 }
+.h-dvh {
+    height: 100vh; /* Fallback */
+    height: calc(var(--vh, 1vh) * 100);
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

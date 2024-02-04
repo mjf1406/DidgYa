@@ -186,3 +186,23 @@ buttonAddInput.addEventListener("click", function (e) {
 
     inputList.appendChild(inputContainer);
 });
+
+const addPresetModalOpen = document.getElementById(
+    "modal-create-DidgYa-add-preset"
+);
+addPresetModalOpen.addEventListener("click", function (e) {
+    e.preventDefault();
+});
+
+const addPresetButton = document.getElementById("add-preset-DidgYa");
+addPresetButton.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    console.log("Added preset!");
+
+    const modal = document.getElementById("modal-add-preset-DidgYa");
+    modal.classList.add("hidden");
+
+    const modalCreate = document.getElementById("modal-create-DidgYa");
+    modalCreate.classList.add("hidden");
+});
