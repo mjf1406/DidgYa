@@ -1,3 +1,7 @@
+const ICON_CIRCLE_FILLED = document.getElementById("icon-circle-filled");
+const ICON_SQUARE_FILLED = document.getElementById("icon-square-filled");
+const ICON_I = document.getElementById("icon-i");
+
 const DEFAULT_DIDGYAS = [
     {
         id: generateId(),
@@ -78,27 +82,201 @@ const DEFAULT_DIDGYAS = [
                     },
                     {
                         name: "pale, light, or white",
-                        hex: "#f7e2c9",
+                        icon: {
+                            name: "ICON_CIRCLE_FILLED",
+                            width: 15,
+                            height: 15,
+                            color: "#f7e2c9",
+                        },
                     },
                     {
                         name: "yellowish",
-                        hex: "#b59c2b",
+                        icon: {
+                            name: "ICON_CIRCLE_FILLED",
+                            width: 15,
+                            height: 15,
+                            color: "#b59c2b",
+                        },
                     },
                     {
                         name: "brown",
-                        hex: "#61352d",
+                        icon: {
+                            name: "ICON_CIRCLE_FILLED",
+                            width: 15,
+                            height: 15,
+                            color: "#61352d",
+                        },
                     },
                     {
                         name: "green",
-                        hex: "#5a6133",
+                        icon: {
+                            name: "ICON_CIRCLE_FILLED",
+                            width: 15,
+                            height: 15,
+                            color: "#5a6133",
+                        },
                     },
                     {
                         name: "bright red",
-                        hex: "#e15b40",
+                        icon: {
+                            name: "ICON_CIRCLE_FILLED",
+                            width: 15,
+                            height: 15,
+                            color: "#e15b40",
+                        },
                     },
                     {
                         name: "black or dark brown",
-                        hex: "#241f21",
+                        icon: {
+                            name: "ICON_CIRCLE_FILLED",
+                            width: 15,
+                            height: 15,
+                            color: "#241f21",
+                        },
+                    },
+                ],
+            },
+            {
+                name: "Wipes",
+                type: "number",
+            },
+            {
+                name: "Stool Quantity",
+                type: "number",
+            },
+            {
+                name: "Stool Shape",
+                type: "select",
+                options: [
+                    {
+                        name: "Select stool shape...",
+                    },
+                    {
+                        name: "sausage",
+                        icon: {
+                            name: "ICON_CIRCLE_FILLED",
+                            width: 15, // Pixels
+                            height: 15, // Pixels
+                        },
+                    },
+                    {
+                        name: "i-beam",
+                        icon: {
+                            name: "ICON_I",
+                            width: 15, // Pixels
+                            height: 15, // Pixels
+                        },
+                    },
+                    {
+                        name: "thin bar",
+                        icon: {
+                            name: "ICON_SQUARE_FILLED",
+                            width: 15, // Pixels
+                            height: 7, // Pixels
+                        },
+                    },
+                    {
+                        name: "thin sausage",
+                        icon: {
+                            name: "ICON_CIRCLE_FILLED",
+                            width: 8, // Pixels
+                            height: 8, // Pixels
+                        },
+                    },
+                    {
+                        name: "rectangular prism",
+                        icon: {
+                            name: "ICON_SQUARE_FILLED",
+                            width: 15, // Pixels
+                            height: 15, // Pixels
+                        },
+                    },
+                ],
+            },
+        ],
+        timed: false,
+        records: [],
+        active: null,
+        location: "local",
+        dailyGoal: null,
+        timedInstances: null,
+    },
+    {
+        id: generateId(),
+        emoji: "🚽",
+        name: "Pee",
+        unit: null,
+        quantity: null,
+        inputs: [
+            {
+                name: "Color",
+                type: "select",
+                options: [
+                    {
+                        name: "Select urine color...",
+                    },
+                    {
+                        name: "over-hydrated",
+                        icon: {
+                            name: "ICON_CIRCLE_FILLED",
+                            width: 15,
+                            height: 15,
+                            color: "#fcffe2",
+                        },
+                    },
+                    {
+                        name: "good hydration",
+                        icon: {
+                            name: "ICON_CIRCLE_FILLED",
+                            width: 15,
+                            height: 15,
+                            color: "#fcf4a9",
+                        },
+                    },
+                    {
+                        name: "fair hydration",
+                        icon: {
+                            name: "ICON_CIRCLE_FILLED",
+                            width: 15,
+                            height: 15,
+                            color: "#fce971",
+                        },
+                    },
+                    {
+                        name: "slight dehydration",
+                        icon: {
+                            name: "ICON_CIRCLE_FILLED",
+                            width: 15,
+                            height: 15,
+                            color: "#f9d401",
+                        },
+                    },
+                    {
+                        name: "moderate dehydration",
+                        icon: {
+                            name: "ICON_CIRCLE_FILLED",
+                            width: 15,
+                            height: 15,
+                            color: "#e99f01",
+                        },
+                    },
+                    {
+                        name: "high dehydration",
+                        icon: {
+                            name: "ICON_CIRCLE_FILLED",
+                            width: 15,
+                            height: 15,
+                            color: "#de6f04",
+                        },
+                    },
+                    {
+                        name: "severe dehydration",
+                        icon: {
+                            name: "ICON_CIRCLE_FILLED",
+                            width: 15,
+                            height: 15,
+                            color: "#d23c07",
+                        },
                     },
                 ],
             },

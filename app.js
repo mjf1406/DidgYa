@@ -151,6 +151,7 @@ function viewDidgYa(didgYaId) {
 
 function populateDidgYaList(didgYas) {
     const now = new Date();
+    didgYas.alphabetizeByKey("name");
 
     const didgYaList = document.getElementById("DidgYa-list");
     didgYaList.innerHTML = "";
@@ -229,12 +230,33 @@ function createInput(inputType, name, selects, index) {
         selects.forEach((element) => {
             const option = document.createElement("option");
             option.value = element.name;
-            option.innerHTML = `<span class="shadow-md shadow-black">${element.name}</span>`;
+            const icon = element.icon ? element.icon : false;
+            let iconElement = document.createElement("span");
 
-            const hex = element.hex ? element.hex : false;
-            if (hex) {
-                option.style.backgroundColor = hex;
+            if (icon) {
+                iconElement.classList.add("mr-2");
+                const iconSvg = setupSvgIcon(
+                    eval(icon.name),
+                    icon.width,
+                    icon.height
+                );
+                if (icon.color) iconSvg.setAttribute("fill", icon.color);
+                else
+                    iconSvg.classList.add(
+                        "text-text-light",
+                        "dark:text-text-dark"
+                    );
+                iconElement.appendChild(iconSvg);
             }
+
+            iconElement = iconElement ? iconElement : "";
+            option.classList.add("shadow-md", "shadow-black");
+            option.appendChild(iconElement);
+
+            const nameElement = document.createElement("span");
+            nameElement.innerHTML = element.name;
+            option.appendChild(nameElement);
+
             input.append(option);
         });
     }
@@ -376,25 +398,10 @@ function appendDidgYaToList(didgYa) {
     }
     text.appendChild(nameQuantity);
 
-    let todaysRecords = didgYa.records;
-    todaysRecords = todaysRecords.filter((record) => {
-        const recordDate = record.isString()
-            ? new Date(record)
-            : new Date(record.dt);
-        return (
-            recordDate.getDate() === now.getDate() &&
-            recordDate.getMonth() === now.getMonth() &&
-            recordDate.getFullYear() === now.getFullYear()
-        );
-    });
-
     const performedToday = document.createElement("div");
     performedToday.classList.add("text-xs");
     performedToday.id = `performedToday-${didgYa.id}`;
-    const dailyGoal = didgYa.dailyGoal ? ` / ${didgYa.dailyGoal}` : ``;
-    let timeString = todaysRecords.length == 1 ? "time" : "times";
-    timeString = didgYa.dailyGoal ? "times" : timeString;
-    performedToday.innerHTML = `<b>${todaysRecords.length}${dailyGoal}</b> ${timeString} today`;
+    performedToday.innerHTML = getPerformedTodayInnerHTML(didgYa);
     text.appendChild(performedToday);
 
     didgYaListItem.appendChild(text);
@@ -488,17 +495,12 @@ function appendDidgYaToList(didgYa) {
 }
 function updateDidgYaDivById(didgYaId) {
     const didgYa = getLocalDidgYa(didgYaId);
-    const todaysRecords = getTodaysRecords(didgYa.records);
-    console.log("🚀 ~ updateDidgYaDivById ~ todaysRecords:", todaysRecords);
 
     const performedToday = document.getElementById(
         `performedToday-${didgYaId}`
     );
     performedToday.innerHTML = "";
-    const dailyGoal = didgYa.dailyGoal ? ` / ${didgYa.dailyGoal}` : ``;
-    let timeString = todaysRecords.length == 1 ? "time" : "times";
-    timeString = didgYa.dailyGoal ? "times" : timeString;
-    performedToday.innerHTML = `<b>${todaysRecords.length}${dailyGoal}</b> ${timeString} today`;
+    performedToday.innerHTML = getPerformedTodayInnerHTML(didgYa);
 
     const buttonStop = document.getElementById(`stop-${didgYa.id}`);
     const buttonPlay = document.getElementById(`play-${didgYa.id}`);
@@ -538,6 +540,28 @@ function updateDidgYaDivById(didgYaId) {
     }
 }
 
+function getPerformedTodayInnerHTML(didgYa) {
+    const todaysRecords = getTodaysRecords(didgYa.records);
+    const numberOfRecords = todaysRecords.length;
+
+    const dailyGoal = didgYa.dailyGoal ? ` / ${didgYa.dailyGoal}` : ``;
+    let timeString = numberOfRecords == 1 ? "time" : "times";
+    timeString = didgYa.dailyGoal ? "times" : timeString;
+
+    let quantityElement = "";
+    if (didgYa.quantity > 1) {
+        const quantity = didgYa.quantity;
+        const dailyGoal = didgYa.dailyGoal;
+        const consumedToday = quantity * numberOfRecords;
+        const goalConsumption = quantity * dailyGoal;
+
+        quantityElement = ` (<b>${consumedToday.toLocaleString()} / ${goalConsumption.toLocaleString()}</b> ${
+            didgYa.unit
+        })`;
+    }
+
+    return `<b>${todaysRecords.length}${dailyGoal}</b> ${timeString} today ${quantityElement}`;
+}
 function populateIcons() {
     const cancelIcons = document.querySelectorAll(".fa-cancel");
     cancelIcons.forEach((element) => {

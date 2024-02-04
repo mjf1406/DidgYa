@@ -80,10 +80,12 @@ async function fetchInlineSvg(svgPath) {
     }
 }
 
-function setupSvgIcon(svg, width) {
+function setupSvgIcon(svg, width, height) {
+    height = height ? height : width;
     const icon = svg.cloneNode(true);
     icon.classList.remove("hidden");
     icon.setAttribute("width", width);
+    icon.setAttribute("height", height);
     return icon;
 }
 
@@ -104,6 +106,34 @@ Array.prototype.random = function () {
 };
 Array.prototype.last = function () {
     return this[this.length - 1];
+};
+Array.prototype.alphabetizeByKey = function (key) {
+    return this.sort((a, b) => {
+        // Determine values to compare
+        const valA =
+            key && a[key]
+                ? String(a[key]).toUpperCase()
+                : String(a).toUpperCase();
+        const valB =
+            key && b[key]
+                ? String(b[key]).toUpperCase()
+                : String(b).toUpperCase();
+
+        // Perform comparison
+        if (valA < valB) return -1;
+        if (valA > valB) return 1;
+        return 0;
+    });
+};
+Array.prototype.alphabetize = function () {
+    return this.sort((a, b) => {
+        // Convert to string and compare alphabetically
+        const strA = String(a).toUpperCase(); // Ignore case
+        const strB = String(b).toUpperCase(); // Ignore case
+        if (strA < strB) return -1;
+        if (strA > strB) return 1;
+        return 0;
+    });
 };
 
 Audio.prototype.stop = function () {

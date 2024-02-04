@@ -23,6 +23,14 @@ A website that is meant to be displayed on a large monitor for students to see h
     -   added delete button to inputs and options for the Create DidgYa modal
     -   font now correctly loads on GitHub
     -   models now no longer appear at the top, instead they appear in the center, on mobile
+    -   added icons to dropdowns : requires a custom dropdown for the SVG to display properly
+    -   added a stopwatch for those with daily goals that shows last time it was done. Only do minutes and hours
+-   2024/2/4
+    -
+-   2024/2/4 1052
+    -   added total quantity consumed in DidgYaLisItem
+    -   added wipes, stool quantity, and stool shape to Poop default
+    -   added pee to defaults
 -   2024/2/3
     -   added fotns to the project to remove googlefonts api call: about 200 + 150 ms saved
     -   added daily goal to each DidgYaListItem
