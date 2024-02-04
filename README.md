@@ -4,6 +4,8 @@ A website that is meant to be displayed on a large monitor for students to see h
 
 ## Change Log
 
+### To-do List
+
 -   2024/1/xx
     -   Integrated Supabase to store the data
         -   [x] createDidgYa
@@ -24,6 +26,9 @@ A website that is meant to be displayed on a large monitor for students to see h
     -   [?] added a stopwatch for those with daily goals that shows last time it was done. Only do minutes and hours
     -   updated modal button colors to align with palette
     -   added icons to dropdowns : requires a custom dropdown for the SVG to display properly
+
+### Complete
+
 -   2024/2/4:1432
     -   started `landing.html`
     -   updated footer icons to actually show
