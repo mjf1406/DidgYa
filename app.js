@@ -11,6 +11,25 @@ const ICON_CANCEL = document.getElementById("icon-cancel");
 const ICON_X_MARK = document.getElementById("icon-x-mark");
 const ICON_CHECK = document.getElementById("icon-check");
 const ICON_EXCLAMATION = document.getElementById("icon-exclamation");
+const ICON_CARET = document.getElementById("icon-caret");
+
+const presetsDropdown = document.getElementById("presets-dropdown");
+presetsDropdown.innerHTML = "";
+
+const selectPreset = document.createElement("option");
+selectPreset.value = "Select preset...";
+selectPreset.innerText = "Select preset...";
+presetsDropdown.appendChild(selectPreset);
+
+for (let index = 0; index < PRESET_DIDGYAS.length; index++) {
+    const element = PRESET_DIDGYAS[index];
+    if (isLocalDidgYaWithDuplicateName(element.name)) continue;
+    const option = document.createElement("option");
+    option.value = element.name;
+    option.id = element.id;
+    option.innerText = element.emoji + " " + element.name;
+    presetsDropdown.appendChild(option);
+}
 
 async function createDidgYa(
     name,
@@ -605,4 +624,7 @@ function populateIcons() {
         svg.classList.add("fill-text-light", "dark:fill-text-dark");
         element.replaceWith(svg);
     });
+}
+function getDidgYaPreset(didgYaName) {
+    return PRESET_DIDGYAS.find((i) => i.name === didgYaName);
 }

@@ -96,10 +96,35 @@ buttonAddInput.addEventListener("click", function (e) {
 
     const inputContainer = document.createElement("div");
     inputContainer.classList.add("form-input-container");
+    inputContainer.id = `${id}-input-container`;
 
     const inputId = document.createElement("div");
-    inputId.classList.add("p-2", "shrink");
-    inputId.innerText = "Input";
+    inputId.classList.add(
+        "p-2",
+        "shrink",
+        "flex",
+        "flex-row",
+        "gap-2",
+        "items-center"
+    );
+
+    const nameElement = document.createElement("span");
+    nameElement.innerHTML = "Input";
+
+    const deleteButton = document.createElement("button");
+    deleteButton.id = `${id}-delete-input`;
+    const deleteIcon = setupSvgIcon(ICON_TRASH, 15, 15);
+    deleteIcon.classList.add("fill-accent-light", "dark:fill-accent-dark");
+    deleteButton.addEventListener("click", function (e) {
+        e.preventDefault();
+        const id = this.id.replace("-delete-input", "");
+        const input = document.getElementById(`${id}-input-container`);
+        input.remove();
+    });
+    deleteButton.appendChild(deleteIcon);
+
+    inputId.appendChild(nameElement);
+    inputId.appendChild(deleteButton);
     inputId.id = id;
 
     const inputName = document.createElement("input");
@@ -152,9 +177,36 @@ buttonAddInput.addEventListener("click", function (e) {
 
         const optionContainer = document.createElement("div");
         optionContainer.classList.add("form-input-container");
+        optionContainer.id = `${id}-option-container`;
 
         const optionId = document.createElement("div");
-        optionId.innerText = "Option";
+        optionId.classList.add(
+            "p-2",
+            "shrink",
+            "flex",
+            "flex-row",
+            "gap-2",
+            "items-center"
+        );
+
+        const nameElement = document.createElement("span");
+        nameElement.innerHTML = "Option";
+
+        const deleteButton = document.createElement("button");
+        deleteButton.id = `${id}-delete-input`;
+        const deleteIcon = setupSvgIcon(ICON_TRASH, 15, 15);
+        deleteIcon.classList.add("fill-accent-light", "dark:fill-accent-dark");
+        deleteButton.addEventListener("click", function (e) {
+            e.preventDefault();
+            const id = this.id.replace("-delete-input", "");
+            const input = document.getElementById(`${id}-option-container`);
+            input.remove();
+        });
+        deleteButton.appendChild(deleteIcon);
+
+        optionId.appendChild(nameElement);
+        optionId.appendChild(deleteButton);
+        optionId.id = id;
         optionContainer.appendChild(optionId);
 
         const optionName = document.createElement("input");
@@ -182,8 +234,6 @@ buttonAddInput.addEventListener("click", function (e) {
     inputContainer.appendChild(optionsList);
     inputContainer.appendChild(addOptionButton);
 
-    const deleteButton = document.createElement("button");
-
     inputList.appendChild(inputContainer);
 });
 
@@ -198,11 +248,102 @@ const addPresetButton = document.getElementById("add-preset-DidgYa");
 addPresetButton.addEventListener("click", function (e) {
     e.preventDefault();
 
-    console.log("Added preset!");
+    const didgYaName = presetsDropdown.value;
+    const didgYa = getDidgYaPreset(didgYaName);
+
+    if (isLocalDidgYaWithDuplicateName(didgYaName))
+        return makeToast("A DidgYa with that name already exists!", "error");
+
+    addLocalDidgYaPreset(didgYa);
 
     const modal = document.getElementById("modal-add-preset-DidgYa");
     modal.classList.add("hidden");
 
     const modalCreate = document.getElementById("modal-create-DidgYa");
     modalCreate.classList.add("hidden");
+
+    makeToast(
+        `The DidgYa Preset "${didgYa.name}" has been added to your DidgYas!`,
+        "success"
+    );
+
+    appendDidgYaToList(didgYa);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Select all dropdown buttons
+    const customSelects = document.querySelectorAll('[aria-haspopup="true"]');
+    customSelects.forEach((menuButton) => {
+        const menu = menuButton.parentElement.nextElementSibling;
+        menuButton.addEventListener("click", () => {
+            const isExpanded =
+                menuButton.getAttribute("aria-expanded") === "true";
+            menuButton.setAttribute("aria-expanded", !isExpanded);
+            menu.classList.toggle("hidden", isExpanded);
+        });
+    });
+    // Close all dropdowns when clicking outside
+    document.addEventListener("click", (event) => {
+        document
+            .querySelectorAll('[aria-haspopup="true"]')
+            .forEach((menuButton) => {
+                const menu = menuButton.parentElement.nextElementSibling;
+                if (
+                    !menu.contains(event.target) &&
+                    !menuButton.contains(event.target)
+                ) {
+                    menu.classList.add("hidden");
+                    menuButton.setAttribute("aria-expanded", "false");
+                }
+            });
+    });
+    // Update button label when a menu item is selected
+    document
+        .querySelectorAll('[role="menu"] [role="menuitem"]')
+        .forEach((menuItem) => {
+            menuItem.addEventListener("click", function () {
+                const menuButton = this.closest(".relative").querySelector(
+                    '[aria-haspopup="true"]'
+                );
+                const label = menuButton.querySelector("label");
+                // Assuming the menu item text is what you want to display on the button
+                const selectedText = this.textContent || this.innerText;
+                label.textContent = selectedText;
+
+                // Close the dropdown after selection
+                const menu = menuButton.parentElement.nextElementSibling;
+                menu.classList.add("hidden");
+                menuButton.setAttribute("aria-expanded", "false");
+            });
+        });
+    // Prevent dropdown menus from closing when clicking inside them
+    document.querySelectorAll('[role="menu"]').forEach((menu) => {
+        menu.addEventListener("click", (event) => {
+            event.stopPropagation();
+        });
+    });
+    document.querySelectorAll(".custom-select").forEach((dropdown) => {
+        const menuButton = dropdown.querySelector('[aria-haspopup="true"]');
+        const menuItems = dropdown.querySelectorAll('[role="menuitem"]');
+        let maxWidth = 0;
+
+        // Create a temporary element to measure text width accurately
+        const tempElement = document.createElement("span");
+        tempElement.style.visibility = "hidden"; // Hide the element
+        tempElement.style.position = "absolute"; // Avoid affecting layout
+        tempElement.style.whiteSpace = "nowrap"; // Ensure text is in one line
+        document.body.appendChild(tempElement);
+
+        // Measure each menu item
+        menuItems.forEach((item) => {
+            tempElement.textContent = item.textContent || item.innerText;
+            maxWidth = Math.max(maxWidth, tempElement.offsetWidth);
+        });
+
+        // Apply the widest width as min-width to the button, plus some padding
+        menuButton.style.minWidth = `${maxWidth + 40}px`; // Adjust padding as needed
+
+        // Clean up by removing the temporary element
+        document.body.removeChild(tempElement);
+    });
 });

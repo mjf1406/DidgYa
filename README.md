@@ -12,20 +12,25 @@ A website that is meant to be displayed on a large monitor for students to see h
         -   [ ] viewDidgYa
         -   [x] clickDidgYa
         -   [x] stopDidgYa
-    -   Integrated Supabase Auth
+    -   integrated Supabase Auth
     -   added profile modal
     -   5 DidgYas for free in the cloud and save others to localStorage
--   2024/1/xx
+-   2024/2/xx
     -   added content in the view model; what do I add here?
-    -   added edit modal for the clicked DidgYa
     -   on `editDidgya()`, only the items that were changed are updated in DidgYaList
+    -   added edit modal for the clicked DidgYa
+    -   notify the user about being offline
+-   2024/2/xx
+    -   [?] added a stopwatch for those with daily goals that shows last time it was done. Only do minutes and hours
     -   updated modal button colors to align with palette
+    -   added icons to dropdowns : requires a custom dropdown for the SVG to display properly
+-   2024/2/4:1432
+    -   updated footer icons to actually show
+    -   removed pee, mouthwash, and floss from DEFAULTS
+    -   added a way to add more presets that I created in Defaults.js as PRESET_DIDGYAS
+    -   added delete button to each option when creating an input
     -   added delete button to inputs and options for the Create DidgYa modal
     -   font now correctly loads on GitHub
-    -   added icons to dropdowns : requires a custom dropdown for the SVG to display properly
-    -   added a stopwatch for those with daily goals that shows last time it was done. Only do minutes and hours
-    -   added a way to add more presets that I created in Defaults.js as PRESET_DIDGYAS
--   2024/2/4
     -   models now no longer appear at the top, instead they appear in the center, on mobile
     -   added floss and mouthwash to DEFAULT_DIDGYAS
 -   2024/2/4:1052
@@ -78,3 +83,4 @@ A website that is meant to be displayed on a large monitor for students to see h
 -   [FontAwesome](https://fontawesome.com/)
 -   [FlowBite](https://flowbite.com/)
 -   [Chart.js](https://www.chartjs.org/)
+-   [PowerSync](https://www.powersync.com/blog/bringing-offline-first-to-supabase) -- "Bringing offline-first to Supabase, the right way"

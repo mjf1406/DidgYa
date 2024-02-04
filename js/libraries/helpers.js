@@ -89,6 +89,106 @@ function setupSvgIcon(svg, width, height) {
     return icon;
 }
 
+function createCustomDropdown(selectName, options) {
+    const select = document.createElement("div");
+    select.classList.add(
+        "custom-select",
+        "relative",
+        "inline-block",
+        "text-left",
+        "w-max"
+    );
+
+    const firstChild = document.createElement("div");
+    const button = document.createElement("button");
+    const label = document.createElement("label");
+    const caretIcon = setupSvgIcon(ICON_CARET, 0);
+
+    button.classList.add(
+        "inline-flex",
+        "w-full",
+        "justify-center",
+        "gap-x-1.5",
+        "rounded-md",
+        "bg-white",
+        "px-3",
+        "py-2",
+        "text-sm",
+        "font-semibold",
+        "text-gray-900",
+        "shadow-sm",
+        "ring-1",
+        "ring-inset",
+        "ring-gray-300",
+        "hover:bg-gray-50"
+    );
+    button.id = "menu-button";
+    button.ariaExpanded = "false";
+    button.setAttribute("aria-haspopup", "true");
+    button.type = "button";
+
+    label.classList.add("grow");
+    label.innerText = `Select a ${selectName.toTitleCase()}...`;
+
+    caretIcon.classList.add("self-end", "w-5", "h-5", "-mr-1", "text-gray-400");
+
+    button.appendChild(label);
+    button.appendChild(caretIcon);
+    firstChild.appendChild(button);
+
+    const secondChild = document.createElement("div");
+    const menuItemContainer = document.createElement("div");
+
+    secondChild.classList.add(
+        "absolute",
+        "right-0",
+        "z-10",
+        "hidden",
+        "w-56",
+        "mt-2",
+        "origin-top-right",
+        "bg-white",
+        "rounded-md",
+        "shadow-lg",
+        "ring-1",
+        "ring-black",
+        "ring-opacity-5",
+        "focus:outline-none"
+    );
+    secondChild.role = "menu";
+    secondChild.ariaOrientation = "vertical";
+    secondChild.ariaLabelledby = "menu-button";
+    secondChild.tabIndex = "-1";
+
+    menuItemContainer.classList.add("py-1");
+    menuItemContainer.role = "none";
+
+    for (let index = 0; index < options.length; index++) {
+        const element = options[index];
+        const a = document.createElement("a");
+        a.classList.add(
+            "block",
+            "px-4",
+            "py-2",
+            "text-sm",
+            "text-gray-700",
+            "hover:bg-primary-light"
+        );
+        a.role = "menuitem";
+        a.tabIndex = "-1";
+        a.id = `menu-item-${index}`;
+        a.innerText = element.toTitleCase();
+        menuItemContainer.appendChild(a);
+    }
+
+    secondChild.appendChild(menuItemContainer);
+
+    select.appendChild(firstChild);
+    select.appendChild(secondChild);
+
+    return select;
+}
+
 Node.prototype.replaceInPlace = function () {
     const clone = this.cloneNode(true);
     this.parentNode.replaceChild(clone, this);

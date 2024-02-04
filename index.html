@@ -107,38 +107,53 @@
 
     <div id="footer"
         class="fixed left-0 flex flex-row items-center justify-center w-full gap-1 mb-1 text-xs align-middle bottom-1 opacity-40">
-        Made with <i class="ml-px mr-px text-red-500 fa fa-heart" aria-hidden="true"></i> by Michael Fitzgerald
+        Made with
+        <svg width="10" class="ml-px mr-px fill-red-500" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path
+                d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z" />
+        </svg>
+        by Michael Fitzgerald
         <div class="flex flex-row gap-1 ml-1" role="group" aria-label="">
-            <button id="footer-linkedin" type="button" class="bg-transparent" data-toggle="tooltip" data-placement="top"
-                title="LinkedIn">
+            <button id="footer-linkedin" type="button" class="flex flex-row items-center justify-center bg-transparent"
+                data-toggle="tooltip" data-placement="top" title="LinkedIn">
                 <a href="https://www.linkedin.com/in/mfitz06/" target="_blank" rel="noopener noreferrer">
-                    <i class="fa-brands fa-linkedin"></i></a>
+                    <svg width="10" class="fill-text-light dark:fill-text-dark" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                        <path
+                            d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z" />
+                    </svg>
+                </a>
             </button>
-            <button id="footer-github" type="button" class="bg-transparent" data-toggle="tooltip" data-placement="top"
-                title="Github">
+            <button id="footer-github" type="button" class="flex flex-row items-center justify-center bg-transparent"
+                data-toggle="tooltip" data-placement="top" title="Github">
                 <a href="https://github.com/mjf1406" target="_blank" rel="noopener noreferrer">
-                    <i class="fa-brands fa-github"></i></a>
+                    <svg width="10" class="fill-text-light dark:fill-text-dark" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 496 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                        <path
+                            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
+                    </svg>
+                </a>
             </button>
-            <button id="footer-portfolio" type="button" class="bg-transparent" data-toggle="tooltip"
-                data-placement="top" title="Portfolio">
+            <button id="footer-portfolio" type="button" class="flex flex-row items-center justify-center bg-transparent"
+                data-toggle="tooltip" data-placement="top" title="Portfolio">
                 <a href="https://mjf1406-portfolio.netlify.app/" target="_blank" rel="noopener noreferrer">
-                    <i class="fa-solid fa-id-card"></i></a>
+                    <svg width="10" class="fill-text-light dark:fill-text-dark" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                        <path
+                            d="M0 96l576 0c0-35.3-28.7-64-64-64H64C28.7 32 0 60.7 0 96zm0 32V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V128H0zM64 405.3c0-29.5 23.9-53.3 53.3-53.3H234.7c29.5 0 53.3 23.9 53.3 53.3c0 5.9-4.8 10.7-10.7 10.7H74.7c-5.9 0-10.7-4.8-10.7-10.7zM176 192a64 64 0 1 1 0 128 64 64 0 1 1 0-128zm176 16c0-8.8 7.2-16 16-16H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16z" />
+                    </svg>
+                </a>
             </button>
-            <button id="footer-DidgYa" type="button" class="bg-transparent" data-toggle="tooltip" data-placement="top"
-                title="Open Source Code">
+            <button id="footer-DidgYa" type="button" class="flex flex-row items-center justify-center bg-transparent"
+                data-toggle="tooltip" data-placement="top" title="Open Source Code">
                 <a href="https://github.com/mjf1406/DidgYa" target="_blank" rel="noopener noreferrer">
-                    <i class="fa-solid fa-code"></i></a>
-            </button>
-            <button id="footer-patreon" type="button" class="bg-transparent" data-toggle="tooltip" data-placement="top"
-                title="Support me on Patreon">
-                <a href="https://patreon.com/MichaelFitzgerald?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_creator&utm_content=join_link"
-                    target="_blank" rel="noopener noreferrer">
-                    <i class="fa-brands fa-patreon"></i></a>
-            </button>
-            <button id="footer-kofi" type="button" class="bg-transparent" data-toggle="tooltip" data-placement="top"
-                title="Buy me a coffee">
-                <a href="https://ko-fi.com/michaelfitzgerald1406" target="_blank" rel="noopener noreferrer">
-                    <i class="fa-solid fa-mug-hot"></i></a>
+                    <svg width="10" class="fill-text-light dark:fill-text-dark" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                        <path
+                            d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z" />
+                    </svg>
+                </a>
             </button>
         </div>
     </div>
@@ -215,11 +230,13 @@
                     </button>
                     <div class="px-6 py-6 lg:px-8">
                         <h3 class="flex flex-row gap-2 mb-4 text-xl font-medium text-gray-900 dark:text-white">
-                            <i class="mr-1 fa-solid fa-plus"></i>
                             Add preset
                         </h3>
-                        <form id="profile-form" class="space-y-3" action="#">
-
+                        <form id="add-preset-form" class="space-y-3" action="#">
+                            <div class="mb-5">
+                                <select id="presets-dropdown"
+                                    class="p-2 bg-highlight-light/10 dark:bg-highlight-dark/10"></select>
+                            </div>
 
                             <div class="flex flex-row gap-2">
                                 <button type="submit" id="add-preset-DidgYa"
@@ -256,7 +273,6 @@
                     </button>
                     <div class="px-6 py-6 lg:px-8">
                         <h3 class="flex flex-row gap-2 mb-4 text-xl font-medium text-gray-900 dark:text-white">
-                            <i class="fa-solid fa-plus"></i>
                             Create DidgYa
                         </h3>
                         <form class="space-y-6" action="#">
@@ -614,6 +630,11 @@
             <path
                 d="M32 32C14.3 32 0 46.3 0 64S14.3 96 32 96h96V416H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192V96h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H160 32z" />
         </svg>
+        <svg class="hidden" id="icon-caret" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path
+                d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
+        </svg>
     </span>
 
 </body>
@@ -629,7 +650,7 @@
 <script src="js/db/cloudDatabase.js"></script>
 <script src="js/db/localDatabase.js"></script>
 
-<script src="keys.js"></script>
+<!-- <script src="keys.js"></script> -->
 
 <script src="js/listeners.js"></script>
 <script src="js/tippys.js"></script>

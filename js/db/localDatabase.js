@@ -158,3 +158,9 @@ function stopLocalDidgYa(didgYaId, instance) {
 
     localStorage.setItem("didgYas", JSON.stringify(didgYas));
 }
+
+function addLocalDidgYaPreset(didgYa) {
+    const didgYas = JSON.parse(localStorage.getItem("didgYas"));
+    didgYas.push(didgYa);
+    localStorage.setItem("didgYas", JSON.stringify(didgYas));
+}
