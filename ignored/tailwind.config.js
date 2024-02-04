@@ -43,6 +43,11 @@ module.exports = {
                     light: "hsl(188deg 77% 40% / <alpha-value>)", // Light supporting color
                     dark: "hsl(182deg 80% 25% / <alpha-value>)", // Dark supporting color
                 },
+                toast: {
+                    success: "hsl(143deg 64% 24% / <alpha-value>)",
+                    warning: "hsl(50deg 98% 64% / <alpha-value>)",
+                    error: "hsl(0deg 74% 42% / <alpha-value>)",
+                },
             },
         },
     },

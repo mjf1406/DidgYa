@@ -478,13 +478,11 @@ function appendDidgYaToList(didgYa) {
 
     const buttonStop = document.getElementById(`stop-${didgYa.id}`);
     buttonStop.addEventListener("click", function () {
-        console.log(`Stopped ${didgYa.name} : ${didgYa.id}`);
         stopDidgYa(didgYa.id);
     });
 
     const buttonPlay = document.getElementById(`play-${didgYa.id}`);
     buttonPlay.addEventListener("click", function () {
-        console.log(`Clicked ${didgYa.name} : ${didgYa.id}`);
         clickDidgYa(didgYa.id);
     });
 
