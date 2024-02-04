@@ -4,8 +4,7 @@
 
 @font-face {
     font-family: "Quicksand";
-    src: url("../assets/fonts/Quicksand-VariableFont_wght.ttf")
-        format("truetype");
+    src: url("/assets/fonts/Quicksand-VariableFont_wght.ttf") format("truetype");
 }
 
 html {
