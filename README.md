@@ -38,6 +38,7 @@ A [?] denotes that I am considering it, i.e. I'm not sure it should be implement
 ### Complete
 
 -   2024/2/4
+    -   DidgYa text now hides on medium and smaller screens
     -   removed the Color.js dependency in `toasts.js` through the magic of HSL
     -   started `landing.html`
     -   updated footer icons to actually show
