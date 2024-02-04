@@ -7,6 +7,9 @@ module.exports = {
             screens: {
                 "min-1860": "1860px",
             },
+            fontFamily: {
+                quicksand: ["Quicksand", "sans-serif"],
+            },
             colors: {
                 background: {
                     light: "hsl(0deg 0% 93% / <alpha-value>)", // Light background color
