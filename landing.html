@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../tailwind.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <!-- Toastify.js -->
+    <!-- Toastify.js -->
+    <title>DidgYa</title>
+    <!-- Modules -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script> <!-- Tippy.js -->
+    <script src="https://unpkg.com/tippy.js@6"></script> <!-- Tippy.js -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script> <!-- Toastify.js -->
+    <script src="https://colorjs.io/dist/color.global.js"></script> <!-- Color.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> Supabase -->
+</head>
+
+<body id="body"
+    class="flex flex-col h-screen gap-5 m-2 overflow-auto transition-colors duration-1000 ease-in-out w-dvw">
+    <div class="fixed flex flex-row items-center justify-between w-full">
+        <div class="top-0 flex flex-row gap-1 grow shrink-0">
+            <a class="flex flex-row items-center justify-center gap-2 mr-auto text-5xl" href="../index.html">
+                <span
+                    class="text-transparent bg-gradient-to-r from-primary-light to-supporting-light dark:from-primary-dark dark:to-supporting-dark bg-clip-text">
+                    <span>
+                        <svg class="w-[45px] fill-primary-light dark:fill-primary-dark"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                            <path
+                                d="M96 80c0-26.5 21.5-48 48-48H432c26.5 0 48 21.5 48 48V384H96V80zm313 47c-9.4-9.4-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L409 161c9.4-9.4 9.4-24.6 0-33.9zM0 336c0-26.5 21.5-48 48-48H64V416H512V288h16c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V336z" />
+                        </svg>
+                    </span>
+                </span>
+                <h1 class="font-extrabold tracking-tight">
+                    <span class="text-primary-light dark:text-primary-dark">
+                        Didg
+                    </span>
+                    <span class="-ml-4 text-supporting-light dark:text-supporting-dark">
+                        Ya
+                    </span>
+                </h1>
+            </a>
+        </div>
+    </div>
+    <!-- Hero -->
+    <div class="flex flex-row items-center justify-center gap-10 mt-32 bg-background-light dark:bg-background-dark">
+        <div class="flex flex-col items-center justify-center gap-10">
+            <div class="flex flex-col items-center justify-center gap-2">
+                <div class="max-w-lg text-6xl font-bold text-left">
+                    Take control of your life. Made for ease and
+                    customization.
+                </div>
+                <div class="max-w-lg text-xl font-semibold tracking-tight text-left">
+                    Did you do it? Did you experience it?
+                    <span class="mx-1.5 font-bold">
+                        <span class="-ml-1 text-primary-light dark:text-primary-dark">
+                            Didg
+                        </span>
+                        <span class="-ml-1 -mr-1.5 text-supporting-light dark:text-supporting-dark">
+                            Ya
+                        </span>
+                    </span>
+                    is an app designed to simplify the way you track various
+                    things that happen in your life.
+                </div>
+            </div>
+            <div class="flex flex-row items-start justify-start w-full gap-2">
+                <button
+                    class="text-text-light dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:ring-primary-light font-medium rounded-lg text-lg px-5 py-2.5 dark:bg-primary-dark dark:hover:bg-primary-dark/70 focus:outline-none dark:focus:ring-primary-dark">Get
+                    started
+                </button>
+                <button
+                    class="flex flex-row gap-2 justify-center items-center text-text-light dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:ring-primary-light font-medium rounded-lg text-lg px-5 py-2.5 dark:bg-primary-dark dark:hover:bg-primary-dark/70 focus:outline-none dark:focus:ring-primary-dark">
+                    <svg width="25" class="fill-text-light dark:fill-text-dark" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 496 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                        <path
+                            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
+                    </svg>
+                    View on GitHub
+                </button>
+            </div>
+            <div class="max-w-lg text-base text-left">
+                DidgYa comes with <b>5 free DidgYas</b>. Or, you can self-host it using <a
+                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="">Docker</a>.
+            </div>
+        </div>
+        <div class="flex flex-col items-center justify-center gap-2">
+            <video width="700" title="Team discussing work in the Slack app" role="img" data-js-id="hero" loop=""
+                muted="" playsinline=""
+                poster="https://a.slack-edge.com/b211f31/marketing/img/homepage/true-prospects/animations/static/ia4-hero-product-ui.jpg">
+                <source
+                    src="https://a.slack-edge.com/b211f31/marketing/img/homepage/true-prospects/animations/mp4/ia4-hero-product-ui.mp4"
+                    type="video/mp4">
+            </video>
+        </div>
+    </div>
+    <!-- Problem/Solution -->
+    <div
+        class="flex flex-row items-center justify-center gap-10 p-16 mt-20 bg-supporting-light dark:bg-supporting-dark h-fit">
+        <div class="flex flex-col items-center justify-center gap-2">
+            <video width="700" title="Team discussing work in the Slack app" role="img" data-js-id="hero" loop=""
+                muted="" playsinline=""
+                poster="https://a.slack-edge.com/b211f31/marketing/img/homepage/true-prospects/animations/static/ia4-hero-product-ui.jpg">
+                <source
+                    src="https://a.slack-edge.com/b211f31/marketing/img/homepage/true-prospects/animations/mp4/ia4-hero-product-ui.mp4"
+                    type="video/mp4">
+            </video>
+        </div>
+        <div class="flex flex-col items-center justify-center max-w-md gap-2 grow-0">
+            <p class="text-2xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt
+                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <p class="text-base">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                mollit anim id est laborum.
+            </p>
+            <p class="text-base">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                mollit anim id est laborum.
+            </p>
+        </div>
+    </div>
+</body>
+
+<script src="js/libraries/helpers.js"></script>
+<script src="js/libraries/modals.js"></script>
+<script src="js/libraries/toasts.js"></script>
+<script src="js/libraries/numberInputs.js"></script>
+
+<script src="assets/data/units.js"></script>
+<script src="assets/data/defaults.js"></script>
+<script src="assets/data/icons.js"></script>
+
+<script src="js/db/cloudDatabase.js"></script>
+<script src="js/db/localDatabase.js"></script>
+
+<!-- <script src="keys.js"></script> -->
+
+<script src="js/tippys.js"></script>
+<script src="js/profile.js"></script>
+
+<script>
+
+</script>
+
+</html>

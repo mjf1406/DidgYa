@@ -25,6 +25,7 @@ A website that is meant to be displayed on a large monitor for students to see h
     -   updated modal button colors to align with palette
     -   added icons to dropdowns : requires a custom dropdown for the SVG to display properly
 -   2024/2/4:1432
+    -   started `landing.html`
     -   updated footer icons to actually show
     -   removed pee, mouthwash, and floss from DEFAULTS
     -   added a way to add more presets that I created in Defaults.js as PRESET_DIDGYAS
@@ -33,7 +34,6 @@ A website that is meant to be displayed on a large monitor for students to see h
     -   font now correctly loads on GitHub
     -   models now no longer appear at the top, instead they appear in the center, on mobile
     -   added floss and mouthwash to DEFAULT_DIDGYAS
--   2024/2/4:1052
     -   DidgYa list is not alphabetized
     -   added total quantity consumed in DidgYaLisItem
     -   added wipes, stool quantity, and stool shape to Poop default
@@ -84,3 +84,57 @@ A website that is meant to be displayed on a large monitor for students to see h
 -   [FlowBite](https://flowbite.com/)
 -   [Chart.js](https://www.chartjs.org/)
 -   [PowerSync](https://www.powersync.com/blog/bringing-offline-first-to-supabase) -- "Bringing offline-first to Supabase, the right way"
+
+## Landing Page
+
+### Examples
+
+-   https://www.youtube.com/watch?v=QYmNMHl156E
+-   https://play-tailwind.tailgrids.com/
+
+### Templates
+
+-   https://www.tailwindawesome.com/resources/landwind
+-   https://www.tailwindawesome.com/resources/play
+
+### Sections
+
+1. hero
+   📢📢📢 inside of 5 seconds, what you do, why it matters, and what they need to do to get it 📢📢📢
+
+    - headline emphasizes value, result or transformation
+    - sub-headline clearly explains what you provide to get that result
+    - call-to-action button
+    - image
+        - people look at the image for 6 seconds, a lot in the web
+        - must get it right an emotional connect
+
+2. Problem/Solution section
+    - talk about the main _pain point_
+        - larger text than the below
+    - _agitate_ with examlpes
+    - introduce your _solution_
+    - add a video that hits on teh problem if possible
+        - pages with video increase conversion by 86% on average
+3. Benefits
+    - Most compelling 3 benefits paired with feature(s) that make them possible
+    - Benefit is not a feature
+        - Stay Connected : Instancly conectw it hmulti-device bluetooth
+            - Benefit is stay connected
+            - features is bluetooth
+4. Testimonials
+    - at least 3
+    - 72% of customers only take action after reading a positiev review
+    - one that overcomes an objection
+    - one that speaks to a benefit
+    - one that speaks to teh results
+    - include photo if possible
+5. Features
+    - 10 to 20
+    - buying decision nis mad based on emotion first, then backed up by logic. This is the logic
+6. FAQs
+    - Answer common questions
+    - handle common objections
+    - a video for each one is great
+7. Call to Action
+    - Same CTA as in the Hero section

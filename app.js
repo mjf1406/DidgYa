@@ -1,18 +1,3 @@
-const ICON_PEN_TO_SQUARE = document.getElementById("icon-pen-to-square");
-const ICON_CLOUD_X = document.getElementById("icon-cloud-x");
-const ICON_PLAY = document.getElementById("icon-play");
-const ICON_STOP = document.getElementById("icon-stop");
-const ICON_USER = document.getElementById("icon-user");
-const ICON_PLUS = document.getElementById("icon-plus");
-const ICON_MINUS = document.getElementById("icon-minus");
-const ICON_TRASH_UP_ARROW = document.getElementById("icon-trash-up-arrow");
-const ICON_TRASH = document.getElementById("icon-trash");
-const ICON_CANCEL = document.getElementById("icon-cancel");
-const ICON_X_MARK = document.getElementById("icon-x-mark");
-const ICON_CHECK = document.getElementById("icon-check");
-const ICON_EXCLAMATION = document.getElementById("icon-exclamation");
-const ICON_CARET = document.getElementById("icon-caret");
-
 const presetsDropdown = document.getElementById("presets-dropdown");
 presetsDropdown.innerHTML = "";
 
@@ -580,50 +565,6 @@ function getPerformedTodayInnerHTML(didgYa) {
     }
 
     return `<b>${todaysRecords.length}${dailyGoal}</b> ${timeString} today ${quantityElement}`;
-}
-function populateIcons() {
-    const cancelIcons = document.querySelectorAll(".fa-cancel");
-    cancelIcons.forEach((element) => {
-        const svg = setupSvgIcon(ICON_CANCEL, "15");
-        svg.classList.add("fill-text-light", "dark:fill-text-dark");
-        element.replaceWith(svg);
-    });
-    const plusIcons = document.querySelectorAll(".fa-plus");
-    plusIcons.forEach((element) => {
-        const svg = setupSvgIcon(ICON_PLUS, "15");
-        svg.classList.add("fill-text-light", "dark:fill-text-dark");
-        element.replaceWith(svg);
-    });
-    const minusIcons = document.querySelectorAll(".fa-minus");
-    minusIcons.forEach((element) => {
-        const svg = setupSvgIcon(ICON_MINUS, "15");
-        svg.classList.add("fill-text-light", "dark:fill-text-dark");
-        element.replaceWith(svg);
-    });
-    const editIcons = document.querySelectorAll(".fa-pen-to-square");
-    editIcons.forEach((element) => {
-        const svg = setupSvgIcon(ICON_PEN_TO_SQUARE, "15");
-        svg.classList.add("fill-text-light", "dark:fill-text-dark");
-        element.replaceWith(svg);
-    });
-    const deleteIcons = document.querySelectorAll(".fa-trash");
-    deleteIcons.forEach((element) => {
-        const svg = setupSvgIcon(ICON_TRASH, "15");
-        svg.classList.add("fill-text-light", "dark:fill-text-dark");
-        element.replaceWith(svg);
-    });
-    const deleteAllIcons = document.querySelectorAll(".fa-trash-can-arrow-up");
-    deleteAllIcons.forEach((element) => {
-        const svg = setupSvgIcon(ICON_TRASH_UP_ARROW, "15");
-        svg.classList.add("fill-text-light", "dark:fill-text-dark");
-        element.replaceWith(svg);
-    });
-    const userIcon = document.querySelectorAll(".fa-user");
-    userIcon.forEach((element) => {
-        const svg = setupSvgIcon(ICON_USER, "15");
-        svg.classList.add("fill-text-light", "dark:fill-text-dark");
-        element.replaceWith(svg);
-    });
 }
 function getDidgYaPreset(didgYaName) {
     return PRESET_DIDGYAS.find((i) => i.name === didgYaName);
