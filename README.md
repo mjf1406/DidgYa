@@ -34,6 +34,8 @@ A [?] denotes that I am considering it, i.e. I'm not sure it should be implement
 -   updated modal button colors to align with palette
 -   added icons to dropdowns : requires a custom dropdown for the SVG to display properly
     -   urine color, stool shape, stool color
+-   added masturbation to presets
+-   added boolean as input option when creating a DidgYa
 
 ### Complete
 
