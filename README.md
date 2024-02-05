@@ -27,6 +27,8 @@ A [?] denotes that I am considering it, i.e. I'm not sure it should be implement
 -   on `editDidgya()`, only the items that were changed are updated in DidgYaList
 -   added edit modal for the clicked DidgYa
 -   notify the user about being offline
+-   consider minification tools. This might require initializing node into the project.
+-   consider localization libraries, or write my own. One is 33KB minified and another is 55KB minified. I feel like I can make a smaller one.
 
 #### High Priority
 
