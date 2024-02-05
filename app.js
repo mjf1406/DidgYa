@@ -121,8 +121,11 @@ function viewDidgYa(didgYaId) {
     const viewModal = document.getElementById("modal-view-DidgYa");
     viewModal.classList.remove("hidden");
 
-    const deleteButton = document.getElementById("button-delete-view-DidgYa");
-    deleteButton.addEventListener("click", () => {
+    const deleteButtonOld = document.getElementById(
+        "button-delete-view-DidgYa"
+    );
+    const deleteButton = deleteButtonOld.replaceInPlace();
+    deleteButton.addEventListener("click", function () {
         const modal = document.getElementById("modal-delete-DidgYa");
         modal.classList.remove("hidden");
 
@@ -146,10 +149,31 @@ function viewDidgYa(didgYaId) {
         });
     });
 
-    const editButton = document.getElementById("button-edit-view-DidgYa");
+    const editButtonOld = document.getElementById("button-edit-view-DidgYa");
+    const editButton = editButtonOld.replaceInPlace();
     editButton.addEventListener("click", (e) => {
         e.preventDefault();
         editDidgYa(didgYaId);
+    });
+
+    let records = didgYa.records;
+    let transformedData = records.map((item) => {
+        const dt = new Date(item.dt);
+        const transformedItem = {
+            dt: `${dt.toLocaleDateString()} ${dt.toLocaleTimeString()}`,
+        };
+        if (item.variables) {
+            item.variables.forEach((variable) => {
+                transformedItem[variable.name] = variable.value;
+            });
+        }
+        return transformedItem;
+    });
+
+    var table = new Tabulator("#data-table", {
+        data: transformedData,
+        layout: "fitDataTable",
+        autoColumns: true,
     });
 }
 
@@ -193,7 +217,7 @@ function createInput(inputType, name, selects, index) {
     const div = document.createElement("div");
     div.classList.add("mb-5");
 
-    const label = document.createElement("label");
+    let label = document.createElement("label");
     label.classList.add(
         "block",
         "mb-2",
@@ -205,7 +229,7 @@ function createInput(inputType, name, selects, index) {
     label.innerHTML = name.toTitleCase();
     label.setAttribute("for", `input-${name}`);
 
-    const input =
+    let input =
         inputType === "select"
             ? document.createElement(inputType)
             : document.createElement("input");
@@ -292,8 +316,66 @@ function createInput(inputType, name, selects, index) {
         input.placeholder = `Input ${name}...`;
     }
 
+    if (inputType === "boolean") {
+        input.type = "checkbox";
+        input.classList.add("sr-only", "peer");
+
+        label = document.createElement("label");
+        label.for = `input-${index}-${name}`;
+        label.classList.add(
+            "relative",
+            "inline-flex",
+            "items-center",
+            "cursor-pointer"
+        );
+
+        const div = document.createElement("div");
+        div.classList.add(
+            "w-11",
+            "h-6",
+            "bg-neutral-light",
+            "peer-focus:outline-none",
+            "peer-focus:ring-4",
+            "peer-focus:ring-blue-300",
+            "dark:peer-focus:ring-blue-800",
+            "rounded-full",
+            "peer",
+            "dark:bg-neutral-dark",
+            "peer-checked:after:translate-x-full",
+            "rtl:peer-checked:after:-translate-x-full",
+            "peer-checked:after:border-white",
+            "after:content-['']",
+            "after:absolute",
+            "after:top-[2px]",
+            "after:start-[2px]",
+            "after:bg-white",
+            "after:border-gray-300",
+            "after:border",
+            "after:rounded-full",
+            "after:h-5",
+            "after:w-5",
+            "after:transition-all",
+            "dark:border-gray-600",
+            "peer-checked:bg-blue-600"
+        );
+
+        const span = document.createElement("span");
+        span.classList.add(
+            "text-sm",
+            "font-medium",
+            "text-gray-900",
+            "ms-3",
+            "dark:text-gray-300"
+        );
+        span.innerText = name;
+
+        label.appendChild(input);
+        label.appendChild(div);
+        label.appendChild(span);
+    }
+
     div.appendChild(label);
-    div.appendChild(input);
+    if (inputType != "boolean") div.appendChild(input);
     return div;
 }
 function createDidgYaGetInputs() {

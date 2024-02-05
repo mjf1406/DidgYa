@@ -188,15 +188,61 @@ function createCustomDropdown(selectName, options) {
 
     return select;
 }
+function getUserLanguage() {
+    return navigator.languages && navigator.languages.length
+        ? navigator.languages[0]
+        : navigator.language;
+}
+
+function populateIcons() {
+    const cancelIcons = document.querySelectorAll(".fa-cancel");
+    cancelIcons.forEach((element) => {
+        const svg = setupSvgIcon(ICON_CANCEL, "15");
+        svg.classList.add("fill-text-light", "dark:fill-text-dark");
+        element.replaceWith(svg);
+    });
+    const plusIcons = document.querySelectorAll(".fa-plus");
+    plusIcons.forEach((element) => {
+        const svg = setupSvgIcon(ICON_PLUS, "15");
+        svg.classList.add("fill-text-light", "dark:fill-text-dark");
+        element.replaceWith(svg);
+    });
+    const minusIcons = document.querySelectorAll(".fa-minus");
+    minusIcons.forEach((element) => {
+        const svg = setupSvgIcon(ICON_MINUS, "15");
+        svg.classList.add("fill-text-light", "dark:fill-text-dark");
+        element.replaceWith(svg);
+    });
+    const editIcons = document.querySelectorAll(".fa-pen-to-square");
+    editIcons.forEach((element) => {
+        const svg = setupSvgIcon(ICON_PEN_TO_SQUARE, "15");
+        svg.classList.add("fill-text-light", "dark:fill-text-dark");
+        element.replaceWith(svg);
+    });
+    const deleteIcons = document.querySelectorAll(".fa-trash");
+    deleteIcons.forEach((element) => {
+        const svg = setupSvgIcon(ICON_TRASH, "15");
+        svg.classList.add("fill-text-light", "dark:fill-text-dark");
+        element.replaceWith(svg);
+    });
+    const deleteAllIcons = document.querySelectorAll(".fa-trash-can-arrow-up");
+    deleteAllIcons.forEach((element) => {
+        const svg = setupSvgIcon(ICON_TRASH_UP_ARROW, "15");
+        svg.classList.add("fill-text-light", "dark:fill-text-dark");
+        element.replaceWith(svg);
+    });
+    const userIcon = document.querySelectorAll(".fa-user");
+    userIcon.forEach((element) => {
+        const svg = setupSvgIcon(ICON_USER, "15");
+        svg.classList.add("fill-text-light", "dark:fill-text-dark");
+        element.replaceWith(svg);
+    });
+}
 
 Node.prototype.replaceInPlace = function () {
     const clone = this.cloneNode(true);
     this.parentNode.replaceChild(clone, this);
     return clone;
-};
-
-Object.prototype.isString = function () {
-    return typeof this === "string" || this instanceof String;
 };
 
 Array.prototype.random = function () {
@@ -279,47 +325,3 @@ String.prototype.toTitleCase = function () {
 String.prototype.reverse = function () {
     return this.split("").reverse().join("");
 };
-function populateIcons() {
-    const cancelIcons = document.querySelectorAll(".fa-cancel");
-    cancelIcons.forEach((element) => {
-        const svg = setupSvgIcon(ICON_CANCEL, "15");
-        svg.classList.add("fill-text-light", "dark:fill-text-dark");
-        element.replaceWith(svg);
-    });
-    const plusIcons = document.querySelectorAll(".fa-plus");
-    plusIcons.forEach((element) => {
-        const svg = setupSvgIcon(ICON_PLUS, "15");
-        svg.classList.add("fill-text-light", "dark:fill-text-dark");
-        element.replaceWith(svg);
-    });
-    const minusIcons = document.querySelectorAll(".fa-minus");
-    minusIcons.forEach((element) => {
-        const svg = setupSvgIcon(ICON_MINUS, "15");
-        svg.classList.add("fill-text-light", "dark:fill-text-dark");
-        element.replaceWith(svg);
-    });
-    const editIcons = document.querySelectorAll(".fa-pen-to-square");
-    editIcons.forEach((element) => {
-        const svg = setupSvgIcon(ICON_PEN_TO_SQUARE, "15");
-        svg.classList.add("fill-text-light", "dark:fill-text-dark");
-        element.replaceWith(svg);
-    });
-    const deleteIcons = document.querySelectorAll(".fa-trash");
-    deleteIcons.forEach((element) => {
-        const svg = setupSvgIcon(ICON_TRASH, "15");
-        svg.classList.add("fill-text-light", "dark:fill-text-dark");
-        element.replaceWith(svg);
-    });
-    const deleteAllIcons = document.querySelectorAll(".fa-trash-can-arrow-up");
-    deleteAllIcons.forEach((element) => {
-        const svg = setupSvgIcon(ICON_TRASH_UP_ARROW, "15");
-        svg.classList.add("fill-text-light", "dark:fill-text-dark");
-        element.replaceWith(svg);
-    });
-    const userIcon = document.querySelectorAll(".fa-user");
-    userIcon.forEach((element) => {
-        const svg = setupSvgIcon(ICON_USER, "15");
-        svg.classList.add("fill-text-light", "dark:fill-text-dark");
-        element.replaceWith(svg);
-    });
-}

@@ -27,9 +27,7 @@ function getLocalDidgYa(didgYaId) {
 function getTodaysRecords(records) {
     const now = new Date();
     records.filter((record) => {
-        const recordDate = record.isString()
-            ? new Date(record)
-            : new Date(record.dt);
+        const recordDate = new Date(record.dt);
         return (
             recordDate.getDate() === now.getDate() &&
             recordDate.getMonth() === now.getMonth() &&
@@ -94,7 +92,7 @@ async function startLocalDidgYa(didgYaId, now) {
         !didgYaData.inputs
     ) {
         if (didgYaData.timed == true) didgYaData.active = true;
-        didgYaData.records.push(now);
+        didgYaData.records.push({ dt: now });
 
         didgYas[didgYaIndex] = didgYaData;
         localStorage.setItem("didgYas", JSON.stringify(didgYas));
@@ -115,8 +113,16 @@ async function startLocalDidgYa(didgYaId, now) {
             const element = didgYaData.inputs[index];
             const name = element.name;
             const node = document.getElementById(`input-${index}-${name}`);
-            const value = node.value;
-            if (value.includes("Select")) missingInputs.push(name);
+            let value = node.value;
+            if (element.type === "boolean") {
+                value = document.getElementById(
+                    `input-${index}-${name}`
+                ).checked;
+            }
+
+            if (element.type != "boolean") {
+                if (value.includes("Select")) missingInputs.push(name);
+            }
             variables.push({
                 name: name,
                 value: value,

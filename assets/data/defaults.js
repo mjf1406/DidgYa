@@ -279,7 +279,7 @@ const PRESET_DIDGYAS = [
                         name: "Select stool type...",
                     },
                     {
-                        name: "1 -separate hard lumps",
+                        name: "1 - separate hard lumps",
                     },
                     {
                         name: "2 - lumpy and sausage like",
@@ -571,5 +571,24 @@ const PRESET_DIDGYAS = [
         location: "local",
         dailyGoal: 2,
         timedInstances: null,
+    },
+    {
+        id: generateId(),
+        emoji: "🔫",
+        name: "Masturbation",
+        unit: null,
+        quantity: null,
+        inputs: [
+            {
+                name: "Porn",
+                type: "boolean",
+            },
+        ],
+        timed: true,
+        records: [],
+        active: null,
+        location: "local",
+        dailyGoal: null,
+        timedInstances: [],
     },
 ];

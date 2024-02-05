@@ -1,6 +1,6 @@
 # DidgYa
 
-Did you do it? Did you experience it? DidgYa is an app designed to simplify the way you track various things that happen in your life, from daily tasks, like brushing your teeth or drinking water, to things you experience, like a headache or an epiphany. 
+Did you do it? Did you experience it? DidgYa is an app designed to simplify the way you track various things that happen in your life, from daily tasks, like brushing your teeth or drinking water, to things you experience, like a headache or an epiphany.
 
 ## Change Log
 
@@ -36,11 +36,15 @@ A [?] denotes that I am considering it, i.e. I'm not sure it should be implement
 -   updated modal button colors to align with palette
 -   added icons to dropdowns : requires a custom dropdown for the SVG to display properly
     -   urine color, stool shape, stool color
--   added masturbation to presets
--   added boolean as input option when creating a DidgYa
+-   need to get the width of the view modal to expand to the table width but stay in the center
 
 ### Complete
 
+-   2024/2/5
+    -   added boolean as input option when creating a DidgYa
+    -   ensured the the same listener does not stack by replacing in place the delete and edit buttons in the view modal
+    -   basic table of data is displayed in the view modal
+    -   schema changed: now each record has `dt: new Date()`, whereas before, it there were no inputs, it was just an array
 -   2024/2/4
     -   DidgYa text now hides on medium and smaller screens
     -   removed the Color.js dependency in `toasts.js` through the magic of HSL
