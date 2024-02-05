@@ -1,6 +1,6 @@
-# Class Timers
+# DidgYa
 
-A website that is meant to be displayed on a large monitor for students to see how much time is remaining on any given timer.
+Did you do it? Did you experience it? DidgYa is an app designed to simplify the way you track various things that happen in your life, from daily tasks, like brushing your teeth or drinking water, to things you experience, like a headache or an epiphany. 
 
 ## Change Log
 
