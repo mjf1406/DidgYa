@@ -20,31 +20,37 @@ A [?] denotes that I am considering it, i.e. I'm not sure it should be implement
 -   integrated Supabase Auth
 -   added profile modal
 -   5 DidgYas for free in the cloud and save others to localStorage
+-   notify the user about being offline
+-   [?] added a stopwatch for those with daily goals that shows last time it was done. Only do minutes and hours
 
 #### Medium Priority
 
--   added content in the view model; what do I add here?
--   on `editDidgya()`, only the items that were changed are updated in DidgYaList
--   added edit modal for the clicked DidgYa
--   notify the user about being offline
 -   consider minification tools. This might require initializing node into the project.
 -   consider localization libraries, or write my own. One is 33KB minified and another is 55KB minified. I feel like I can make a smaller one.
+-   graphs
+    -   add a graph of datetime to the view modal
+    -   add a way to view all DidgYas on a single graph, just the datetime
+-   apply palette to Tabulizer.js
+-   apply palette to Chart.js
 
 #### High Priority
 
--   [?] added a stopwatch for those with daily goals that shows last time it was done. Only do minutes and hours
--   updated modal button colors to align with palette
+-   added content in the view model; what do I add here?
+-   added editMOdal
 -   added icons to dropdowns : requires a custom dropdown for the SVG to display properly
     -   urine color, stool shape, stool color
 -   need to get the width of the view modal to expand to the table width but stay in the center
 
 ### Complete
 
+-   2024/2/6
+    -   updated modal button colors to align with palette
+    -   added basic chart to view modal
 -   2024/2/5
     -   added boolean as input option when creating a DidgYa
     -   ensured the the same listener does not stack by replacing in place the delete and edit buttons in the view modal
     -   basic table of data is displayed in the view modal
-    -   schema changed: now each record has `dt: new Date()`, whereas before, it there were no inputs, it was just an array
+    -   schema changed: now each record has `dt: new Date()`, whereas before, if there were no inputs, it was just an array
 -   2024/2/4
     -   DidgYa text now hides on medium and smaller screens
     -   removed the Color.js dependency in `toasts.js` through the magic of HSL

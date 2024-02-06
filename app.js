@@ -1,3 +1,5 @@
+var chart;
+
 const presetsDropdown = document.getElementById("presets-dropdown");
 presetsDropdown.innerHTML = "";
 
@@ -156,6 +158,8 @@ function viewDidgYa(didgYaId) {
         editDidgYa(didgYaId);
     });
 
+    // Data Table
+
     let records = didgYa.records;
     let transformedData = records.map((item) => {
         const dt = new Date(item.dt);
@@ -174,6 +178,74 @@ function viewDidgYa(didgYaId) {
         data: transformedData,
         layout: "fitDataTable",
         autoColumns: true,
+    });
+
+    // Data Chart
+
+    const chartData = records.map((record) => {
+        const date = new Date(record.dt);
+        const minutesPastMidnight = date.getHours() * 60 + date.getMinutes();
+        return {
+            x: date.toISOString().split("T")[0], // Extract date part
+            y: minutesPastMidnight, // Time as minutes past midnight
+        };
+    });
+
+    console.log("🚀 ~ viewDidgYa ~ chartData:", chartData);
+
+    const dataChart = document.getElementById("data-chart");
+
+    chart = new Chart(dataChart, {
+        type: "scatter", // Or 'line' if you prefer
+        data: {
+            datasets: [
+                {
+                    label: `${didgYa.emoji} ${didgYa.name}`,
+                    data: chartData,
+                    borderColor: "rgba(255, 99, 132, 1)",
+                    backgroundColor: "rgba(255, 99, 152, 0.2)",
+                },
+            ],
+        },
+        options: {
+            scales: {
+                x: {
+                    type: "time",
+                    time: {
+                        unit: "day",
+                        displayFormats: {
+                            day: "MMM D",
+                        },
+                    },
+                    title: {
+                        display: true,
+                        text: "Date",
+                    },
+                },
+                y: {
+                    reverse: false,
+                    ticks: {
+                        // Format the tick labels to show time in HH:mm format
+                        callback: (value) => {
+                            const hours = Math.floor(value / 60);
+                            const minutes = value % 60;
+                            return `${hours
+                                .toString()
+                                .padStart(2, "0")}:${minutes
+                                .toString()
+                                .padStart(2, "0")}`;
+                        },
+                        stepSize: 60, // Change the step size if needed
+                        min: 0, // Start at midnight
+                        max: 1439, // End at 23:59
+                    },
+                    title: {
+                        display: true,
+                        text: "Time of Day",
+                    },
+                },
+            },
+        },
     });
 }
 

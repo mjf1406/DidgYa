@@ -17,7 +17,10 @@
     <script src="https://unpkg.com/tippy.js@6"></script> <!-- Tippy.js -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script> <!-- Toastify.js -->
     <script src="js/libraries/luxon.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> Chart.js -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script> <!-- Moment.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment"></script> <!-- Moment.js adapter -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> Supabase -->
 
 </head>
@@ -84,12 +87,13 @@
     </div>
 
     <div class="flex flex-row items-center justify-center hidden w-full gap-1" id="not-logged-in-alert">
-        <div class="p-4 text-lg text-center text-gray-300 rounded-2xl bg-cyan-900 w-fit">
+        <div
+            class="p-4 text-lg text-center text-text-light dark:text-text-dark rounded-2xl bg-accent-light/40 dark:bg-accent-dark/40 w-fit">
             <span class="m-0 text-3xl font-bold">You are not logged in!</span> <br>
             <span>Your DidgYas are stored locally and are only accessible through this browser.</span> <br>
             <span>Subscribe now to store all of your DidgYas in the cloud!</span>
             <div><button
-                    class="p-1.5 px-3 mt-5 text-black font-bold bg-cyan-600 rounded-md light-button h-fit hover:bg-cyan-700"
+                    class="p-1.5 px-3 mt-5 text-black font-bold bg-secondary-light dark:bg-secondary-dark hover:bg-secondary-light/70 dark:hover:bg-secondary-dark/70 rounded-md light-button h-fit"
                     id="button-subscribe">Subscribe now!</button></div>
         </div>
     </div>
@@ -119,7 +123,7 @@
     </div>
     <div id="DidgYa-list" class="flex flex-col items-center justify-start w-full h-screen gap-1">
         <button
-            class="w-full max-w-md cursor-pointer text-2xl rounded-full bg-supporting-light py-1.5 pl-3 pr-1.5 text-white hover:bg-supporting-light/80 dark:bg-supporting-dark hover:dark:bg-supporting-dark/80 text-center"
+            class="w-full max-w-md cursor-pointer text-2xl rounded-full bg-supporting-light py-1.5 pl-3 pr-1.5 dark:text-text-dark hover:bg-supporting-light/80 dark:bg-supporting-dark hover:dark:bg-supporting-dark/80 text-center"
             data-modal-target="modal-create-DidgYa" data-modal-toggle="modal-create-DidgYa">Create
             DidgYa</button>
     </div>
@@ -186,7 +190,7 @@
                 <!-- Modal content -->
                 <div class="modal-content">
                     <button type="button"
-                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-text-light rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:dark:text-text-dark"
                         data-modal-hide="modal-profile">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -196,29 +200,30 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                     <div class="px-6 py-6 lg:px-8">
-                        <h3 class="flex flex-row gap-2 mb-4 text-xl font-medium text-gray-900 dark:text-white">
+                        <h3 class="flex flex-row gap-2 mb-4 text-xl font-medium text-text-light dark:text-text-dark">
                             <i class="mr-1 fa-solid fa-user"></i>
                             Profile
                             <!-- <i name="number-input-help" class="fa-regular fa-circle-question"></i> -->
                         </h3>
                         <form id="profile-form" class="space-y-3" action="#">
-                            <label class="block text-sm font-medium text-gray-900 dark:text-white">Transition Duration
+                            <label class="block text-sm font-medium text-text-light dark:text-text-dark">Transition
+                                Duration
                                 (sec.)</label>
                             <div class="flex flex-row" name="number-input-group">
                                 <button name="profile-transition-duration" data-action="decrement"
-                                    class="justify-center items-center flex flex-row gap-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-l-lg text-sm px-4 py-2.5 dark:bg-blue-400 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    class="justify-center items-center flex flex-row gap-2 dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:ring-highlight-light font-medium rounded-l-lg text-sm px-4 py-2.5 dark:bg-primary-dark dark:hover:bg-primary-dark/70 focus:outline-none dark:focus:ring-highlight-dark">
                                     <i class="fa-solid fa-minus"></i>
                                 </button>
                                 <input type="number" name="profile-transition-duration" id="profile-transition-duration"
-                                    class="w-12 bg-gray-50 border border-gray-300 text-center text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    class="w-12 bg-gray-50 border border-gray-300 text-center text-text-light text-sm focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-neutral-light dark:placeholder-gray-400 dark:text-text-dark dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                     value="10" required="">
                                 <button name="flex flex-row gap-2 profile-transition-duration" data-action="increment"
-                                    class="justify-center items-center  text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-r-lg text-sm px-4 py-2.5 dark:bg-blue-400 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    class="justify-center items-center  dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:ring-highlight-light font-medium rounded-r-lg text-sm px-4 py-2.5 dark:bg-primary-dark dark:hover:bg-primary-dark/70 focus:outline-none dark:focus:ring-highlight-dark">
                                     <i class="fa-solid fa-plus"></i>
                                 </button>
                             </div>
 
-                            <label class="block text-sm font-medium text-gray-900 dark:text-white">Clock</label>
+                            <label class="block text-sm font-medium text-text-light dark:text-text-dark">Clock</label>
                             <div class="flex flex-row items-center gap-1 justify-items-start">
                                 <input type="color" name="color-picker"
                                     class="block h-10 p-1 rounded-lg cursor-pointer w-14 disabled:opacity-50 disabled:pointer-events-none"
@@ -238,7 +243,7 @@
                 <!-- Modal content -->
                 <div class="relative h-full rounded-lg shadow bg-neutral-light dark:bg-neutral-dark">
                     <button type="button"
-                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-text-light rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:dark:text-text-dark"
                         data-modal-hide="modal-add-preset-DidgYa">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -248,7 +253,7 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                     <div class="px-6 py-6 lg:px-8">
-                        <h3 class="flex flex-row gap-2 mb-4 text-xl font-medium text-gray-900 dark:text-white">
+                        <h3 class="flex flex-row gap-2 mb-4 text-xl font-medium text-text-light dark:text-text-dark">
                             Add preset
                         </h3>
                         <form id="add-preset-form" class="space-y-3" action="#">
@@ -259,12 +264,12 @@
 
                             <div class="flex flex-row gap-2">
                                 <button type="submit" id="add-preset-DidgYa"
-                                    class="justify-center items-center flex flex-row gap-2 w-full text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:outline-none focus:ring-highlight-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-dark dark:hover:bg-primary-dark/70 dark:focus:ring-highlight-dark">
                                     <i class="mr-1 fa-solid fa-plus"></i>
                                     Add preset
                                 </button>
                                 <button type="submit" id="cancel-centers"
-                                    class="justify-center items-center flex flex-row gap-2 items-center justify-center w-full text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-accent-light hover:bg-accent-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-accent-dark dark:hover:bg-accent-dark/70 dark:focus:ring-highilght-dark"
                                     data-modal-hide="modal-add-preset-DidgYa">
                                     <i class="mr-1 fa-solid fa-cancel"></i>
                                     Cancel
@@ -276,12 +281,12 @@
             </div>
         </div>
         <div name="modal" id="modal-create-DidgYa" tabindex="-1" aria-hidden="true"
-            class="fixed top-0 left-0 right-0 z-30 flex items-center justify-center hidden w-full max-h-full p-4 overflow-x-hidden overflow-y-auto text-white backdrop-blur-sm md:inset-0 h-dvh bg-background-light/50 dark:bg-background-dark/50">
+            class="fixed top-0 left-0 right-0 z-30 flex items-center justify-center hidden w-full max-h-full p-4 overflow-x-hidden overflow-y-auto dark:text-text-dark backdrop-blur-sm md:inset-0 h-dvh bg-background-light/50 dark:bg-background-dark/50">
             <div class="relative w-full max-w-md max-h-full">
                 <!-- Modal content -->
                 <div class="modal-content overflow-y-scroll max-h-[90vh]">
                     <button type="button"
-                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-text-light rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:dark:text-text-dark"
                         data-modal-hide="modal-create-DidgYa">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -291,14 +296,14 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                     <div class="px-6 py-6 lg:px-8">
-                        <h3 class="flex flex-row gap-2 mb-4 text-xl font-medium text-gray-900 dark:text-white">
+                        <h3 class="flex flex-row gap-2 mb-4 text-xl font-medium text-text-light dark:text-text-dark">
                             Create DidgYa
                         </h3>
                         <form class="space-y-6" action="#">
                             <div class="mb-5">
                                 <button id="modal-create-DidgYa-add-preset" data-modal-target="modal-add-preset-DidgYa"
                                     data-modal-toggle="modal-add-preset-DidgYa"
-                                    class="mt-3 w-full text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                    class="mt-3 w-full dark:text-text-dark bg-secondary-light hover:bg-secondary-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-secondary-dark dark:hover:bg-secondary-dark/70 dark:focus:ring-highilght-dark">
                                     Add preset
                                 </button>
                             </div>
@@ -327,13 +332,13 @@
                                 </div>
                                 <div class="flex flex-row" name="number-input-group">
                                     <button name="modal-create-DidgYa-quantity" data-action="decrement"
-                                        class="justify-center items-center flex flex-row gap-2 rotations-input-button text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-l-lg text-sm px-4 py-2.5 dark:bg-blue-400 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                        class="justify-center items-center flex flex-row gap-2 rotations-input-button dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:ring-highlight-light font-medium rounded-l-lg text-sm px-4 py-2.5 dark:bg-primary-dark dark:hover:bg-primary-dark/70 focus:outline-none dark:focus:ring-highlight-dark">
                                         <i class="fa-solid fa-minus"></i>
                                     </button>
                                     <input type="number" name="modal-create-DidgYa-quantity"
                                         id="modal-create-DidgYa-quantity" class="number-input" value="" required="">
                                     <button name="modal-create-DidgYa-quantity" data-action="increment"
-                                        class="justify-center items-center flex flex-row gap-2 rotations-input-button text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-r-lg text-sm px-4 py-2.5 dark:bg-blue-400 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                        class="justify-center items-center flex flex-row gap-2 rotations-input-button dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:ring-highlight-light font-medium rounded-r-lg text-sm px-4 py-2.5 dark:bg-primary-dark dark:hover:bg-primary-dark/70 focus:outline-none dark:focus:ring-highlight-dark">
                                         <i class="fa-solid fa-plus"></i>
                                     </button>
                                 </div>
@@ -343,7 +348,7 @@
                                 <div class="form-description">How many times per day do you want to do this DidgYa?
                                 </div>
                                 <input type="text" id="modal-create-DidgYa-daily-goal"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    class="bg-gray-50 border border-gray-300 text-text-light text-sm rounded-lg focus:ring-highlight-light focus:border-highlight-light block w-full p-2.5 dark:bg-gray-700 dark:border-neutral-light dark:placeholder-gray-400 dark:text-text-dark dark:focus:ring-highlight-dark dark:focus:border-highlight-dark">
                             </div>
                             <div>
                                 <label class="form-label">Timed</label>
@@ -353,9 +358,10 @@
                                     class="relative inline-flex items-center cursor-pointer">
                                     <input id="modal-create-DidgYa-timed" type="checkbox" value="" class="sr-only peer">
                                     <div
-                                        class="w-11 h-6 bg-neutral-light peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-neutral-dark peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                                        class="w-11 h-6 bg-highlight-light/30 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-highlight-light dark:peer-focus:ring-highlight-dark rounded-full peer dark:bg-highlight-dark/30 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-light peer-checked:bg-primary-light/80">
                                     </div>
-                                    <span class="text-sm font-medium text-gray-900 ms-3 dark:text-gray-300">Timed</span>
+                                    <span
+                                        class="text-sm font-medium text-text-light ms-3 dark:text-text-dark">Timed</span>
                                 </label>
                             </div>
                             <div>
@@ -363,19 +369,19 @@
                                 <div class="form-description">Does this DidgYa require any inputs when done?</div>
                                 <div id="inputs-list" class="flex flex-col gap-2"></div>
                                 <button id="modal-create-DidgYa-add-input"
-                                    class="mt-3 w-full text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                    class="mt-3 w-full dark:text-text-dark bg-secondary-light hover:bg-secondary-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-secondary-dark dark:hover:bg-secondary-dark/70 dark:focus:ring-highilght-dark">
                                     Add input
                                 </button>
                             </div>
 
                             <div class="flex flex-row gap-2">
                                 <button type="submit" id="create-DidgYa"
-                                    class="justify-center items-center flex flex-row gap-2 w-full text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:outline-none focus:ring-highlight-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-dark dark:hover:bg-primary-dark/70 dark:focus:ring-highlight-dark">
                                     <i class="mr-1 fa-solid fa-plus"></i>
                                     Create DidgYa
                                 </button>
                                 <button type="submit" id="cancel-centers"
-                                    class="justify-center items-center flex flex-row gap-2 w-full text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-accent-light hover:bg-accent-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-accent-dark dark:hover:bg-accent-dark/70 dark:focus:ring-highilght-dark"
                                     data-modal-hide="modal-create-DidgYa">
                                     <i class="mr-1 fa-solid fa-cancel"></i>
                                     Cancel
@@ -387,12 +393,12 @@
             </div>
         </div>
         <div name="modal" id="modal-delete-all" tabindex="-1" aria-hidden="true"
-            class="fixed top-0 left-0 right-0 z-30 flex items-center justify-center hidden w-full max-h-full p-4 overflow-x-hidden overflow-y-auto text-white backdrop-blur-sm md:inset-0 h-dvh bg-background-light/50 dark:bg-background-dark/50">
+            class="fixed top-0 left-0 right-0 z-30 flex items-center justify-center hidden w-full max-h-full p-4 overflow-x-hidden overflow-y-auto dark:text-text-dark backdrop-blur-sm md:inset-0 h-dvh bg-background-light/50 dark:bg-background-dark/50">
             <div class="relative w-full max-w-md max-h-full">
                 <!-- Modal content -->
                 <div class="modal-content">
                     <button type="button"
-                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-text-light rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:dark:text-text-dark"
                         data-modal-hide="modal-delete-all">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -402,7 +408,7 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                     <div class="px-6 py-6 lg:px-8">
-                        <h3 class="flex flex-row gap-2 mb-4 text-xl font-medium text-gray-900 dark:text-white">
+                        <h3 class="flex flex-row gap-2 mb-4 text-xl font-medium text-text-light dark:text-text-dark">
                             <i class="fa-solid fa-trash-can-arrow-up"></i>
                             Delete All Data
                         </h3>
@@ -410,12 +416,12 @@
                             Reset all DidgYas to defaults? This cannot be undone!<br>
                             <div class="flex flex-row gap-2">
                                 <button type="submit" id="delete-all-data"
-                                    class="justify-center items-center flex flex-row gap-2 w-full text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-accent-light hover:bg-accent-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-accent-dark dark:hover:bg-accent-dark/70 dark:focus:ring-highilght-dark">
                                     <i class="mr-1 fa-solid fa-trash-can-arrow-up"></i>
                                     Reset
                                 </button>
                                 <button type="submit" id="create-DidgYa"
-                                    class="justify-center items-center flex flex-row gap-2 w-full text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:outline-none focus:ring-highlight-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-dark dark:hover:bg-primary-dark/70 dark:focus:ring-highlight-dark"
                                     data-modal-hide="modal-delete-all">
                                     <i class="mr-1 fa-solid fa-cancel"></i>
                                     Cancel
@@ -427,12 +433,12 @@
             </div>
         </div>
         <div name="modal" id="modal-delete-DidgYa" tabindex="-1" aria-hidden="true"
-            class="fixed top-0 left-0 right-0 z-30 flex items-center justify-center hidden w-full max-h-full p-4 overflow-x-hidden overflow-y-auto text-white backdrop-blur-sm md:inset-0 h-dvh bg-background-light/50 dark:bg-background-dark/50">
+            class="fixed top-0 left-0 right-0 z-30 flex items-center justify-center hidden w-full max-h-full p-4 overflow-x-hidden overflow-y-auto dark:text-text-dark backdrop-blur-sm md:inset-0 h-dvh bg-background-light/50 dark:bg-background-dark/50">
             <div class="relative w-full max-w-md max-h-full">
                 <!-- Modal content -->
                 <div class="shadow-2xl modal-content shadow-black">
                     <button type="button"
-                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-text-light rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:dark:text-text-dark"
                         data-modal-hide="modal-delete-DidgYa">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -442,7 +448,7 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                     <div class="px-6 py-6 lg:px-8">
-                        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">
+                        <h3 class="mb-4 text-xl font-medium text-text-light dark:text-text-dark">
                             <i class="fa-solid fa-trash"></i>
                             Delete <span name="DidgYa-to-delete-name"></span>
                         </h3>
@@ -452,12 +458,12 @@
                             <br>
                             <div class="flex flex-row gap-2 mt-6">
                                 <button type="submit" id="button-delete-DidgYa"
-                                    class="justify-center items-center  flex flex-row gap-2 w-full text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                    class="justify-center items-center  flex flex-row gap-2 w-full dark:text-text-dark bg-accent-light hover:bg-accent-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-accent-dark dark:hover:bg-accent-dark/70 dark:focus:ring-highilght-dark">
                                     <i class="mr-1 fa-solid fa-trash"></i>
                                     Delete
                                 </button>
                                 <button type="submit"
-                                    class="justify-center items-center flex flex-row gap-2 w-full text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:outline-none focus:ring-highlight-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-dark dark:hover:bg-primary-dark/70 dark:focus:ring-highlight-dark"
                                     data-modal-hide="modal-delete-DidgYa">
                                     <i class="mr-1 fa-solid fa-cancel"></i>
                                     Cancel
@@ -469,12 +475,12 @@
             </div>
         </div>
         <div name="modal" id="modal-view-DidgYa" tabindex="-1" aria-hidden="true"
-            class="fixed top-0 left-0 right-0 z-10 flex items-center justify-center hidden w-full max-h-full p-4 overflow-x-hidden overflow-y-auto text-white backdrop-blur-sm md:inset-0 h-dvh bg-background-light/50 dark:bg-background-dark/50">
+            class="fixed top-0 left-0 right-0 z-10 flex items-center justify-center hidden w-full max-h-full p-4 overflow-x-hidden overflow-y-auto dark:text-text-dark backdrop-blur-sm md:inset-0 h-dvh bg-background-light/50 dark:bg-background-dark/50">
             <div class="relative w-full max-w-xl max-h-full">
                 <!-- Modal content -->
                 <div class="modal-content">
                     <button type="button"
-                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-text-light rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:dark:text-text-dark"
                         data-modal-hide="modal-view-DidgYa">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -484,21 +490,25 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                     <div class="px-6 py-6 lg:px-8">
-                        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">
+                        <h3 class="mb-4 text-xl font-medium text-text-light dark:text-text-dark">
                             <span name="viewing-DidgYa"></span>
                         </h3>
                         <div class="flex flex-row gap-2 mt-6">
                             <button id="button-delete-view-DidgYa"
-                                class="justify-center items-center flex flex-row gap-2 w-full text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-accent-light hover:bg-accent-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-accent-dark dark:hover:bg-accent-dark/70 dark:focus:ring-highilght-dark">
                                 <i class="mr-1 fa-solid fa-trash"></i>
                                 Delete <span name="viewing-DidgYa"></span>
                             </button>
                             <button id="button-edit-view-DidgYa"
-                                class="justify-center items-center flex flex-row gap-2 w-full text-white bg-green-500 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                                class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-secondary-light hover:bg-secondary-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-secondary-dark dark:hover:bg-secondary-dark/70 dark:focus:ring-highilght-dark"
                                 data-modal-hide="modal-view-DidgYa">
                                 <i class="mr-1 fa-regular fa-pen-to-square"></i>
                                 Edit <span name="viewing-DidgYa"></span>
                             </button>
+                        </div>
+                        <div class="flex flex-row items-center justify-center w-full mt-5 h-fit">
+                            <canvas id="data-chart"
+                                class="h-fit bg-highlight-light/5 dark:bg-highlight-dark/5"></canvas>
                         </div>
                         <div class="flex flex-row items-center justify-center w-full mt-5 h-fit">
                             <div id="data-table" class="h-fit"></div>
@@ -508,7 +518,7 @@
                             <br>
                             <div class="flex flex-row gap-2 mt-6">
                                 <button type="submit"
-                                    class="justify-center items-center flex flex-row gap-2 w-full items-center justify-center text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:outline-none focus:ring-highlight-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-dark dark:hover:bg-primary-dark/70 dark:focus:ring-highlight-dark"
                                     data-modal-hide="modal-view-DidgYa">
                                     <i class="mr-1 fa-solid fa-cancel"></i>
                                     Close
@@ -520,12 +530,12 @@
             </div>
         </div>
         <div name="modal" id="modal-start-DidgYa" tabindex="-1" aria-hidden="true"
-            class="fixed top-0 left-0 right-0 z-30 flex items-center justify-center hidden w-full max-h-full p-4 overflow-x-hidden overflow-y-auto text-white backdrop-blur-sm md:inset-0 h-dvh bg-background-light/50 dark:bg-background-dark/50">
+            class="fixed top-0 left-0 right-0 z-30 flex items-center justify-center hidden w-full max-h-full p-4 overflow-x-hidden overflow-y-auto dark:text-text-dark backdrop-blur-sm md:inset-0 h-dvh bg-background-light/50 dark:bg-background-dark/50">
             <div class="relative w-full max-w-md max-h-full">
                 <!-- Modal content -->
                 <div class="modal-content">
                     <button type="button"
-                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-text-light rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:dark:text-text-dark"
                         data-modal-hide="modal-start-DidgYa">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -535,19 +545,19 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                     <div class="px-6 py-6 lg:px-8">
-                        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">
+                        <h3 class="mb-4 text-xl font-medium text-text-light dark:text-text-dark">
                             Do <span name="starting-DidgYa"></span>
                         </h3>
                         <form class="space-y-6" action="#">
                             <div id="modal-start-DidgYa-content"></div>
                             <div class="flex flex-row gap-2">
                                 <button type="submit" id="button-start-DidgYa"
-                                    class="justify-center items-center flex flex-row gap-2 w-full text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:outline-none focus:ring-highlight-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-dark dark:hover:bg-primary-dark/70 dark:focus:ring-highlight-dark">
                                     <i class="mr-1 fa-solid fa-plus"></i>
                                     Do <span name="starting-DidgYa"></span>
                                 </button>
                                 <button type="submit" id="cancel-centers"
-                                    class="justify-center items-center w-full flex flex-row gap-2 text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                                    class="justify-center items-center w-full flex flex-row gap-2 dark:text-text-dark bg-accent-light hover:bg-accent-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-accent-dark dark:hover:bg-accent-dark/70 dark:focus:ring-highilght-dark"
                                     data-modal-hide="modal-start-DidgYa">
                                     <i class="mr-1 fa-solid fa-cancel"></i>
                                     Cancel
