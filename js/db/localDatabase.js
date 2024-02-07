@@ -26,7 +26,7 @@ function getLocalDidgYa(didgYaId) {
 }
 function getTodaysRecords(records) {
     const now = new Date();
-    records.filter((record) => {
+    records = records.filter((record) => {
         const recordDate = new Date(record.dt);
         return (
             recordDate.getDate() === now.getDate() &&
@@ -111,6 +111,7 @@ async function startLocalDidgYa(didgYaId, now) {
         const variables = [];
         for (let index = 0; index < didgYaData.inputs.length; index++) {
             const element = didgYaData.inputs[index];
+            console.log("🚀 ~ eventHandler ~ element:", element);
             const name = element.name;
             const node = document.getElementById(`input-${index}-${name}`);
             let value = node.value;
@@ -121,11 +122,16 @@ async function startLocalDidgYa(didgYaId, now) {
             }
 
             if (element.type != "boolean") {
+                if (element.type === "select") {
+                    value =
+                        node.childNodes[0].childNodes[0].childNodes[0]
+                            .innerText;
+                }
                 if (value.includes("Select")) missingInputs.push(name);
             }
             variables.push({
                 name: name,
-                value: value,
+                value: value.toLowerCase(),
             });
         }
 

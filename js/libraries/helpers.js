@@ -89,7 +89,7 @@ function setupSvgIcon(svg, width, height) {
     return icon;
 }
 
-function createCustomDropdown(selectName, options) {
+function createCustomDropdown(selectName, options, index) {
     const select = document.createElement("div");
     select.classList.add(
         "custom-select",
@@ -98,6 +98,7 @@ function createCustomDropdown(selectName, options) {
         "text-left",
         "w-max"
     );
+    select.id = `input-${index}-${selectName}`;
 
     const firstChild = document.createElement("div");
     const button = document.createElement("button");
@@ -127,7 +128,7 @@ function createCustomDropdown(selectName, options) {
     button.setAttribute("aria-haspopup", "true");
     button.type = "button";
 
-    label.classList.add("grow");
+    label.classList.add("grow", "flex", "flex-row", "gap-2", "items-center");
     label.innerText = `Select a ${selectName.toTitleCase()}...`;
 
     caretIcon.classList.add("self-end", "w-5", "h-5", "-mr-1", "text-gray-400");
@@ -165,6 +166,9 @@ function createCustomDropdown(selectName, options) {
 
     for (let index = 0; index < options.length; index++) {
         const element = options[index];
+        const name = element.name;
+        const icon = element.icon;
+
         const a = document.createElement("a");
         a.classList.add(
             "block",
@@ -172,12 +176,31 @@ function createCustomDropdown(selectName, options) {
             "py-2",
             "text-sm",
             "text-gray-700",
-            "hover:bg-primary-light"
+            "hover:bg-primary-light",
+            "flex",
+            "flex-row",
+            "gap-2",
+            "justify-start",
+            "items-center"
         );
         a.role = "menuitem";
         a.tabIndex = "-1";
         a.id = `menu-item-${index}`;
-        a.innerText = element.toTitleCase();
+
+        const textSpan = document.createElement("span");
+        textSpan.innerText = name.toTitleCase();
+
+        const iconSpan = document.createElement("span");
+        let svg;
+        if (icon) {
+            svg = setupSvgIcon(eval(icon.name), icon.width, icon.height);
+            svg.setAttribute("fill", icon.color);
+            iconSpan.appendChild(svg);
+        }
+
+        a.appendChild(iconSpan);
+        a.appendChild(textSpan);
+
         menuItemContainer.appendChild(a);
     }
 

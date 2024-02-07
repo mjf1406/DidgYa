@@ -270,6 +270,86 @@ addPresetButton.addEventListener("click", function (e) {
     appendDidgYaToList(didgYa);
 });
 
+function setCustomSelectListeners() {
+    // Select all dropdown buttons
+    const customSelects = document.querySelectorAll('[aria-haspopup="true"]');
+    customSelects.forEach((menuButton) => {
+        const menu = menuButton.parentElement.nextElementSibling;
+        menuButton.addEventListener("click", () => {
+            const isExpanded =
+                menuButton.getAttribute("aria-expanded") === "true";
+            menuButton.setAttribute("aria-expanded", !isExpanded);
+            menu.classList.toggle("hidden", isExpanded);
+        });
+    });
+    // Close all dropdowns when clicking outside
+    document.addEventListener("click", (event) => {
+        document
+            .querySelectorAll('[aria-haspopup="true"]')
+            .forEach((menuButton) => {
+                const menu = menuButton.parentElement.nextElementSibling;
+                if (
+                    !menu.contains(event.target) &&
+                    !menuButton.contains(event.target)
+                ) {
+                    menu.classList.add("hidden");
+                    menuButton.setAttribute("aria-expanded", "false");
+                }
+            });
+    });
+    // Update button label when a menu item is selected
+    document
+        .querySelectorAll('[role="menu"] [role="menuitem"]')
+        .forEach((menuItem) => {
+            menuItem.addEventListener("click", function () {
+                const menuButton = this.closest(".relative").querySelector(
+                    '[aria-haspopup="true"]'
+                );
+                const label = menuButton.querySelector("label");
+                // Assuming the menu item text is what you want to display on the button
+                // const selectedText = this.textContent || this.innerText;
+                const selectedText = this.innerHTML;
+                // label.textContent = selectedText;
+                label.innerHTML = selectedText;
+
+                // Close the dropdown after selection
+                const menu = menuButton.parentElement.nextElementSibling;
+                menu.classList.add("hidden");
+                menuButton.setAttribute("aria-expanded", "false");
+            });
+        });
+    // Prevent dropdown menus from closing when clicking inside them
+    document.querySelectorAll('[role="menu"]').forEach((menu) => {
+        menu.addEventListener("click", (event) => {
+            event.stopPropagation();
+        });
+    });
+    document.querySelectorAll(".custom-select").forEach((dropdown) => {
+        const menuButton = dropdown.querySelector('[aria-haspopup="true"]');
+        const menuItems = dropdown.querySelectorAll('[role="menuitem"]');
+        let maxWidth = 0;
+
+        // Create a temporary element to measure text width accurately
+        const tempElement = document.createElement("span");
+        tempElement.style.visibility = "hidden"; // Hide the element
+        tempElement.style.position = "absolute"; // Avoid affecting layout
+        tempElement.style.whiteSpace = "nowrap"; // Ensure text is in one line
+        document.body.appendChild(tempElement);
+
+        // Measure each menu item
+        menuItems.forEach((item) => {
+            tempElement.textContent = item.textContent || item.innerText;
+            maxWidth = Math.max(maxWidth, tempElement.offsetWidth);
+        });
+
+        // Apply the widest width as min-width to the button, plus some padding
+        menuButton.style.minWidth = `${maxWidth + 40}px`; // Adjust padding as needed
+
+        // Clean up by removing the temporary element
+        document.body.removeChild(tempElement);
+    });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     // Select all dropdown buttons
     const customSelects = document.querySelectorAll('[aria-haspopup="true"]');
@@ -307,8 +387,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
                 const label = menuButton.querySelector("label");
                 // Assuming the menu item text is what you want to display on the button
-                const selectedText = this.textContent || this.innerText;
-                label.textContent = selectedText;
+                // const selectedText = this.textContent || this.innerText;
+                const selectedText = this.innerHTML;
+                // label.textContent = selectedText;
+                label.innerHTML = selectedText;
 
                 // Close the dropdown after selection
                 const menu = menuButton.parentElement.nextElementSibling;

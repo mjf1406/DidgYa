@@ -31,19 +31,23 @@ A [?] denotes that I am considering it, i.e. I'm not sure it should be implement
     -   add a graph of datetime to the view modal
     -   add a way to view all DidgYas on a single graph, just the datetime
 -   apply palette to Tabulizer.js
--   apply palette to Chart.js
 
 #### High Priority
 
--   added content in the view model; what do I add here?
 -   added editMOdal
--   added icons to dropdowns : requires a custom dropdown for the SVG to display properly
-    -   urine color, stool shape, stool color
 -   need to get the width of the view modal to expand to the table width but stay in the center
 
 ### Complete
 
+-   2024/2/7
+    -   icons now get added to the button when selecting in custom select
+    -   chart.js tooltip now has the right time format
+    -   `getTodayRecords()` now returns today's records, instead of all records
+    -   added icons to dropdowns by implementing `createCustomDropdown()` in `helpers.js`
+    -   Do DidgYa button not having its click listener. For some reason `newElement.addEventListener("click", function eventHandler(e)` had "click" set to ""
+    -   DidgYas with measured durations not getting their list item updated. Was due to schema changing. Needed `didgYa.records.last().dt`
 -   2024/2/6
+    -   apply palette to Chart.js
     -   updated modal button colors to align with palette
     -   added basic chart to view modal
 -   2024/2/5

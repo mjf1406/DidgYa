@@ -67,8 +67,7 @@ async function clickDidgYa(didgYaId) {
 
     // const startInCloud = await startCloudDidgya(didgYaId, now)
     // if (startInCloud) return makeToast(`An error occurred while deleting the <b>${name}</b> DidgYa. Please try again in a moment.`, 'error')
-
-    const createToLocal = startLocalDidgYa(didgYaId, now);
+    const createToLocal = await startLocalDidgYa(didgYaId, now);
     if (createToLocal === "error")
         makeToast(
             `An error occurred while starting the <b>${name}</b> DidgYa. Please try again in a moment.`,
@@ -245,6 +244,34 @@ function viewDidgYa(didgYaId) {
                     },
                 },
             },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            // Access the x property directly from the data point for the date
+                            const dateValue = context.raw.x;
+                            // Convert the y value (minutes past midnight) to hours and minutes
+                            const timeValue = context.raw.y;
+                            const hours = Math.floor(timeValue / 60);
+                            const minutes = timeValue % 60;
+                            // Construct a Date object from the date string
+                            const date = new Date(dateValue);
+                            // Adjust the Date object to include the correct time
+                            date.setHours(hours, minutes);
+                            // Format the date and time to a readable string
+                            const dateString = date.toLocaleDateString(
+                                undefined,
+                                { month: "short", day: "numeric" }
+                            );
+                            const timeString = date.toLocaleTimeString([], {
+                                hour: "2-digit",
+                                minute: "2-digit",
+                            });
+                            return `${context.dataset.label}: ${dateString} ${timeString}`;
+                        },
+                    },
+                },
+            },
         },
     });
 }
@@ -263,6 +290,7 @@ function populateDidgYaList(didgYas) {
 }
 
 function setUpStartModal(didgYaData, divToPopulate) {
+    let customSelect;
     divToPopulate.innerHTML = "";
     const startDidgYaModal = document.getElementById("modal-start-DidgYa");
     const inputs = didgYaData.inputs;
@@ -283,6 +311,7 @@ function setUpStartModal(didgYaData, divToPopulate) {
             const input = createInput(type, name, options, index);
             divToPopulate.appendChild(input);
         }
+        setCustomSelectListeners();
     }
 }
 function createInput(inputType, name, selects, index) {
@@ -308,57 +337,7 @@ function createInput(inputType, name, selects, index) {
     input.id = `input-${index}-${name}`;
 
     if (inputType === "select") {
-        input.classList.add(
-            '"bg-gray-50',
-            "border",
-            "border-gray-300",
-            "text-gray-900",
-            "text-sm",
-            "rounded-lg",
-            "focus:ring-blue-500",
-            "focus:border-blue-500",
-            "block",
-            "w-full",
-            "p-2.5",
-            "dark:bg-gray-700",
-            "dark:border-gray-600",
-            "dark:placeholder-gray-400",
-            "dark:text-white",
-            "dark:focus:ring-blue-500",
-            "dark:focus:border-blue-500"
-        );
-        selects.forEach((element) => {
-            const option = document.createElement("option");
-            option.value = element.name;
-            const icon = element.icon ? element.icon : false;
-            let iconElement = document.createElement("span");
-
-            if (icon) {
-                iconElement.classList.add("mr-2");
-                const iconSvg = setupSvgIcon(
-                    eval(icon.name),
-                    icon.width,
-                    icon.height
-                );
-                if (icon.color) iconSvg.setAttribute("fill", icon.color);
-                else
-                    iconSvg.classList.add(
-                        "text-text-light",
-                        "dark:text-text-dark"
-                    );
-                iconElement.appendChild(iconSvg);
-            }
-
-            iconElement = iconElement ? iconElement : "";
-            option.classList.add("shadow-md", "shadow-black");
-            option.appendChild(iconElement);
-
-            const nameElement = document.createElement("span");
-            nameElement.innerHTML = element.name;
-            option.appendChild(nameElement);
-
-            input.append(option);
-        });
+        customSelect = createCustomDropdown(name, selects, index);
     }
 
     if (inputType === "number") {
@@ -446,8 +425,8 @@ function createInput(inputType, name, selects, index) {
         label.appendChild(span);
     }
 
-    div.appendChild(label);
-    if (inputType != "boolean") div.appendChild(input);
+    div.appendChild(customSelect);
+    if (inputType != "boolean" && inputType != "select") div.appendChild(input);
     return div;
 }
 function createDidgYaGetInputs() {
@@ -538,7 +517,7 @@ function appendDidgYaToList(didgYa) {
         const active = document.createElement("span");
         active.classList.add("text-xs");
         active.id = `active-${didgYa.id}`;
-        const startTime = new Date(didgYa.records.last());
+        const startTime = new Date(didgYa.records.last().dt);
         const now = new Date();
         let elapsedTime = now - startTime;
         active.innerHTML = `(${formatMillisecondsToReadable(
@@ -668,7 +647,7 @@ function updateDidgYaDivById(didgYaId) {
         const active = document.createElement("span");
         active.classList.add("text-xs");
         active.id = `active-${didgYa.id}`;
-        const startTime = new Date(didgYa.records.last());
+        const startTime = new Date(didgYa.records.last().dt);
         const now = new Date();
         let elapsedTime = now - startTime;
         active.innerHTML = `(${formatMillisecondsToReadable(
