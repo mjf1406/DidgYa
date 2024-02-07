@@ -28,8 +28,8 @@ A [?] denotes that I am considering it, i.e. I'm not sure it should be implement
 -   consider minification tools. This might require initializing node into the project.
 -   consider localization libraries, or write my own. One is 33KB minified and another is 55KB minified. I feel like I can make a smaller one.
 -   graphs
-    -   add a graph of datetime to the view modal
     -   add a way to view all DidgYas on a single graph, just the datetime
+    -   need to adjust axes based on the type of DidgYa
 -   apply palette to Tabulizer.js
 
 #### High Priority
@@ -40,6 +40,7 @@ A [?] denotes that I am considering it, i.e. I'm not sure it should be implement
 ### Complete
 
 -   2024/2/7
+    -   maybe fixed chart.js animates the chart from big to small over and over again on mobile by removing h-fit on its container
     -   icons now get added to the button when selecting in custom select
     -   chart.js tooltip now has the right time format
     -   `getTodayRecords()` now returns today's records, instead of all records

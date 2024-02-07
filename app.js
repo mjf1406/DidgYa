@@ -190,8 +190,6 @@ function viewDidgYa(didgYaId) {
         };
     });
 
-    console.log("🚀 ~ viewDidgYa ~ chartData:", chartData);
-
     const dataChart = document.getElementById("data-chart");
 
     chart = new Chart(dataChart, {
