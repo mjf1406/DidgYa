@@ -36,11 +36,11 @@ A [?] denotes that I am considering it, i.e. I'm not sure it should be implement
 
 -   added editMOdal
 -   need to get the width of the view modal to expand to the table width but stay in the center
+-   chart.js animates the chart from big to small over and over again on mobile by removing h-fit on its container
 
 ### Complete
 
 -   2024/2/7
-    -   maybe fixed chart.js animates the chart from big to small over and over again on mobile by removing h-fit on its container
     -   icons now get added to the button when selecting in custom select
     -   chart.js tooltip now has the right time format
     -   `getTodayRecords()` now returns today's records, instead of all records
