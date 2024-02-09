@@ -40,6 +40,10 @@ A [?] denotes that I am considering it, i.e. I'm not sure it should be implement
 
 ### Complete
 
+-   2024/2/10
+    -   fixed: the timer interval now gets cleared when it reaches zero
+    -   fixed: timer interval being finished will no longer do an extra DidgYa
+    -   fixed: Brush Teeth was done twice for some reason
 -   2024/2/9
     -   the intro text is now only displayed if the user has not been to the site before, stored in localStorage 'show-intro'
     -   added light and dark themes for data-table, but they do not align with my palette.

@@ -19,6 +19,11 @@ function isLocalDidgYaWithDuplicateName(name) {
     const didgYas = JSON.parse(localStorage.getItem("didgYas"));
     return didgYas.some((element) => element.name == name) ? true : false;
 }
+function getLocalDidgyaByName(name) {
+    const didgYas = JSON.parse(localStorage.getItem("didgYas"));
+    const didgYaIndex = didgYas.findIndex((element) => element.name == name);
+    return didgYas[didgYaIndex];
+}
 function getLocalDidgYa(didgYaId) {
     const didgYas = JSON.parse(localStorage.getItem("didgYas"));
     const didgYaIndex = didgYas.findIndex((element) => element.id == didgYaId);
@@ -134,7 +139,7 @@ async function startLocalDidgYa(didgYaId, now) {
         const nameDiv = document.getElementById("DidgYa-timer-name");
         nameDiv.innerHTML = `${didgYaData.emoji} <b>${didgYaData.name}</b>`;
 
-        setInterval(() => {
+        transitionInterval = setInterval(() => {
             cancelTimer();
 
             didgYaData.records.push({ dt: now });
