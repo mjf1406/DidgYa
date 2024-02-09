@@ -108,6 +108,8 @@ async function startLocalDidgYa(didgYaId, now) {
         cancelTimerNew.addEventListener("click", function (e) {
             e.preventDefault();
 
+            if (timerInterval) clearInterval(timerInterval);
+            if (transitionInterval) clearInterval(transitionInterval);
             cancelTimer();
 
             modal.classList.add("hidden");
@@ -118,7 +120,11 @@ async function startLocalDidgYa(didgYaId, now) {
 
         doneNew.addEventListener("click", function (e) {
             e.preventDefault();
+
+            if (timerInterval) clearInterval(timerInterval);
+            if (transitionInterval) clearInterval(transitionInterval);
             cancelTimer();
+
             modal.classList.add("hidden");
 
             didgYaData.records.push({ dt: now });
