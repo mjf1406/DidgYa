@@ -92,6 +92,9 @@ async function startLocalDidgYa(didgYaId, now) {
     const didgYaData = didgYas[didgYaIndex];
 
     if (didgYaData.timer > 0) {
+        if (timerInterval) clearInterval(timerInterval);
+        if (transitionInterval) clearInterval(transitionInterval);
+
         let duration = parseInt(didgYaData.timer);
         duration = duration * SECOND;
         setTimer(duration);
@@ -108,11 +111,6 @@ async function startLocalDidgYa(didgYaId, now) {
             cancelTimer();
 
             modal.classList.add("hidden");
-
-            return makeToast(
-                `You canceled ${didgYaData.emoji} <b>${didgYaData.name}</b>!`,
-                "warning"
-            );
         });
 
         const doneButton = document.getElementById("done-timer");

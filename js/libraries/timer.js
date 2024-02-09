@@ -1,6 +1,6 @@
 function cancelTimer() {
     clearInterval(timerInterval);
-    clearInterval(transitionInterval);
+    // clearInterval(transitionInterval);
 
     audioTenSecondCountdown.stop();
     transitionTrack.stop();

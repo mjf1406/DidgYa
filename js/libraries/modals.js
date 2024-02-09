@@ -107,6 +107,9 @@ document.addEventListener("DOMContentLoaded", function () {
             const modalId = this.getAttribute("data-modal-hide");
             const modal = document.getElementById(modalId);
             modal.classList.add("hidden");
+
+            if (timerInterval) clearInterval(timerInterval);
+            if (transitionInterval) clearInterval(transitionInterval);
         });
     });
     // Click outside the modal or hit escape key to close
@@ -116,12 +119,16 @@ document.addEventListener("DOMContentLoaded", function () {
         window.addEventListener("click", function (event) {
             if (event.target === element) {
                 element.classList.toggle("hidden");
+                if (timerInterval) clearInterval(timerInterval);
+                if (transitionInterval) clearInterval(transitionInterval);
             }
         });
         // Close the modal with Escape key
         window.addEventListener("keydown", function (event) {
             if (event.key === "Escape" || event.key === "Esc") {
                 element.classList.add("hidden");
+                if (timerInterval) clearInterval(timerInterval);
+                if (transitionInterval) clearInterval(transitionInterval);
             }
         });
         document.addEventListener("DOMContentLoaded", function () {
