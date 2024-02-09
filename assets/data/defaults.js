@@ -355,7 +355,7 @@ const DEFAULT_DIDGYAS = [
         records: [],
         active: null,
         location: "local",
-        dailyGoal: 2,
+        dailyGoal: 3,
         timer: false,
     },
     {
