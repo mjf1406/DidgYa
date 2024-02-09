@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="tailwind.css">
-    <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator_modern.min.css" rel="stylesheet">
+    <!-- <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator_modern.min.css" rel="stylesheet"> -->
+    <!-- <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator_midnight.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <!-- Toastify.js -->
 
@@ -25,8 +26,9 @@
 
 </head>
 
-<body id="body" class="flex flex-col h-screen gap-5 m-2 transition-colors duration-1000 ease-in-out w-dvw">
-    <div class="flex flex-row items-center justify-between w-full">
+<body id="body" class="flex flex-col h-screen gap-5 mb-2 transition-colors duration-1000 ease-in-out w-dvw">
+    <div
+        class="flex flex-row items-center justify-between w-full px-5 py-2 bg-primary-light/25 dark:bg-primary-dark/25">
         <div class="top-0 flex flex-row gap-1 grow shrink-0">
             <a class="flex flex-row items-center justify-center gap-2 mr-auto text-5xl" href="index.html">
                 <span
@@ -49,6 +51,16 @@
                     </span>
                 </h1>
             </a>
+            <div class="flex flex-row items-center justify-center hidden lg:flex gap-14 grow">
+                <a class="text-lg font-medium cursor-pointer text-text-light dark:text-text-dark hover:text-text-light/70 hover:dark:text-text-dark/70"
+                    href="index.html">Home</a>
+                <a class="text-lg font-medium cursor-pointer text-text-light dark:text-text-dark hover:text-text-light/70 hover:dark:text-text-dark/70"
+                    href="dashboard.html">Dashboard</a>
+                <a class="text-lg font-medium cursor-pointer text-text-light dark:text-text-dark hover:text-text-light/70 hover:dark:text-text-dark/70"
+                    href="landing-test.html">LandingP</a>
+                <a class="text-lg font-medium cursor-pointer text-text-light dark:text-text-dark hover:text-text-light/70 hover:dark:text-text-dark/70"
+                    href="landing.html">LandingC</a>
+            </div>
             <div class="flex flex-row items-center gap-1 text-lg" id="action-buttons">
                 <button id="create-DidgYa-modal-display" data-modal-target="modal-create-DidgYa"
                     data-modal-toggle="modal-create-DidgYa"
@@ -98,7 +110,7 @@
         </div>
     </div>
 
-    <div class="flex flex-col items-center justify-center gap-2">
+    <div id="DidgYa-intro" class="flex flex-col items-center justify-center gap-2">
         <h1 class="text-5xl font-extrabold tracking-tight">
             <span class="text-primary-light dark:text-primary-dark">
                 Didg
@@ -121,7 +133,8 @@
             things that happen in your life.
         </div>
     </div>
-    <div id="DidgYa-list" class="flex flex-col items-center justify-start w-full h-screen gap-1">
+
+    <div id="DidgYa-list" class="flex flex-col items-center justify-center w-full h-screen gap-1 mr-2">
         <button
             class="w-full max-w-md cursor-pointer text-2xl rounded-full bg-supporting-light py-1.5 pl-3 pr-1.5 dark:text-text-dark hover:bg-supporting-light/80 dark:bg-supporting-dark hover:dark:bg-supporting-dark/80 text-center"
             data-modal-target="modal-create-DidgYa" data-modal-toggle="modal-create-DidgYa">Create
@@ -536,7 +549,7 @@
                                 class="w-full bg-highlight-light/5 dark:bg-highlight-dark/5"></canvas>
                         </div>
                         <div class="flex flex-row items-center justify-center w-full mt-5 h-fit">
-                            <div id="data-table" class="h-fit"></div>
+                            <div id="data-table" class="h-fit bg-highlight-light/5 dark:bg-highlight-dark/5"></div>
                         </div>
                         <form action="#">
                             <span class="text-base h-fit"></span>
@@ -770,6 +783,8 @@
     populateDidgYaList(didgYas)
 
     populateIcons()
+
+    setupIntro()
 </script>
 
 </html>

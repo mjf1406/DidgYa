@@ -309,7 +309,6 @@ function setUpStartModal(didgYaData, divToPopulate) {
     }
 }
 function createInput(inputType, name, selects, index) {
-    console.log("🚀 ~ createInput ~ inputType:", inputType);
     const div = document.createElement("div");
     div.classList.add("mb-5");
 
@@ -337,9 +336,8 @@ function createInput(inputType, name, selects, index) {
 
     if (inputType === "number") {
         input.classList.add(
-            "bg-gray-50",
-            "border",
-            "border-gray-300",
+            "bg-neutral-light",
+            "dark:bg-highlight-dark/10",
             "text-gray-900",
             "text-sm",
             "rounded-lg",
@@ -348,8 +346,6 @@ function createInput(inputType, name, selects, index) {
             "block",
             "w-full",
             "p-2.5",
-            "dark:bg-gray-700",
-            "dark:border-gray-600",
             "dark:placeholder-gray-400",
             "dark:text-white",
             "dark:focus:ring-blue-500",
@@ -695,4 +691,16 @@ function getPerformedTodayInnerHTML(didgYa) {
 }
 function getDidgYaPreset(didgYaName) {
     return PRESET_DIDGYAS.find((i) => i.name === didgYaName);
+}
+function setupIntro() {
+    const intro = document.getElementById("DidgYa-intro");
+    const showIntro = localStorage.getItem("show-intro");
+
+    if (!showIntro) {
+        localStorage.setItem("show-intro", "false");
+    } else if (showIntro === "false") {
+        intro.classList.add("hidden");
+    } else {
+        intro.classList.remove("hidden");
+    }
 }

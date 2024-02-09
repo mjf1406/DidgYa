@@ -1,3 +1,26 @@
+function loadTabulatorTheme(isDarkMode) {
+    const tabulatorThemeLink = document.getElementById("tabulator-theme-link");
+    if (tabulatorThemeLink) tabulatorThemeLink.remove();
+
+    const link = document.createElement("link");
+    link.id = "tabulator-theme-link";
+    link.rel = "stylesheet";
+    link.type = "text/css";
+
+    if (isDarkMode) {
+        link.href = "assets/css/tabulator_midnight.min.css"; // Path to dark theme CSS
+    } else {
+        link.href = "assets/css/tabulator_modern.min.css"; // Path to light theme CSS
+    }
+
+    document.head.appendChild(link);
+}
+
+const isDarkMode =
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+loadTabulatorTheme(isDarkMode);
+
 var chart;
 
 var timerInterval;

@@ -31,7 +31,6 @@ A [?] denotes that I am considering it, i.e. I'm not sure it should be implement
 -   graphs
     -   add a way to view all DidgYas on a single graph, just the datetime
     -   need to adjust axes based on the type of DidgYa
--   apply palette to Tabulizer.js
 
 #### High Priority
 
@@ -42,6 +41,9 @@ A [?] denotes that I am considering it, i.e. I'm not sure it should be implement
 ### Complete
 
 -   2024/2/9
+    -   the intro text is now only displayed if the user has not been to the site before, stored in localStorage 'show-intro'
+    -   added light and dark themes for data-table, but they do not align with my palette.
+    -   applied palette to inputs
     -   chart no longer continually shrink and is now sized properly on mobile and desktop
     -   applied palette to custom dropdowns
     -   createInput now correctly returns the proper div
