@@ -153,10 +153,12 @@ async function startLocalDidgYa(didgYaId, now) {
 
             updateDidgYaDivById(didgYaId);
 
-            return makeToast(
-                `You DidgYa'd <b>${didgYaData.name}</b>!`,
-                "success"
-            );
+            makeToast(`You DidgYa'd <b>${didgYaData.name}</b>!`, "success");
+
+            if (timerInterval) clearInterval(timerInterval);
+            if (transitionInterval) clearInterval(transitionInterval);
+
+            return;
         }, duration + SECOND);
 
         return;
