@@ -1076,6 +1076,10 @@ video {
   background-color: transparent;
 }
 
+.bg-highlight-dark\/10 {
+  background-color: hsl(0deg 0% 96% / 0.1);
+}
+
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
@@ -2176,6 +2180,10 @@ input[type="number"] {
 
   .hover\:dark\:bg-supporting-dark\/80:hover {
     background-color: hsl(182deg 80% 25% / 0.8);
+  }
+
+  .hover\:dark\:bg-highlight-dark\/20:hover {
+    background-color: hsl(0deg 0% 96% / 0.2);
   }
 
   @media (prefers-color-scheme: dark) {

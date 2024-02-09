@@ -156,13 +156,12 @@ function createCustomDropdown(selectName, options, index) {
         "mt-2",
         "origin-top-right",
         "bg-neutral-light",
-        "bg-neutral-dark",
+        "dark:bg-neutral-dark",
         "rounded-md",
         "shadow-lg",
         "ring-1",
         "ring-highlight-light",
         "dark:ring-highlight-dark/10",
-        // "ring-opacity-5",
         "focus:outline-none"
     );
     secondChild.role = "menu";
@@ -184,9 +183,10 @@ function createCustomDropdown(selectName, options, index) {
             "px-4",
             "py-2",
             "text-sm",
-            "text-gray-700",
+            "bg-neutral-light",
+            "dark:bg-highlight-dark/10",
             "hover:bg-highlight-light/90",
-            "hover:dark:bg-highlight-dark/10",
+            "hover:dark:bg-highlight-dark/20",
             "flex",
             "flex-row",
             "gap-2",

@@ -97,7 +97,9 @@ async function startLocalDidgYa(didgYaId, now) {
         const cancelTimerButton = document.getElementById("cancel-timer");
         const cancelTimerNew = cancelTimerButton.replaceInPlace();
 
-        cancelTimerNew.addEventListener("click", function () {
+        cancelTimerNew.addEventListener("click", function (e) {
+            e.preventDefault();
+
             cancelTimer();
 
             modal.classList.add("hidden");
@@ -111,7 +113,8 @@ async function startLocalDidgYa(didgYaId, now) {
         const doneButton = document.getElementById("done-timer");
         const doneNew = doneButton.replaceInPlace();
 
-        doneNew.addEventListener("click", function () {
+        doneNew.addEventListener("click", function (e) {
+            e.preventDefault();
             cancelTimer();
             modal.classList.add("hidden");
 
