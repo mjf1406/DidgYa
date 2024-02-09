@@ -9,9 +9,13 @@ function convertMsToTime(milliseconds) {
     let hours = Math.floor(minutes / 60);
     seconds = seconds % 60;
     minutes = minutes % 60;
-    return `${padTo2Digits(hours)}:${padTo2Digits(minutes)}:${padTo2Digits(
-        seconds
-    )}`;
+    if (hours > 0)
+        return `${padTo2Digits(hours)}:${padTo2Digits(minutes)}:${padTo2Digits(
+            seconds
+        )}`;
+    else if (minutes > 0)
+        return `${padTo2Digits(minutes)}:${padTo2Digits(seconds)}`;
+    else return `${padTo2Digits(seconds)}`;
 }
 function getClassesThatInclude(stringToSearch, elementId) {
     const elem = document.getElementById(elementId);
@@ -96,7 +100,7 @@ function createCustomDropdown(selectName, options, index) {
         "relative",
         "inline-block",
         "text-left",
-        "w-max"
+        "w-full"
     );
     select.id = `input-${index}-${selectName}`;
 
@@ -111,17 +115,20 @@ function createCustomDropdown(selectName, options, index) {
         "justify-center",
         "gap-x-1.5",
         "rounded-md",
-        "bg-white",
+        "bg-neutral-light",
+        "dark:bg-highlight-dark/10",
         "px-3",
         "py-2",
         "text-sm",
         "font-semibold",
-        "text-gray-900",
+        "text-text-light",
+        "dark:text-text-dark",
         "shadow-sm",
-        "ring-1",
-        "ring-inset",
-        "ring-gray-300",
-        "hover:bg-gray-50"
+        // "ring-1",
+        // "ring-inset",
+        // "ring-gray-300",
+        "hover:bg-highlight-light/50",
+        "hover:dark:bg-highlight-dark/30"
     );
     button.id = "menu-button";
     button.ariaExpanded = "false";
@@ -145,15 +152,17 @@ function createCustomDropdown(selectName, options, index) {
         "right-0",
         "z-10",
         "hidden",
-        "w-56",
+        "w-full",
         "mt-2",
         "origin-top-right",
-        "bg-white",
+        "bg-neutral-light",
+        "bg-neutral-dark",
         "rounded-md",
         "shadow-lg",
         "ring-1",
-        "ring-black",
-        "ring-opacity-5",
+        "ring-highlight-light",
+        "dark:ring-highlight-dark/10",
+        // "ring-opacity-5",
         "focus:outline-none"
     );
     secondChild.role = "menu";
@@ -176,12 +185,15 @@ function createCustomDropdown(selectName, options, index) {
             "py-2",
             "text-sm",
             "text-gray-700",
-            "hover:bg-primary-light",
+            "hover:bg-highlight-light/90",
+            "hover:dark:bg-highlight-dark/10",
             "flex",
             "flex-row",
             "gap-2",
             "justify-start",
-            "items-center"
+            "items-center",
+            "text-text-light",
+            "dark:text-text-dark"
         );
         a.role = "menuitem";
         a.tabIndex = "-1";

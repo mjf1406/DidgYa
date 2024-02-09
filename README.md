@@ -11,17 +11,18 @@ A [?] denotes that I am considering it, i.e. I'm not sure it should be implement
 #### Low Priority
 
 -   Integrated Supabase to store the data
-    -   [x] createDidgYa
-    -   [x] deleteDidgYa
-    -   [ ] editDidgYa
-    -   [ ] viewDidgYa
-    -   [x] clickDidgYa
-    -   [x] stopDidgYa
+    -   createDidgYa
+    -   deleteDidgYa
+    -   editDidgYa
+    -   viewDidgYa
+    -   clickDidgYa
+    -   stopDidgYa
 -   integrated Supabase Auth
 -   added profile modal
 -   5 DidgYas for free in the cloud and save others to localStorage
 -   notify the user about being offline
 -   [?] added a stopwatch for those with daily goals that shows last time it was done. Only do minutes and hours
+-   add nice sound effect and animation when daily goal is fulfilled
 
 #### Medium Priority
 
@@ -34,12 +35,25 @@ A [?] denotes that I am considering it, i.e. I'm not sure it should be implement
 
 #### High Priority
 
--   added editMOdal
+-   added edit modal for editing DidgYa
+-   added edit modal for editing DidgYa data
 -   need to get the width of the view modal to expand to the table width but stay in the center
 -   chart.js animates the chart from big to small over and over again on mobile by removing h-fit on its container
 
 ### Complete
 
+-   2024/2/9
+    -   applied palette to custom dropdowns
+    -   createInput now correctly returns the proper div
+    -   added two kinds of timed Didgyas: (1) that just keeps track of how long you do it for, so the stopwatch starts once started, and (2) that starts a timer as soon as you click it to make sure you do it for a set amount of time
+    -   moved wipes in Poop to the bottom
+    -   changed .timed to .stopwatch in the DidgYa schema
+    -   added .timer ot the DidgYa schema
+    -   added .stopwatch to createDidgYa
+    -   added .timer to createDidgYa
+    -   modified the DidgYa records schema to be better, using input names as the keys
+-   2024/2/8
+    -   added endTime to DidgYa schema instead of in duration.endTime
 -   2024/2/7
     -   icons now get added to the button when selecting in custom select
     -   chart.js tooltip now has the right time format

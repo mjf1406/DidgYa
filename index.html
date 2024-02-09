@@ -336,7 +336,7 @@
                                         <i class="fa-solid fa-minus"></i>
                                     </button>
                                     <input type="number" name="modal-create-DidgYa-quantity"
-                                        id="modal-create-DidgYa-quantity" class="number-input" value="" required="">
+                                        id="modal-create-DidgYa-quantity" class="number-input" value="0" required="">
                                     <button name="modal-create-DidgYa-quantity" data-action="increment"
                                         class="justify-center items-center flex flex-row gap-2 rotations-input-button dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:ring-highlight-light font-medium rounded-r-lg text-sm px-4 py-2.5 dark:bg-primary-dark dark:hover:bg-primary-dark/70 focus:outline-none dark:focus:ring-highlight-dark">
                                         <i class="fa-solid fa-plus"></i>
@@ -351,22 +351,47 @@
                                     class="bg-gray-50 border border-gray-300 text-text-light text-sm rounded-lg focus:ring-highlight-light focus:border-highlight-light block w-full p-2.5 dark:bg-gray-700 dark:border-neutral-light dark:placeholder-gray-400 dark:text-text-dark dark:focus:ring-highlight-dark dark:focus:border-highlight-dark">
                             </div>
                             <div>
-                                <label class="form-label">Timed</label>
-                                <div class="form-description">Do you want to track how long you do the DidgYa?
+                                <label class="form-label">Tracking Duration</label>
+                                <div class="form-description">Do you want to track of the duration for this DidgYa?
                                 </div>
-                                <label for="modal-create-DidgYa-timed"
-                                    class="relative inline-flex items-center cursor-pointer">
-                                    <input id="modal-create-DidgYa-timed" type="checkbox" value="" class="sr-only peer">
-                                    <div
-                                        class="w-11 h-6 bg-highlight-light/30 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-highlight-light dark:peer-focus:ring-highlight-dark rounded-full peer dark:bg-highlight-dark/30 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-light peer-checked:bg-primary-light/80">
-                                    </div>
-                                    <span
-                                        class="text-sm font-medium text-text-light ms-3 dark:text-text-dark">Timed</span>
+                                <div class="flex flex-col items-start justify-start gap-2">
+                                    <label for="modal-create-DidgYa-stopwatch"
+                                        class="relative inline-flex items-center cursor-pointer">
+                                        <input id="modal-create-DidgYa-stopwatch" type="checkbox" value=""
+                                            class="sr-only peer">
+                                        <div
+                                            class="w-11 h-6 bg-highlight-light/30 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-highlight-light dark:peer-focus:ring-highlight-dark rounded-full peer dark:bg-highlight-dark/30 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-light peer-checked:bg-primary-light/80">
+                                        </div>
+                                        <span
+                                            class="text-sm font-medium text-text-light ms-3 dark:text-text-dark">Stopwatch</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="name" class="form-label">
+                                    Setting a Timer <i name="number-input-help"
+                                        class="ml-1 fa-regular fa-circle-question"></i>
                                 </label>
+                                <div class="form-description">Do you want automatically start a timer (s) when starting
+                                    this
+                                    DidgYa?
+                                </div>
+                                <div class="flex flex-row" name="number-input-group">
+                                    <button name="modal-create-DidgYa-timer" data-action="decrement"
+                                        class="justify-center items-center flex flex-row gap-2 rotations-input-button dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:ring-highlight-light font-medium rounded-l-lg text-sm px-4 py-2.5 dark:bg-primary-dark dark:hover:bg-primary-dark/70 focus:outline-none dark:focus:ring-highlight-dark">
+                                        <i class="fa-solid fa-minus"></i>
+                                    </button>
+                                    <input type="number" name="modal-create-DidgYa-timer" id="modal-create-DidgYa-timer"
+                                        class="number-input" value="" required="" value="0">
+                                    <button name="modal-create-DidgYa-timer" data-action="increment"
+                                        class="justify-center items-center flex flex-row gap-2 rotations-input-button dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:ring-highlight-light font-medium rounded-r-lg text-sm px-4 py-2.5 dark:bg-primary-dark dark:hover:bg-primary-dark/70 focus:outline-none dark:focus:ring-highlight-dark">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div>
                                 <label for="" class="form-label">Inputs</label>
-                                <div class="form-description">Does this DidgYa require any inputs when done?</div>
+                                <div class="form-description">Does this DidgYa require any inputs?</div>
                                 <div id="inputs-list" class="flex flex-col gap-2"></div>
                                 <button id="modal-create-DidgYa-add-input"
                                     class="mt-3 w-full dark:text-text-dark bg-secondary-light hover:bg-secondary-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-secondary-dark dark:hover:bg-secondary-dark/70 dark:focus:ring-highilght-dark">
@@ -568,6 +593,49 @@
                 </div>
             </div>
         </div>
+        <div name="modal" id="modal-timer-DidgYa" tabindex="-1" aria-hidden="true"
+            class="fixed top-0 left-0 right-0 z-30 flex items-center justify-center hidden w-full max-h-full p-4 overflow-x-hidden overflow-y-auto dark:text-text-dark backdrop-blur-sm md:inset-0 h-dvh bg-background-light/50 dark:bg-background-dark/50">
+            <div class="relative w-full max-w-md max-h-full">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <button type="button"
+                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-text-light rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:dark:text-text-dark"
+                        data-modal-hide="modal-timer-DidgYa">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="px-6 py-6 lg:px-8">
+                        <h3 class="mb-4 text-xl font-medium text-text-light dark:text-text-dark">
+                            <span id="DidgYa-timer-name"></span>
+                        </h3>
+                        <form class="space-y-6" action="#">
+                            <div id="time" class="flex flex-row items-center justify-center w-full text-7xl"></div>
+                            <div class="flex flex-row gap-2">
+                                <button type="submit" id="done-timer"
+                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:outline-none focus:ring-highlight-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-dark dark:hover:bg-primary-dark/70 dark:focus:ring-highlight-dark">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" fill="white"
+                                        viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                        <path
+                                            d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                                    </svg>
+                                    Done
+                                </button>
+                                <button type="submit" id="cancel-timer"
+                                    class="justify-center items-center w-full flex flex-row gap-2 dark:text-text-dark bg-accent-light hover:bg-accent-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-accent-dark dark:hover:bg-accent-dark/70 dark:focus:ring-highilght-dark"
+                                    data-modal-hide="modal-timer-DidgYa">
+                                    <i class="mr-1 fa-solid fa-cancel"></i>
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </span>
 
     <span id="svg-icons">
@@ -670,10 +738,13 @@
     </span>
 </body>
 
+<script src="assets/data/consts.js"></script>
+
 <script src="js/libraries/helpers.js"></script>
 <script src="js/libraries/modals.js"></script>
 <script src="js/libraries/toasts.js"></script>
 <script src="js/libraries/numberInputs.js"></script>
+<script src="js/libraries/timer.js"></script>
 
 <script src="assets/data/units.js"></script>
 <script src="assets/data/defaults.js"></script>

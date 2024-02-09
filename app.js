@@ -1,5 +1,3 @@
-var chart;
-
 const presetsDropdown = document.getElementById("presets-dropdown");
 presetsDropdown.innerHTML = "";
 
@@ -23,10 +21,11 @@ async function createDidgYa(
     unit,
     quantity,
     inputs,
-    timed,
+    stopwatch,
     emoji,
     user,
-    dailyGoal
+    dailyGoal,
+    timer
 ) {
     if (quantity == "" || quantity == 0 || quantity == null) {
         unit = null;
@@ -36,17 +35,18 @@ async function createDidgYa(
 
     if (!user) user = { id: "anon" };
 
-    // const createToCloud = await createCloudDidgYa(name, unit, quantity, inputs, timed, unitType, emoji, user)
+    // const createToCloud = await createCloudDidgYa(name, unit, quantity, inputs, stopwatch, unitType, emoji, user)
     // if (createToCloud) return makeToast(`An error occurred while creating the <b>${name}</b> DidgYa. Please try again in a moment.`, 'error')
     const createToLocal = createLocalDidgYa(
         name,
         unit,
         quantity,
         inputs,
-        timed,
+        stopwatch,
         emoji,
         user,
-        dailyGoal
+        dailyGoal,
+        timer
     );
     if (createToLocal === "error") return "error";
     appendDidgYaToList(createToLocal);
@@ -160,16 +160,13 @@ function viewDidgYa(didgYaId) {
     // Data Table
 
     let records = didgYa.records;
+
     let transformedData = records.map((item) => {
         const dt = new Date(item.dt);
         const transformedItem = {
+            ...item,
             dt: `${dt.toLocaleDateString()} ${dt.toLocaleTimeString()}`,
         };
-        if (item.variables) {
-            item.variables.forEach((variable) => {
-                transformedItem[variable.name] = variable.value;
-            });
-        }
         return transformedItem;
     });
 
@@ -313,6 +310,7 @@ function setUpStartModal(didgYaData, divToPopulate) {
     }
 }
 function createInput(inputType, name, selects, index) {
+    console.log("🚀 ~ createInput ~ inputType:", inputType);
     const div = document.createElement("div");
     div.classList.add("mb-5");
 
@@ -423,8 +421,9 @@ function createInput(inputType, name, selects, index) {
         label.appendChild(span);
     }
 
-    div.appendChild(customSelect);
-    if (inputType != "boolean" && inputType != "select") div.appendChild(input);
+    if (inputType === "select") div.appendChild(customSelect);
+    if (inputType === "number") div.appendChild(input);
+    if (inputType === "boolean") div.appendChild(label);
     return div;
 }
 function createDidgYaGetInputs() {
@@ -557,7 +556,7 @@ function appendDidgYaToList(didgYa) {
     stop.appendChild(svgStop);
     stop.classList.add("hidden");
     svgStop.classList.add("fill-supporting-light", "dark:fill-supporting-dark");
-    if (didgYa.timed === true && didgYa.active === true)
+    if (didgYa.stopwatch === true && didgYa.active === true)
         stop.classList.remove("hidden");
     buttons.appendChild(stop);
 

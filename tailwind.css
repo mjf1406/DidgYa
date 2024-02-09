@@ -664,10 +664,6 @@ video {
   margin-right: 0.25rem;
 }
 
-.mr-2 {
-  margin-right: 0.5rem;
-}
-
 .mr-auto {
   margin-right: auto;
 }
@@ -1057,6 +1053,15 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-neutral-dark {
+  --tw-bg-opacity: 1;
+  background-color: hsl(0deg 0% 14% / var(--tw-bg-opacity));
+}
+
+.bg-neutral-light\/40 {
+  background-color: hsl(210deg 16% 97% / 0.4);
+}
+
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
@@ -1207,6 +1212,11 @@ video {
   line-height: 2.25rem;
 }
 
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
 .text-5xl {
   font-size: 3rem;
   line-height: 1;
@@ -1240,6 +1250,11 @@ video {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-7xl {
+  font-size: 4.5rem;
+  line-height: 1;
 }
 
 .font-bold {
@@ -1320,6 +1335,10 @@ video {
   opacity: 0;
 }
 
+.opacity-25 {
+  opacity: 0.25;
+}
+
 .opacity-40 {
   opacity: 0.4;
 }
@@ -1339,12 +1358,6 @@ video {
 .shadow-lg {
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.shadow-md {
-  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -1379,6 +1392,11 @@ video {
   --tw-ring-color: rgb(209 213 219 / var(--tw-ring-opacity));
 }
 
+.ring-highlight-light {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: hsl(0deg 0% 100% / var(--tw-ring-opacity));
+}
+
 .ring-opacity-5 {
   --tw-ring-opacity: 0.05;
 }
@@ -1391,6 +1409,22 @@ video {
   --tw-backdrop-blur: blur(4px);
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
           backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+
+.\!transition {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter !important;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter !important;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition-duration: 150ms !important;
+}
+
+.transition {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
 .transition-colors {
@@ -1844,6 +1878,14 @@ input[type="number"] {
   background-color: hsl(188deg 77% 40% / 0.8);
 }
 
+.hover\:bg-highlight-light\/50:hover {
+  background-color: hsl(0deg 0% 100% / 0.5);
+}
+
+.hover\:bg-highlight-light\/90:hover {
+  background-color: hsl(0deg 0% 100% / 0.9);
+}
+
 .hover\:text-secondary-light\/80:hover {
   color: hsl(133deg 61% 40% / 0.8);
 }
@@ -2108,6 +2150,15 @@ input[type="number"] {
     color: rgb(156 163 175 / var(--tw-placeholder-opacity));
   }
 
+  .dark\:ring-highlight-dark {
+    --tw-ring-opacity: 1;
+    --tw-ring-color: hsl(0deg 0% 96% / var(--tw-ring-opacity));
+  }
+
+  .dark\:ring-highlight-dark\/10 {
+    --tw-ring-color: hsl(0deg 0% 96% / 0.1);
+  }
+
   .dark\:hover\:bg-accent-dark\/70:hover {
     background-color: hsl(32deg 100% 38% / 0.7);
   }
@@ -2136,6 +2187,14 @@ input[type="number"] {
 
   .hover\:dark\:bg-supporting-dark\/80:hover {
     background-color: hsl(182deg 80% 25% / 0.8);
+  }
+
+  .hover\:dark\:bg-highlight-dark\/30:hover {
+    background-color: hsl(0deg 0% 96% / 0.3);
+  }
+
+  .hover\:dark\:bg-highlight-dark\/10:hover {
+    background-color: hsl(0deg 0% 96% / 0.1);
   }
 
   @media (prefers-color-scheme: dark) {

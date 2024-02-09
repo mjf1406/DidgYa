@@ -43,7 +43,8 @@ buttonCreateDidgYa.addEventListener("click", async function (e) {
     const emoji = document.getElementById("modal-create-DidgYa-emoji");
     const dailyGoal = document.getElementById("modal-create-DidgYa-daily-goal");
     const inputs = createDidgYaGetInputs();
-    const timed = document.getElementById("modal-create-DidgYa-timed");
+    const stopwatch = document.getElementById("modal-create-DidgYa-stopwatch");
+    const timer = document.getElementById("modal-create-DidgYa-timer");
     const user = { id: null, name: null };
 
     const created = await createDidgYa(
@@ -51,10 +52,11 @@ buttonCreateDidgYa.addEventListener("click", async function (e) {
         unit.value,
         quantity.value,
         inputs,
-        timed.checked,
+        stopwatch.checked,
         emoji.value,
         user,
-        dailyGoal.value
+        dailyGoal.value,
+        timer.value
     );
     if (created == "error")
         return makeToast(
@@ -67,7 +69,8 @@ buttonCreateDidgYa.addEventListener("click", async function (e) {
     unit.value = "";
     quantity.value = "";
     dailyGoal.value = "";
-    timed.checked = false;
+    stopwatch.checked = false;
+    timer.value = 0;
 
     const modal = document.getElementById("modal-create-DidgYa");
     modal.classList.add("hidden");
