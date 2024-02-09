@@ -606,6 +606,10 @@ video {
   margin: 0.5rem;
 }
 
+.m-5 {
+  margin: 1.25rem;
+}
+
 .mx-1 {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
@@ -744,6 +748,10 @@ video {
   height: 2rem;
 }
 
+.h-96 {
+  height: 24rem;
+}
+
 .h-fit {
   height: -moz-fit-content;
   height: fit-content;
@@ -785,10 +793,6 @@ video {
   width: 1.25rem;
 }
 
-.w-56 {
-  width: 14rem;
-}
-
 .w-8 {
   width: 2rem;
 }
@@ -814,9 +818,28 @@ video {
   width: 100%;
 }
 
-.w-max {
-  width: -moz-max-content;
-  width: max-content;
+.w-\[40vw\] {
+  width: 40vw;
+}
+
+.w-\[90vw\] {
+  width: 90vw;
+}
+
+.w-\[20vw\] {
+  width: 20vw;
+}
+
+.w-\[30vw\] {
+  width: 30vw;
+}
+
+.w-\[25vw\] {
+  width: 25vw;
+}
+
+.w-\[35vw\] {
+  width: 35vw;
 }
 
 .max-w-lg {
@@ -1024,6 +1047,11 @@ video {
   background-color: hsl(0deg 0% 100% / 0.05);
 }
 
+.bg-neutral-dark {
+  --tw-bg-opacity: 1;
+  background-color: hsl(0deg 0% 14% / var(--tw-bg-opacity));
+}
+
 .bg-neutral-light {
   --tw-bg-opacity: 1;
   background-color: hsl(210deg 16% 97% / var(--tw-bg-opacity));
@@ -1046,20 +1074,6 @@ video {
 
 .bg-transparent {
   background-color: transparent;
-}
-
-.bg-white {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.bg-neutral-dark {
-  --tw-bg-opacity: 1;
-  background-color: hsl(0deg 0% 14% / var(--tw-bg-opacity));
-}
-
-.bg-neutral-light\/40 {
-  background-color: hsl(210deg 16% 97% / 0.4);
 }
 
 .bg-gradient-to-r {
@@ -1212,11 +1226,6 @@ video {
   line-height: 2.25rem;
 }
 
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
-
 .text-5xl {
   font-size: 3rem;
   line-height: 1;
@@ -1224,6 +1233,11 @@ video {
 
 .text-6xl {
   font-size: 3.75rem;
+  line-height: 1;
+}
+
+.text-7xl {
+  font-size: 4.5rem;
   line-height: 1;
 }
 
@@ -1250,11 +1264,6 @@ video {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
-}
-
-.text-7xl {
-  font-size: 4.5rem;
-  line-height: 1;
 }
 
 .font-bold {
@@ -1382,11 +1391,6 @@ video {
   --tw-ring-inset: inset;
 }
 
-.ring-black {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(0 0 0 / var(--tw-ring-opacity));
-}
-
 .ring-gray-300 {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(209 213 219 / var(--tw-ring-opacity));
@@ -1409,14 +1413,6 @@ video {
   --tw-backdrop-blur: blur(4px);
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
           backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-}
-
-.\!transition {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter !important;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter !important;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter !important;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
-  transition-duration: 150ms !important;
 }
 
 .transition {
@@ -1847,19 +1843,17 @@ input[type="number"] {
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-gray-50:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-green-800:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(22 101 52 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-primary-light:hover {
-  --tw-bg-opacity: 1;
-  background-color: hsl(211deg 100% 50% / var(--tw-bg-opacity));
+.hover\:bg-highlight-light\/50:hover {
+  background-color: hsl(0deg 0% 100% / 0.5);
+}
+
+.hover\:bg-highlight-light\/90:hover {
+  background-color: hsl(0deg 0% 100% / 0.9);
 }
 
 .hover\:bg-primary-light\/70:hover {
@@ -1876,14 +1870,6 @@ input[type="number"] {
 
 .hover\:bg-supporting-light\/80:hover {
   background-color: hsl(188deg 77% 40% / 0.8);
-}
-
-.hover\:bg-highlight-light\/50:hover {
-  background-color: hsl(0deg 0% 100% / 0.5);
-}
-
-.hover\:bg-highlight-light\/90:hover {
-  background-color: hsl(0deg 0% 100% / 0.9);
 }
 
 .hover\:text-secondary-light\/80:hover {
@@ -2150,11 +2136,6 @@ input[type="number"] {
     color: rgb(156 163 175 / var(--tw-placeholder-opacity));
   }
 
-  .dark\:ring-highlight-dark {
-    --tw-ring-opacity: 1;
-    --tw-ring-color: hsl(0deg 0% 96% / var(--tw-ring-opacity));
-  }
-
   .dark\:ring-highlight-dark\/10 {
     --tw-ring-color: hsl(0deg 0% 96% / 0.1);
   }
@@ -2185,16 +2166,16 @@ input[type="number"] {
     background-color: hsl(182deg 80% 25% / 0.7);
   }
 
-  .hover\:dark\:bg-supporting-dark\/80:hover {
-    background-color: hsl(182deg 80% 25% / 0.8);
+  .hover\:dark\:bg-highlight-dark\/10:hover {
+    background-color: hsl(0deg 0% 96% / 0.1);
   }
 
   .hover\:dark\:bg-highlight-dark\/30:hover {
     background-color: hsl(0deg 0% 96% / 0.3);
   }
 
-  .hover\:dark\:bg-highlight-dark\/10:hover {
-    background-color: hsl(0deg 0% 96% / 0.1);
+  .hover\:dark\:bg-supporting-dark\/80:hover {
+    background-color: hsl(182deg 80% 25% / 0.8);
   }
 
   @media (prefers-color-scheme: dark) {

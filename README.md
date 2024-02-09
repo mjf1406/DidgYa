@@ -38,11 +38,11 @@ A [?] denotes that I am considering it, i.e. I'm not sure it should be implement
 -   added edit modal for editing DidgYa
 -   added edit modal for editing DidgYa data
 -   need to get the width of the view modal to expand to the table width but stay in the center
--   chart.js animates the chart from big to small over and over again on mobile by removing h-fit on its container
 
 ### Complete
 
 -   2024/2/9
+    -   chart no longer continually shrink and is now sized properly on mobile and desktop
     -   applied palette to custom dropdowns
     -   createInput now correctly returns the proper div
     -   added two kinds of timed Didgyas: (1) that just keeps track of how long you do it for, so the stopwatch starts once started, and (2) that starts a timer as soon as you click it to make sure you do it for a set amount of time

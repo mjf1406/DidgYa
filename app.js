@@ -189,6 +189,8 @@ function viewDidgYa(didgYaId) {
 
     const dataChart = document.getElementById("data-chart");
 
+    if (chart) chart.destroy();
+
     chart = new Chart(dataChart, {
         type: "scatter", // Or 'line' if you prefer
         data: {
@@ -202,6 +204,8 @@ function viewDidgYa(didgYaId) {
             ],
         },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 x: {
                     type: "time",
@@ -243,17 +247,12 @@ function viewDidgYa(didgYaId) {
                 tooltip: {
                     callbacks: {
                         label: function (context) {
-                            // Access the x property directly from the data point for the date
                             const dateValue = context.raw.x;
-                            // Convert the y value (minutes past midnight) to hours and minutes
                             const timeValue = context.raw.y;
                             const hours = Math.floor(timeValue / 60);
                             const minutes = timeValue % 60;
-                            // Construct a Date object from the date string
                             const date = new Date(dateValue);
-                            // Adjust the Date object to include the correct time
                             date.setHours(hours, minutes);
-                            // Format the date and time to a readable string
                             const dateString = date.toLocaleDateString(
                                 undefined,
                                 { month: "short", day: "numeric" }
