@@ -35,7 +35,7 @@ body {
 }
 
 .didgya-list-item {
-    @apply flex flex-row gap-4 pl-3 pr-1 py-0.5 bg-neutral-light dark:bg-neutral-dark items-center justify-between text-3xl max-w-md w-full;
+    @apply flex flex-row gap-4 pl-3 pr-1 py-0.5 bg-neutral-light dark:bg-neutral-dark items-center justify-between text-3xl max-w-sm w-full;
 }
 
 .didgya-list-item .text {
