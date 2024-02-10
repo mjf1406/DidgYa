@@ -45,6 +45,8 @@ A [?] denotes that I am considering it, i.e. I'm not sure it should be implement
 ### Complete
 
 -   2024/2/10
+    -   created consts in `tests-generateTestData.js` for various vars
+    -   added medication to DEFAULT_DIDGYAS
     -   created `generateTestData()` function to generate data for testing
     -   added pagination to data-table
     -   fixed: the timer interval now gets cleared when it reaches zero

@@ -372,6 +372,25 @@ const DEFAULT_DIDGYAS = [
         dailyGoal: 1,
         timer: false,
     },
+    {
+        id: generateId(),
+        emoji: "🧘",
+        name: "Meditation",
+        unit: null,
+        quantity: null,
+        inputs: [
+            {
+                name: "Difficult",
+                type: "boolean",
+            },
+        ],
+        stopwatch: true,
+        records: [],
+        active: null,
+        location: "local",
+        dailyGoal: null,
+        timer: false,
+    },
 ];
 const PRESET_DIDGYAS = [
     {

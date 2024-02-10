@@ -1,4 +1,8 @@
 const DATA_POINTS = 40;
+const DATE_START = new Date(2024, 1, 1);
+const DATE_END = new Date();
+const RANDOM_MINUTES_FLOOR = 2;
+const RANDOM_MINUTES_CEILING = 360;
 
 function generateTestData() {
     const testData = DEFAULT_DIDGYAS;
@@ -34,8 +38,11 @@ function generateSimpleDidgYaRecords(didgyaName, numberOfDataPoints) {
     let records = [];
     for (let index = 0; index < numberOfDataPoints; index++) {
         let data = {};
-        const randomDate = generateRandomDate(new Date(2024, 1, 1), new Date());
-        const randomMinutes = generateRandomIntegerBetween(1, 120);
+        const randomDate = generateRandomDate(DATE_START, DATE_END);
+        const randomMinutes = generateRandomIntegerBetween(
+            RANDOM_MINUTES_FLOOR,
+            RANDOM_MINUTES_CEILING
+        );
         const endTime = randomDate.setHours(
             randomDate.getMinutes() + randomMinutes
         );
@@ -54,7 +61,7 @@ function generateComplexDidgYaRecords(didgyaName, numberOfDataPoints) {
     let records = [];
 
     for (let index = 0; index < numberOfDataPoints; index++) {
-        const randomDate = generateRandomDate(new Date(2024, 1, 1), new Date());
+        const randomDate = generateRandomDate(DATE_START, new Date());
         let record = { dt: randomDate };
 
         for (let index = 0; index < inputs.length; index++) {
