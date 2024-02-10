@@ -1,47 +1,3 @@
-function cancelTimer() {
-    clearInterval(timerInterval);
-    // clearInterval(transitionInterval);
-
-    audioTenSecondCountdown.stop();
-    transitionTrack.stop();
-    audioTimesUp.stop();
-
-    // const endTimeDiv = document.getElementById("timer-end");
-    // endTimeDiv.classList.add("hidden");
-
-    const modal = document.getElementById("modal-timer-DidgYa");
-    modal.classList.add("hidden");
-
-    // // Reveal timer adjustment buttons
-    // const adjustmentButtons = document.getElementById(
-    //     "timer-adjustment-buttons"
-    // );
-    // adjustmentButtons.classList.add("hidden");
-
-    // // Reveal default timer and custom timer buttons
-    // const defaultTimersGroup = document.getElementById("timer-buttons");
-    // const customTimersGroup = document.getElementById("custom-timers");
-    // defaultTimersGroup.classList.remove("hidden");
-    // customTimersGroup.classList.remove("hidden");
-
-    // const customTimerTitle = document.getElementById("custom-timer-title");
-    // customTimerTitle.classList.add("hidden");
-    // customTimerTitle.innerHTML = "";
-
-    // setTime();
-    // clockInterval = setInterval(setTime, 1000);
-    // localStorage.setItem("state", "clock");
-
-    // const classes = getClassesThatInclude("bg", "body");
-    // removeClassesFromElement(classes, "body");
-    // body.style.backgroundColor = color;
-
-    // color = new Color(color);
-
-    // setColors(color);
-    // populateShapes(shape);
-    // animateIcons();
-}
 function pauseTimer() {
     if (isPaused) return makeToast("The timer is already paused!", "warning");
 
@@ -126,10 +82,29 @@ async function timer(transition) {
     let divTimer = document.getElementById("time");
     let milliseconds = parseInt(divTimer.name);
     if (!isPaused) {
-        if (milliseconds <= 1000) {
-            cancelTimer();
+        if (milliseconds <= SECOND) {
+            if (timerInterval) clearInterval(timerInterval);
+            if (transitionInterval) clearInterval(transitionInterval);
+
+            const now = new Date(JSON.parse(localStorage.getItem("timer-dt")));
+            const didgYaData = JSON.parse(localStorage.getItem("timer-didgya"));
+            const didgYaId = didgYaData.id;
+            const didgYas = JSON.parse(localStorage.getItem("didgYas"));
+            const didgYaIndex = didgYas.findIndex((i) => i.id == didgYaId);
+
+            didgYaData.records.push({ dt: now });
+
+            didgYas[didgYaIndex] = didgYaData;
+            localStorage.setItem("didgYas", JSON.stringify(didgYas));
+
+            updateDidgYaDivById(didgYaId);
+
+            makeToast(`You DidgYa'd <b>${didgYaData.name}</b>!`, "success");
+
+            const modal = document.getElementById("modal-timer-DidgYa");
+            modal.classList.add("hidden");
         }
-        milliseconds = milliseconds - 1000;
+        milliseconds = milliseconds - SECOND;
         divTimer.innerHTML = convertMsToTime(milliseconds);
         divTimer.name = milliseconds;
     }

@@ -92,6 +92,9 @@ async function startLocalDidgYa(didgYaId, now) {
     const didgYaData = didgYas[didgYaIndex];
 
     if (didgYaData.timer > 0) {
+        localStorage.setItem("timer-didgya", JSON.stringify(didgYaData));
+        localStorage.setItem("timer-dt", JSON.stringify(now));
+
         if (timerInterval) clearInterval(timerInterval);
         if (transitionInterval) clearInterval(transitionInterval);
 
@@ -110,7 +113,6 @@ async function startLocalDidgYa(didgYaId, now) {
 
             if (timerInterval) clearInterval(timerInterval);
             if (transitionInterval) clearInterval(transitionInterval);
-            cancelTimer();
 
             modal.classList.add("hidden");
         });
@@ -123,7 +125,6 @@ async function startLocalDidgYa(didgYaId, now) {
 
             if (timerInterval) clearInterval(timerInterval);
             if (transitionInterval) clearInterval(transitionInterval);
-            cancelTimer();
 
             modal.classList.add("hidden");
 
@@ -143,23 +144,21 @@ async function startLocalDidgYa(didgYaId, now) {
         const nameDiv = document.getElementById("DidgYa-timer-name");
         nameDiv.innerHTML = `${didgYaData.emoji} <b>${didgYaData.name}</b>`;
 
-        transitionInterval = setInterval(() => {
-            cancelTimer();
+        // transitionInterval = setInterval(() => {
+        //     didgYaData.records.push({ dt: now });
 
-            didgYaData.records.push({ dt: now });
+        //     didgYas[didgYaIndex] = didgYaData;
+        //     localStorage.setItem("didgYas", JSON.stringify(didgYas));
 
-            didgYas[didgYaIndex] = didgYaData;
-            localStorage.setItem("didgYas", JSON.stringify(didgYas));
+        //     updateDidgYaDivById(didgYaId);
 
-            updateDidgYaDivById(didgYaId);
+        //     makeToast(`You DidgYa'd <b>${didgYaData.name}</b>!`, "success");
 
-            makeToast(`You DidgYa'd <b>${didgYaData.name}</b>!`, "success");
+        //     if (timerInterval) clearInterval(timerInterval);
+        //     if (transitionInterval) clearInterval(transitionInterval);
 
-            if (timerInterval) clearInterval(timerInterval);
-            if (transitionInterval) clearInterval(transitionInterval);
-
-            return;
-        }, duration + SECOND);
+        //     return;
+        // }, duration + SECOND);
 
         return;
     } else if (
