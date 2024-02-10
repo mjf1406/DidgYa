@@ -144,22 +144,6 @@ async function startLocalDidgYa(didgYaId, now) {
         const nameDiv = document.getElementById("DidgYa-timer-name");
         nameDiv.innerHTML = `${didgYaData.emoji} <b>${didgYaData.name}</b>`;
 
-        // transitionInterval = setInterval(() => {
-        //     didgYaData.records.push({ dt: now });
-
-        //     didgYas[didgYaIndex] = didgYaData;
-        //     localStorage.setItem("didgYas", JSON.stringify(didgYas));
-
-        //     updateDidgYaDivById(didgYaId);
-
-        //     makeToast(`You DidgYa'd <b>${didgYaData.name}</b>!`, "success");
-
-        //     if (timerInterval) clearInterval(timerInterval);
-        //     if (transitionInterval) clearInterval(transitionInterval);
-
-        //     return;
-        // }, duration + SECOND);
-
         return;
     } else if (
         didgYaData.inputs == null ||
