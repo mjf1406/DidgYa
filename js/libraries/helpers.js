@@ -51,6 +51,10 @@ function generateId() {
         Math.floor(Math.random() * 36).toString(36)
     ).join("");
 }
+function generateRandomIntegerBetween(start, end) {
+    return Math.floor(Math.random() * (end - start + 1) + start);
+}
+
 // Function to format milliseconds into 0h 0m 0s
 function formatMillisecondsToReadable(milliseconds, displayMilliseconds) {
     const hours = Math.floor(milliseconds / 3600000); // 1 Hour = 3600000 milliseconds

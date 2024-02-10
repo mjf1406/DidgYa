@@ -273,6 +273,26 @@ addPresetButton.addEventListener("click", function (e) {
     appendDidgYaToList(didgYa);
 });
 
+const generateTestDataButton = document.getElementById("button-gen-test-data");
+generateTestDataButton.addEventListener("click", async function (e) {
+    const sure = confirm(
+        "Are you sure you want to generate test data? This will overwrite any existing test data."
+    );
+
+    if (!sure) return;
+
+    makeToast("Generating test data...", "success");
+
+    await sleep(1000);
+
+    const testData = generateTestData();
+    localStorage.setItem("didgYas", JSON.stringify(testData));
+
+    populateDidgYaList(testData);
+
+    makeToast("Test data generated successfully!", "success");
+});
+
 function setCustomSelectListeners() {
     // Select all dropdown buttons
     const customSelects = document.querySelectorAll('[aria-haspopup="true"]');

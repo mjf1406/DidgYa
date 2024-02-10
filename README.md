@@ -41,6 +41,8 @@ A [?] denotes that I am considering it, i.e. I'm not sure it should be implement
 ### Complete
 
 -   2024/2/10
+    -   created `generateTestData()` function to generate data for testing
+    -   added pagination to data-table
     -   fixed: the timer interval now gets cleared when it reaches zero
     -   fixed: timer interval being finished will no longer do an extra DidgYa
     -   fixed: Brush Teeth was done twice for some reason

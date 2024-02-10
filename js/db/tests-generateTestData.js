@@ -1,19 +1,98 @@
-// bed time, brush teeth, floss, meal, mouthwash, shake, water
-function generateSimpleDidgYaData(numberOfDataPoints) {
+const DATA_POINTS = 40;
+
+function generateTestData() {
+    const testData = DEFAULT_DIDGYAS;
+    for (let index = 0; index < DEFAULT_DIDGYAS.length; index++) {
+        const element = DEFAULT_DIDGYAS[index];
+
+        let records = [];
+
+        const didgyaName = element.name;
+        const didgyaInputs = element.inputs;
+
+        if (
+            didgyaInputs == null ||
+            didgyaInputs == undefined ||
+            didgyaInputs.length == 0
+        ) {
+            records = generateSimpleDidgYaRecords(didgyaName, DATA_POINTS);
+        } else {
+            records = generateComplexDidgYaRecords(didgyaName, DATA_POINTS);
+        }
+
+        testData[index].records = records;
+    }
+    return testData;
+}
+
+// DidgYas that only have dt in records, or have dt and endTime
+// -- bed time, brush teeth, floss, meal, mouthwash, shake, water
+function generateSimpleDidgYaRecords(didgyaName, numberOfDataPoints) {
+    const didgYaData = getLocalDidgyaByName(didgyaName);
+    const stopwatch = didgYaData.stopwatch;
+
     let records = [];
-    for (let index = 0; index < numberOfDataPoints.length; index++) {
-        const randomDate = randomDate(new Date(2024, 1, 1), new Date());
-        records.push({ dt: randomDate });
+    for (let index = 0; index < numberOfDataPoints; index++) {
+        let data = {};
+        const randomDate = generateRandomDate(new Date(2024, 1, 1), new Date());
+        const randomMinutes = generateRandomIntegerBetween(1, 120);
+        const endTime = randomDate.setHours(
+            randomDate.getMinutes() + randomMinutes
+        );
+        data.dt = randomDate;
+        if (stopwatch) data.endTime = endTime;
+        records.push(data);
     }
     return records;
 }
-function generatePeeData() {}
-function generatePoopData() {}
-function generateWeightData() {}
+
+// DidgYas that have inputs
+// -- pee, poop, weight
+function generateComplexDidgYaRecords(didgyaName, numberOfDataPoints) {
+    const didgYaData = getLocalDidgyaByName(didgyaName);
+    const inputs = didgYaData.inputs;
+    let records = [];
+
+    for (let index = 0; index < numberOfDataPoints; index++) {
+        const randomDate = generateRandomDate(new Date(2024, 1, 1), new Date());
+        let record = { dt: randomDate };
+
+        for (let index = 0; index < inputs.length; index++) {
+            const element = inputs[index];
+
+            const inputName = element.name;
+            const inputType = element.type;
+
+            let data = {};
+
+            if (inputType === "select") {
+                const inputOptions = element.options;
+                const randomIndex = generateRandomIntegerBetween(
+                    1,
+                    inputOptions.length - 1
+                );
+                const randomOption = inputOptions[randomIndex];
+                data = randomOption.name;
+            } else if (inputType === "number") {
+                const value = generateRandomIntegerBetween(1, 5);
+                data = value;
+            } else if (inputType === "boolean") {
+                const value = generateRandomIntegerBetween(1, 2);
+                let bool = false;
+                if (value == 1) bool = true;
+                data = bool;
+            }
+
+            record[inputName] = data;
+        }
+        records.push(record);
+    }
+    return records;
+}
 
 // ---------- Helper Functions -----------
 
-function randomDate(start, end) {
+function generateRandomDate(start, end) {
     return new Date(
         start.getTime() + Math.random() * (end.getTime() - start.getTime())
     );

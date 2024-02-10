@@ -174,6 +174,8 @@ function viewDidgYa(didgYaId) {
         data: transformedData,
         layout: "fitDataTable",
         autoColumns: true,
+        pagination: true,
+        paginationSize: 5,
     });
 
     // Data Chart
