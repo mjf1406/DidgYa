@@ -19,24 +19,28 @@ A [?] denotes that I am considering it, i.e. I'm not sure it should be implement
     -   stopDidgYa
 -   integrated Supabase Auth
 -   added profile modal
--   5 DidgYas for free in the cloud and save others to localStorage
+-   3 or 5 DidgYas for free in the cloud and save others to localStorage
 -   notify the user about being offline
 -   [?] added a stopwatch for those with daily goals that shows last time it was done. Only do minutes and hours
 -   add nice sound effect and animation when daily goal is fulfilled
+-   consider minification tools. This might require initializing node into the project.
+-   consider localization libraries, or write my own. One is 33KB minified and another is 55KB minified. I feel like I can make a smaller one.
 
 #### Medium Priority
 
--   consider minification tools. This might require initializing node into the project.
--   consider localization libraries, or write my own. One is 33KB minified and another is 55KB minified. I feel like I can make a smaller one.
--   graphs
-    -   add a way to view all DidgYas on a single graph, just the datetime
-    -   need to adjust axes based on the type of DidgYa
+-   make dashboard
+    -   one graph that can dynamically add DidgYas to it
+    -   analyze the selected DidgYas
 
 #### High Priority
 
 -   added edit modal for editing DidgYa
 -   added edit modal for editing DidgYa data
--   need to get the width of the view modal to expand to the table width but stay in the center
+-   need to adjust axes based on the type of DidgYa
+    -   with duration, draw a line between dt and endTime
+    -   if single number, use that number as y axis
+    -   if just dt, time is on y axis, and date is on x axis
+-   graph dates don't align with the table dates for some reason
 
 ### Complete
 
