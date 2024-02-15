@@ -4,6 +4,10 @@ Did you do it? Did you experience it? DidgYa is an app designed to simplify the 
 
 ## Change Log
 
+-   2024/2/15
+    -   table dated is now sorted in descending order
+    -   graph data now matches table data
+    -   in view modal, graph data is for the current week only
 -   2024/2/10
     -   created consts in `tests-generateTestData.js` for various vars
     -   added medication to DEFAULT_DIDGYAS

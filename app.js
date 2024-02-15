@@ -160,6 +160,7 @@ function viewDidgYa(didgYaId) {
     // Data Table
 
     let records = didgYa.records;
+    records.sort((a, b) => new Date(b.dt) - new Date(a.dt));
 
     let transformedData = records.map((item) => {
         const dt = new Date(item.dt);
@@ -180,14 +181,20 @@ function viewDidgYa(didgYaId) {
 
     // Data Chart
 
-    const chartData = records.map((record) => {
+    let chartData = records.map((record) => {
         const date = new Date(record.dt);
-        const minutesPastMidnight = date.getHours() * 60 + date.getMinutes();
-        return {
-            x: date.toISOString().split("T")[0], // Extract date part
-            y: minutesPastMidnight, // Time as minutes past midnight
-        };
+        const isInWeek = isInCurrentWeek("sunday", date);
+        if (isInWeek) {
+            const minutesPastMidnight =
+                date.getHours() * 60 + date.getMinutes();
+            return {
+                x: date.toLocaleDateString(),
+                y: minutesPastMidnight,
+            };
+        }
     });
+    chartData = chartData.filter((i) => i != undefined);
+    console.log("🚀 ~ viewDidgYa ~ chartData:", chartData);
 
     const dataChart = document.getElementById("data-chart");
 
@@ -223,7 +230,7 @@ function viewDidgYa(didgYaId) {
                     },
                 },
                 y: {
-                    reverse: false,
+                    reverse: true,
                     ticks: {
                         // Format the tick labels to show time in HH:mm format
                         callback: (value) => {

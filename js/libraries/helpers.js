@@ -364,3 +364,15 @@ String.prototype.toTitleCase = function () {
 String.prototype.reverse = function () {
     return this.split("").reverse().join("");
 };
+
+function isInCurrentWeek(weekStart, dateObject) {
+    const now = new Date();
+
+    const firstDayOfWeek = now.getDate() - now.getDay() - 1;
+    const lastDayOfWeek = firstDayOfWeek + 7;
+
+    const firstDay = new Date(now.setDate(firstDayOfWeek));
+    const lastDay = new Date(now.setDate(lastDayOfWeek));
+
+    return dateObject >= firstDay && dateObject <= lastDay;
+}

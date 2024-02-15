@@ -1,5 +1,7 @@
-const DATA_POINTS = 40;
+const DATA_POINTS = 50;
+const DATE_END_MOD = 5;
 const DATE_START = new Date(2024, 1, 1);
+// const DATE_END = new Date( new Date().setDate(new Date().getDate() + DATE_END_MOD) );
 const DATE_END = new Date();
 const RANDOM_MINUTES_FLOOR = 2;
 const RANDOM_MINUTES_CEILING = 360;
