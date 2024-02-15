@@ -65,7 +65,7 @@ Did you do it? Did you experience it? DidgYa is an app designed to simplify the 
     -   added wipes, stool quantity, and stool shape to Poop default
     -   added pee to defaults
 -   2024/2/3
-    -   added fotns to the project to remove googlefonts api call: about 200 + 150 ms saved
+    -   added fonts to the project to remove googlefonts api call: about 200 + 150 ms saved
     -   added daily goal to each DidgYaListItem
     -   fixed the icons so they are properly positioned and properly colored
     -   downloaded FontAwesome Icon to reduce 500ms calls to their CDN

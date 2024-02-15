@@ -734,23 +734,4 @@ const PRESET_DIDGYAS = [
         dailyGoal: 2,
         timer: 60,
     },
-    {
-        id: generateId(),
-        emoji: "🔫",
-        name: "Masturbation",
-        unit: null,
-        quantity: null,
-        inputs: [
-            {
-                name: "Porn",
-                type: "boolean",
-            },
-        ],
-        stopwatch: true,
-        records: [],
-        active: null,
-        location: "local",
-        dailyGoal: null,
-        timer: false,
-    },
 ];

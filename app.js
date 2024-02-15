@@ -157,10 +157,16 @@ function viewDidgYa(didgYaId) {
         editDidgYa(didgYaId);
     });
 
-    // Data Table
+    // --- Data Manipulation ---
 
     let records = didgYa.records;
     records.sort((a, b) => new Date(b.dt) - new Date(a.dt));
+    records = records.filter((record) => {
+        const date = new Date(record.dt);
+        return isInCurrentWeek("sunday", date); // Adjust this call to match your actual implementation
+    });
+
+    // Data Table
 
     let transformedData = records.map((item) => {
         const dt = new Date(item.dt);
@@ -171,31 +177,93 @@ function viewDidgYa(didgYaId) {
         return transformedItem;
     });
 
+    buildDataTable(transformedData);
+
+    // Data Chart
+    let chartData = records.map((record) => {
+        const date = new Date(record.dt);
+        const minutesPastMidnight = date.getHours() * 60 + date.getMinutes();
+        return {
+            x: date.toLocaleDateString(),
+            y: minutesPastMidnight,
+        };
+    });
+    chartData = chartData.filter((i) => i != undefined);
+    buildChart(chartData, didgYa);
+
+    // Descriptive Statistics
+    computeDescStats(records);
+}
+
+function populateDidgYaList(didgYas) {
+    const now = new Date();
+    didgYas.alphabetizeByKey("name");
+
+    const didgYaList = document.getElementById("DidgYa-list");
+    didgYaList.innerHTML = "";
+
+    for (let i = 0; i < didgYas.length; i++) {
+        const didgYa = didgYas[i];
+        appendDidgYaToList(didgYa);
+    }
+}
+
+function computeDescStats(data) {
+    console.log("🚀 ~ computeDescStats ~ data:", data);
+    const today = new Date();
+
+    let sumBetweenWeek = 0;
+    let sumBetweenDay = 0;
+    let sumPerDay = 0;
+
+    // TODO: Need to loop through the days so that we can compute sumPerDay
+    // for each day, then divide by number of days. And, to calculate
+    // sumBetweenWeek, need each day's average, then divide.
+
+    for (let index = 0; index < data.length; index++) {
+        // Data is sorted in descending order, i.e. newest to oldest
+        const element = data[index];
+        const dt = new Date(element.dt);
+        if (index + 1 >= data.length) break;
+        const dtNext = new Date(data[index + 1].dt);
+
+        const millisecondsBetween = dt - dtNext;
+        sumBetweenWeek += millisecondsBetween;
+
+        if (
+            dt.getDate() === today.getDate() &&
+            dt.getMonth() === today.getMonth() &&
+            dt.getFullYear() === today.getFullYear()
+        ) {
+            sumBetweenDay += millisecondsBetween;
+        }
+    }
+    const averageMillisecondsBetweenWeek = sumBetweenWeek / data.length;
+    console.log(
+        "🚀 ~ computeDescStats ~ averageMillisecondsBetweenWeek:",
+        formatMillisecondsToReadable(averageMillisecondsBetweenWeek)
+    );
+    const averageMillisecondsBetweenDay = sumBetweenDay / data.length;
+    console.log(
+        "🚀 ~ computeDescStats ~ averageMillisecondsBetweenDay:",
+        formatMillisecondsToReadable(averageMillisecondsBetweenDay)
+    );
+
+    return {
+        averageMillisecondsBetweenWeek: averageMillisecondsBetweenWeek,
+        averageMillisecondsBetweenDay: averageMillisecondsBetweenDay,
+    };
+}
+function buildDataTable(tableData) {
     var table = new Tabulator("#data-table", {
-        data: transformedData,
+        data: tableData,
         layout: "fitDataTable",
         autoColumns: true,
         pagination: true,
         paginationSize: 5,
     });
-
-    // Data Chart
-
-    let chartData = records.map((record) => {
-        const date = new Date(record.dt);
-        const isInWeek = isInCurrentWeek("sunday", date);
-        if (isInWeek) {
-            const minutesPastMidnight =
-                date.getHours() * 60 + date.getMinutes();
-            return {
-                x: date.toLocaleDateString(),
-                y: minutesPastMidnight,
-            };
-        }
-    });
-    chartData = chartData.filter((i) => i != undefined);
-    console.log("🚀 ~ viewDidgYa ~ chartData:", chartData);
-
+}
+function buildChart(chartData, didgYa) {
     const dataChart = document.getElementById("data-chart");
 
     if (chart) chart.destroy();
@@ -277,19 +345,6 @@ function viewDidgYa(didgYaId) {
             },
         },
     });
-}
-
-function populateDidgYaList(didgYas) {
-    const now = new Date();
-    didgYas.alphabetizeByKey("name");
-
-    const didgYaList = document.getElementById("DidgYa-list");
-    didgYaList.innerHTML = "";
-
-    for (let i = 0; i < didgYas.length; i++) {
-        const didgYa = didgYas[i];
-        appendDidgYaToList(didgYa);
-    }
 }
 
 function setUpStartModal(didgYaData, divToPopulate) {
