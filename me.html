@@ -9,7 +9,8 @@
     <!-- <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator_midnight.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <!-- Toastify.js -->
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <title>DidgYa</title>
 
@@ -519,6 +520,13 @@
                         <h3 class="mb-4 text-xl font-medium text-text-light dark:text-text-dark">
                             <span name="viewing-DidgYa"></span>
                         </h3>
+
+                        <button
+                            class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-dark dark:hover:bg-primary-dark/70 dark:focus:ring-highilght-dark"
+                            data-modal-target="modal-do-custom-time-DidgYa"
+                            data-modal-toggle="modal-do-custom-time-DidgYa">
+                            DidgYa <span name="viewing-DidgYa"></span> with a custom time
+                        </button>
                         <div class="flex flex-row gap-2 mt-6">
                             <button id="button-delete-view-DidgYa"
                                 class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-accent-light hover:bg-accent-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-accent-dark dark:hover:bg-accent-dark/70 dark:focus:ring-highilght-dark">
@@ -559,6 +567,47 @@
                                 <button type="submit"
                                     class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:outline-none focus:ring-highlight-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-dark dark:hover:bg-primary-dark/70 dark:focus:ring-highlight-dark"
                                     data-modal-hide="modal-view-DidgYa">
+                                    <i class="mr-1 fa-solid fa-cancel"></i>
+                                    Close
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div name="modal" id="modal-do-custom-time-DidgYa" tabindex="-1" aria-hidden="true"
+            class="fixed top-0 left-0 right-0 z-10 flex items-center justify-center hidden w-full max-h-full p-4 overflow-x-hidden overflow-y-auto dark:text-text-dark backdrop-blur-sm md:inset-0 h-dvh bg-background-light/50 dark:bg-background-dark/50">
+            <div class="relative w-full max-w-xl max-h-full">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <button type="button"
+                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-text-light rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:dark:text-text-dark"
+                        data-modal-hide="modal-do-custom-time-DidgYa">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="px-6 py-6 lg:px-8">
+                        <h3 class="mb-4 text-xl font-medium text-text-light dark:text-text-dark">
+                            <span name="viewing-DidgYa"></span>
+                        </h3>
+                        <label for="custom-time">Choose a time for your appointment:</label>
+                        <input type="datetime-local" id="custom-time" name="custom-time" value="2024-02-18T19:30" />
+                        <form action="#">
+                            <span class="text-base h-fit"></span>
+                            <br>
+                            <div class="flex flex-row gap-2 mt-6">
+                                <button id="button-do-custom-time-DidgYa"
+                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-dark dark:hover:bg-primary-dark/70 dark:focus:ring-highilght-dark">
+                                    DidgYa <span name="viewing-DidgYa"></span>
+                                </button>
+                                <button type="submit"
+                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-accent-light hover:bg-accent-light/70 focus:ring-4 focus:outline-none focus:ring-highlight-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-accent-dark dark:hover:bg-accent-dark/70 dark:focus:ring-highlight-dark"
+                                    data-modal-hide="modal-do-custom-time-DidgYa">
                                     <i class="mr-1 fa-solid fa-cancel"></i>
                                     Close
                                 </button>

@@ -5,6 +5,7 @@ Did you do it? Did you experience it? DidgYa is an app designed to simplify the 
 ## Change Log
 
 -   2024/2/19
+    -   added a way to do a DidgYa for a user-specified date and time in the view modal
     -   changed view modal from current week to last 7 days.
     -   moved the DidgYa list to `me.html` and `index.html` is now a basic landing page. Thinking I'll switch over to `landing-test.html`
     -   added weekly average between DidgYas to view modal

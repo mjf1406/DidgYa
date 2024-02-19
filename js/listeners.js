@@ -293,6 +293,19 @@ generateTestDataButton.addEventListener("click", async function (e) {
     makeToast("Test data generated successfully!", "success");
 });
 
+const customTimeDidgYaButton = document.getElementById(
+    "button-do-custom-time-DidgYa"
+);
+customTimeDidgYaButton.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const dt = document.getElementById("custom-time");
+    console.log("🚀 ~ dt:", dt.value);
+    clickDidgYa(this.name, dt.value);
+
+    const modal = document.getElementById("modal-do-custom-time-DidgYa");
+    modal.classList.add("hidden");
+});
 function setCustomSelectListeners() {
     // Select all dropdown buttons
     const customSelects = document.querySelectorAll('[aria-haspopup="true"]');

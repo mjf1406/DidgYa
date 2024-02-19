@@ -61,9 +61,9 @@ function deleteDidgYa(didgYaId) {
     removeDidgYaFromList(didgYaId);
     makeToast(`The <b>${name}</b> DidgYa was deleted successfully!`, "success");
 }
-async function clickDidgYa(didgYaId) {
+async function clickDidgYa(didgYaId, datetime) {
     const name = getLocalDidgYaName(didgYaId);
-    const now = new Date();
+    let now = datetime ? datetime : new Date();
 
     // const startInCloud = await startCloudDidgya(didgYaId, now)
     // if (startInCloud) return makeToast(`An error occurred while deleting the <b>${name}</b> DidgYa. Please try again in a moment.`, 'error')
@@ -109,6 +109,7 @@ function editDidgYa(didgYaId) {
 }
 function viewDidgYa(didgYaId) {
     const now = new Date();
+    console.log("🚀 ~ viewDidgYa ~ now:", now);
     const didgYas = JSON.parse(localStorage.getItem("didgYas"));
     const didgYaIndex = didgYas.findIndex((element) => element.id == didgYaId);
 
@@ -164,7 +165,6 @@ function viewDidgYa(didgYaId) {
     records = records.filter((record) => {
         const date = new Date(record.dt);
         return isInLastSixDays(date); // Adjust this call to match your actual implementation
-        // return isInCurrentWeek("sunday", date); // Adjust this call to match your actual implementation
     });
 
     // Data Table
@@ -191,6 +191,22 @@ function viewDidgYa(didgYaId) {
     });
     chartData = chartData.filter((i) => i != undefined);
     buildChart(chartData, didgYa);
+
+    // Custom Time
+    const customTime = document.getElementById("custom-time");
+    const dtLocal = now;
+    dtLocal.setMinutes(dtLocal.getMinutes() - dtLocal.getTimezoneOffset());
+    customTime.value = dtLocal.toISOString().slice(0, 16);
+
+    flatpickr("#custom-time", {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+    });
+
+    const customTimeButton = document.getElementById(
+        "button-do-custom-time-DidgYa"
+    );
+    customTimeButton.name = didgYaId;
 
     // Descriptive Statistics
     const descriptiveStatistics = computeDescStats(records);
