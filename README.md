@@ -4,6 +4,11 @@ Did you do it? Did you experience it? DidgYa is an app designed to simplify the 
 
 ## Change Log
 
+-   2024/2/19
+    -   changed view modal from current week to last 7 days.
+    -   moved the DidgYa list to `me.html` and `index.html` is now a basic landing page. Thinking I'll switch over to `landing-test.html`
+    -   added weekly average between DidgYas to view modal
+    -   added daily averages for each day in the last 7 days to view modal
 -   2024/2/15
     -   table dated is now sorted in descending order
     -   graph data now matches table data
@@ -122,45 +127,3 @@ Did you do it? Did you experience it? DidgYa is an app designed to simplify the 
 
 -   https://www.tailwindawesome.com/resources/landwind
 -   https://www.tailwindawesome.com/resources/play
-
-### Sections
-
-1. hero
-   📢📢📢 inside of 5 seconds, what you do, why it matters, and what they need to do to get it 📢📢📢
-
-    - headline emphasizes value, result or transformation
-    - sub-headline clearly explains what you provide to get that result
-    - call-to-action button
-    - image
-        - people look at the image for 6 seconds, a lot in the web
-        - must get it right an emotional connect
-
-2. Problem/Solution section
-    - talk about the main _pain point_
-        - larger text than the below
-    - _agitate_ with examlpes
-    - introduce your _solution_
-    - add a video that hits on teh problem if possible
-        - pages with video increase conversion by 86% on average
-3. Benefits
-    - Most compelling 3 benefits paired with feature(s) that make them possible
-    - Benefit is not a feature
-        - Stay Connected : Instancly conectw it hmulti-device bluetooth
-            - Benefit is stay connected
-            - features is bluetooth
-4. Testimonials
-    - at least 3
-    - 72% of customers only take action after reading a positiev review
-    - one that overcomes an objection
-    - one that speaks to a benefit
-    - one that speaks to teh results
-    - include photo if possible
-5. Features
-    - 10 to 20
-    - buying decision nis mad based on emotion first, then backed up by logic. This is the logic
-6. FAQs
-    - Answer common questions
-    - handle common objections
-    - a video for each one is great
-7. Call to Action
-    - Same CTA as in the Hero section

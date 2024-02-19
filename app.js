@@ -163,7 +163,8 @@ function viewDidgYa(didgYaId) {
     records.sort((a, b) => new Date(b.dt) - new Date(a.dt));
     records = records.filter((record) => {
         const date = new Date(record.dt);
-        return isInCurrentWeek("sunday", date); // Adjust this call to match your actual implementation
+        return isInLastSixDays(date); // Adjust this call to match your actual implementation
+        // return isInCurrentWeek("sunday", date); // Adjust this call to match your actual implementation
     });
 
     // Data Table
@@ -192,7 +193,32 @@ function viewDidgYa(didgYaId) {
     buildChart(chartData, didgYa);
 
     // Descriptive Statistics
-    computeDescStats(records);
+    const descriptiveStatistics = computeDescStats(records);
+
+    const weeklyAverageDiv = document.getElementById("weekly-average");
+    weeklyAverageDiv.innerHTML = formatMillisecondsToReadable(
+        descriptiveStatistics.mean
+    );
+
+    const dailyAveragesDiv = document.getElementById("daily-averages");
+    dailyAveragesDiv.innerHTML = "";
+    for (
+        let index = 0;
+        index < descriptiveStatistics.dailyAverages.length;
+        index++
+    ) {
+        const element = descriptiveStatistics.dailyAverages[index];
+        const div = document.createElement("div");
+        let mean = element.mean;
+
+        const meanString =
+            isNaN(mean) == true
+                ? "Insufficient data"
+                : formatMillisecondsToReadable(mean);
+
+        div.innerHTML = `<b>${element.date.toLocaleDateString()}</b>: ${meanString}`;
+        dailyAveragesDiv.appendChild(div);
+    }
 }
 
 function populateDidgYaList(didgYas) {
@@ -209,49 +235,38 @@ function populateDidgYaList(didgYas) {
 }
 
 function computeDescStats(data) {
-    console.log("🚀 ~ computeDescStats ~ data:", data);
     const today = new Date();
+    const dates = computeLastDaysDatesOfN(7, today);
 
-    let sumBetweenWeek = 0;
-    let sumBetweenDay = 0;
-    let sumPerDay = 0;
+    const dailyAverages = [];
 
-    // TODO: Need to loop through the days so that we can compute sumPerDay
-    // for each day, then divide by number of days. And, to calculate
-    // sumBetweenWeek, need each day's average, then divide.
+    for (let index = 0; index < dates.length; index++) {
+        const date = dates[index];
+        const sums = [];
+        let sum = 0;
+        const filteredData = data.filter(
+            (i) =>
+                new Date(i.dt).toDateString() == new Date(date).toDateString()
+        );
 
-    for (let index = 0; index < data.length; index++) {
         // Data is sorted in descending order, i.e. newest to oldest
-        const element = data[index];
-        const dt = new Date(element.dt);
-        if (index + 1 >= data.length) break;
-        const dtNext = new Date(data[index + 1].dt);
+        for (let index = 0; index < filteredData.length; index++) {
+            const element = filteredData[index];
+            const dt = new Date(element.dt);
 
-        const millisecondsBetween = dt - dtNext;
-        sumBetweenWeek += millisecondsBetween;
+            if (index + 1 >= filteredData.length) break;
 
-        if (
-            dt.getDate() === today.getDate() &&
-            dt.getMonth() === today.getMonth() &&
-            dt.getFullYear() === today.getFullYear()
-        ) {
-            sumBetweenDay += millisecondsBetween;
+            const dtNext = new Date(filteredData[index + 1].dt);
+            sum += dt.getTime() - dtNext.getTime();
+            sums.push(sum);
         }
+        dailyAverages.push({ date: date, mean: sum / sums.length });
     }
-    const averageMillisecondsBetweenWeek = sumBetweenWeek / data.length;
-    console.log(
-        "🚀 ~ computeDescStats ~ averageMillisecondsBetweenWeek:",
-        formatMillisecondsToReadable(averageMillisecondsBetweenWeek)
-    );
-    const averageMillisecondsBetweenDay = sumBetweenDay / data.length;
-    console.log(
-        "🚀 ~ computeDescStats ~ averageMillisecondsBetweenDay:",
-        formatMillisecondsToReadable(averageMillisecondsBetweenDay)
-    );
+    const mean = dailyAverages.mean("mean");
 
     return {
-        averageMillisecondsBetweenWeek: averageMillisecondsBetweenWeek,
-        averageMillisecondsBetweenDay: averageMillisecondsBetweenDay,
+        mean: mean,
+        dailyAverages: dailyAverages,
     };
 }
 function buildDataTable(tableData) {

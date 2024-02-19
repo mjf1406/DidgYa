@@ -602,6 +602,10 @@ video {
   margin: 0px;
 }
 
+.m-10 {
+  margin: 2.5rem;
+}
+
 .m-2 {
   margin: 0.5rem;
 }
@@ -769,6 +773,10 @@ video {
   max-height: 100%;
 }
 
+.w-1\/2 {
+  width: 50%;
+}
+
 .w-11 {
   width: 2.75rem;
 }
@@ -902,6 +910,10 @@ video {
   gap: 1.25rem;
 }
 
+.gap-3 {
+  gap: 0.75rem;
+}
+
 .gap-x-1 {
   -moz-column-gap: 0.25rem;
        column-gap: 0.25rem;
@@ -950,6 +962,10 @@ video {
 
 .rounded-2xl {
   border-radius: 1rem;
+}
+
+.rounded-3xl {
+  border-radius: 1.5rem;
 }
 
 .rounded-full {
@@ -1026,6 +1042,10 @@ video {
 .bg-neutral-light {
   --tw-bg-opacity: 1;
   background-color: hsl(210deg 16% 97% / var(--tw-bg-opacity));
+}
+
+.bg-neutral-light\/40 {
+  background-color: hsl(210deg 16% 97% / 0.4);
 }
 
 .bg-primary-light {
@@ -1142,6 +1162,11 @@ video {
   padding-right: 1.5rem;
 }
 
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -1160,6 +1185,11 @@ video {
 .py-2\.5 {
   padding-top: 0.625rem;
   padding-bottom: 0.625rem;
+}
+
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 }
 
 .py-6 {
@@ -1905,6 +1935,11 @@ input[type="number"] {
   --tw-ring-color: hsl(211deg 100% 50% / var(--tw-ring-opacity));
 }
 
+.focus\:ring-supporting-light:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: hsl(188deg 77% 40% / var(--tw-ring-opacity));
+}
+
 .disabled\:pointer-events-none:disabled {
   pointer-events: none;
 }
@@ -2015,6 +2050,10 @@ input[type="number"] {
   .dark\:bg-neutral-dark {
     --tw-bg-opacity: 1;
     background-color: hsl(0deg 0% 14% / var(--tw-bg-opacity));
+  }
+
+  .dark\:bg-neutral-dark\/40 {
+    background-color: hsl(0deg 0% 14% / 0.4);
   }
 
   .dark\:bg-primary-dark {
@@ -2204,6 +2243,11 @@ input[type="number"] {
   .dark\:focus\:ring-primary-dark:focus {
     --tw-ring-opacity: 1;
     --tw-ring-color: hsl(211deg 100% 35% / var(--tw-ring-opacity));
+  }
+
+  .dark\:focus\:ring-supporting-dark:focus {
+    --tw-ring-opacity: 1;
+    --tw-ring-color: hsl(182deg 80% 25% / var(--tw-ring-opacity));
   }
 
   .peer:focus ~ .dark\:peer-focus\:ring-blue-800 {

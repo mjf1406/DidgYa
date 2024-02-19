@@ -320,6 +320,24 @@ Array.prototype.alphabetize = function () {
         return 0;
     });
 };
+Array.prototype.mean = function (key) {
+    let values = [];
+
+    if (key !== undefined) {
+        // Extract values by key, excluding non-numeric and NaN values
+        values = this.map((obj) => obj[key]).filter(
+            (val) => typeof val === "number" && !isNaN(val)
+        );
+    } else {
+        // Filter out non-numeric and NaN values
+        values = this.filter((val) => typeof val === "number" && !isNaN(val));
+    }
+
+    if (values.length === 0) return NaN; // Return NaN if no valid numbers are present
+
+    const sum = values.reduce((acc, val) => acc + val, 0);
+    return sum / values.length;
+};
 
 Audio.prototype.stop = function () {
     this.pause();
@@ -365,14 +383,32 @@ String.prototype.reverse = function () {
     return this.split("").reverse().join("");
 };
 
+function isInLastSixDays(dateObject) {
+    const now = new Date();
+    const sevenDaysAgo = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate() - 6
+    );
+    return dateObject >= sevenDaysAgo && dateObject < now;
+}
+function computeLastDaysDatesOfN(n, today) {
+    const dates = [];
+    for (let index = 0; index < n; index++) {
+        const newDate = new Date(
+            today.getFullYear(),
+            today.getMonth(),
+            today.getDate() - index
+        );
+        dates.push(newDate);
+    }
+    return dates;
+}
 function isInCurrentWeek(weekStart, dateObject) {
     const now = new Date();
-
     const firstDayOfWeek = now.getDate() - now.getDay() - 1;
     const lastDayOfWeek = firstDayOfWeek + 7;
-
     const firstDay = new Date(now.setDate(firstDayOfWeek));
     const lastDay = new Date(now.setDate(lastDayOfWeek));
-
     return dateObject >= firstDay && dateObject <= lastDay;
 }

@@ -3,6 +3,7 @@ module.exports = {
     mode: "jit",
     content: [
         "../index.html",
+        "../me.html",
         "../app.js",
         "../js/**/*.js",
         "../landing.html",

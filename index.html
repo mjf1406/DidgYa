@@ -4,32 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="tailwind.css">
-    <!-- <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator_modern.min.css" rel="stylesheet"> -->
-    <!-- <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator_midnight.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="../tailwind.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <!-- Toastify.js -->
-
-
+    <!-- Toastify.js -->
     <title>DidgYa</title>
-
-    <script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
+    <!-- Modules -->
     <script src="https://unpkg.com/@popperjs/core@2"></script> <!-- Tippy.js -->
     <script src="https://unpkg.com/tippy.js@6"></script> <!-- Tippy.js -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script> <!-- Toastify.js -->
-    <script src="js/libraries/luxon.min.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script> <!-- Moment.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment"></script> <!-- Moment.js adapter -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> Supabase -->
-
 </head>
 
-<body id="body" class="flex flex-col h-screen gap-5 mb-2 transition-colors duration-1000 ease-in-out w-dvw">
-    <div class="flex flex-row items-center justify-between w-full px-5 py-2">
+<body id="body" class="flex flex-col h-screen gap-5 overflow-auto transition-colors duration-1000 ease-in-out w-dvw">
+    <div
+        class="fixed flex flex-row items-center justify-between w-full px-3 py-5 bg-neutral-light dark:bg-neutral-dark h-fit">
         <div class="top-0 flex flex-row gap-1 grow shrink-0">
-            <a class="flex flex-row items-center justify-center gap-2 mr-auto text-5xl" href="index.html">
+            <a class="flex flex-row items-center justify-center gap-2 mr-auto text-5xl" href="../index.html">
                 <span
                     class="text-transparent bg-gradient-to-r from-primary-light to-supporting-light dark:from-primary-dark dark:to-supporting-dark bg-clip-text">
                     <span>
@@ -41,7 +33,7 @@
                         </svg>
                     </span>
                 </span>
-                <h1 class="hidden font-extrabold tracking-tight md:block">
+                <h1 class="font-extrabold tracking-tight">
                     <span class="text-primary-light dark:text-primary-dark">
                         Didg
                     </span>
@@ -50,724 +42,89 @@
                     </span>
                 </h1>
             </a>
-            <div class="flex flex-row items-center justify-center hidden lg:flex gap-14 grow">
-                <a class="text-lg font-medium cursor-pointer text-text-light dark:text-text-dark hover:text-text-light/70 hover:dark:text-text-dark/70"
-                    href="index.html">Home</a>
-                <a class="text-lg font-medium cursor-pointer text-text-light dark:text-text-dark hover:text-text-light/70 hover:dark:text-text-dark/70"
-                    href="dashboard.html">Dashboard</a>
-                <a class="text-lg font-medium cursor-pointer text-text-light dark:text-text-dark hover:text-text-light/70 hover:dark:text-text-dark/70"
-                    href="landing-test.html">LandingP</a>
-                <a class="text-lg font-medium cursor-pointer text-text-light dark:text-text-dark hover:text-text-light/70 hover:dark:text-text-dark/70"
-                    href="landing.html">LandingC</a>
+            <a href="me.html"
+                class="text-text-light dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:ring-primary-light font-medium rounded-lg text-lg px-5 py-2.5 dark:bg-primary-dark dark:hover:bg-primary-dark/70 focus:outline-none dark:focus:ring-primary-dark">Get
+                started
+            </a>
+        </div>
+    </div>
+    <!-- Hero -->
+    <div
+        class="flex flex-row items-center justify-center gap-10 px-8 mt-32 bg-background-light dark:bg-background-dark">
+        <div class="flex flex-col items-center justify-center gap-10">
+            <div class="flex flex-col justify-center gap-2">
+                <div class="max-w-lg text-6xl font-bold text-left">
+                    Did you do it?
+                </div>
+                <div class="max-w-lg text-xl font-semibold tracking-tight text-left">
+                    Did you do it? Did you experience it?
+                    <span class="mx-1.5 font-bold">
+                        <span class="-ml-1 text-primary-light dark:text-primary-dark">
+                            Didg
+                        </span>
+                        <span class="-ml-1 -mr-1.5 text-supporting-light dark:text-supporting-dark">
+                            Ya
+                        </span>
+                    </span>
+                    is an app designed to simplify the way you track various
+                    things that happen in your life.
+                </div>
             </div>
-            <div class="flex flex-row items-center gap-1 text-lg" id="action-buttons">
-                <button id="create-DidgYa-modal-display" data-modal-target="modal-create-DidgYa"
-                    data-modal-toggle="modal-create-DidgYa"
-                    class="flex flex-row items-center justify-center p-2 px-3 rounded-md light-button h-fit bg-primary-light dark:bg-primary-dark hover:bg-primary-light/70 dark:hover:bg-primary-dark/70"
-                    type="button">
-                    <i class="fa-solid fa-plus"></i>
-                </button>
-                <button id="profile" data-modal-target="modal-profile" data-modal-toggle="modal-profile"
-                    class="flex flex-row items-center justify-center p-2 px-3 rounded-md light-button h-fit bg-supporting-light dark:bg-supporting-dark hover:bg-supporting-light/70 dark:hover:bg-supporting-dark/70"
-                    type="button">
-                    <i class="fa-solid fa-user"></i>
-                </button>
-                <button id="delete-all" data-modal-target="modal-delete-all" data-modal-toggle="modal-delete-all"
-                    class="flex flex-row items-center justify-center p-2 px-3 rounded-md light-button h-fit bg-accent-light dark:bg-accent-dark hover:bg-accent-light/70 dark:hover:bg-accent-dark/70"
-                    type="button">
-                    <i class="fa-solid fa-trash-can-arrow-up"></i>
-                </button>
-                <a class="flex flex-row items-center justify-center p-2 px-4 rounded-md light-button h-fit bg-secondary-light dark:bg-secondary-dark hover:bg-secondary-light/70 dark:hover:bg-secondary-dark/70"
-                    href="landing-test.html">
-                    <svg width="6" class="fill-text-light dark:fill-text-dark" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 192 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                        <path
-                            d="M48 80a48 48 0 1 1 96 0A48 48 0 1 1 48 80zM0 224c0-17.7 14.3-32 32-32H96c17.7 0 32 14.3 32 32V448h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H64V256H32c-17.7 0-32-14.3-32-32z" />
-                    </svg>
+            <div class="flex flex-row items-start justify-start w-full gap-2">
+                <a href="me.html"
+                    class="text-text-light dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:ring-primary-light font-medium rounded-lg text-lg px-5 py-2.5 dark:bg-primary-dark dark:hover:bg-primary-dark/70 focus:outline-none dark:focus:ring-primary-dark">Get
+                    started
                 </a>
-                <a class="flex flex-row items-center justify-center p-2 px-4 rounded-md light-button h-fit bg-supporting-light dark:bg-supporting-dark hover:bg-supporting-light/70 dark:hover:bg-supporting-dark/70"
-                    href="landing.html">
-                    <svg width="6" class="fill-text-light dark:fill-text-dark" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 192 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                        <path
-                            d="M48 80a48 48 0 1 1 96 0A48 48 0 1 1 48 80zM0 224c0-17.7 14.3-32 32-32H96c17.7 0 32 14.3 32 32V448h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H64V256H32c-17.7 0-32-14.3-32-32z" />
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <div class="flex flex-row items-center justify-center hidden w-full gap-1" id="not-logged-in-alert">
-        <div
-            class="p-4 text-lg text-center text-text-light dark:text-text-dark rounded-2xl bg-accent-light/40 dark:bg-accent-dark/40 w-fit">
-            <span class="m-0 text-3xl font-bold">You are not logged in!</span> <br>
-            <span>Your DidgYas are stored locally and are only accessible through this browser.</span> <br>
-            <span>Subscribe now to store all of your DidgYas in the cloud!</span>
-            <div><button
-                    class="p-1.5 px-3 mt-5 text-black font-bold bg-secondary-light dark:bg-secondary-dark hover:bg-secondary-light/70 dark:hover:bg-secondary-dark/70 rounded-md light-button h-fit"
-                    id="button-subscribe">Subscribe now!</button></div>
-        </div>
-    </div>
-
-    <div id="DidgYa-intro" class="flex flex-col items-center justify-center gap-2">
-        <h1 class="text-5xl font-extrabold tracking-tight">
-            <span class="text-primary-light dark:text-primary-dark">
-                Didg
-            </span>
-            <span class="-ml-4 text-supporting-light dark:text-supporting-dark">
-                Ya
-            </span>
-        </h1>
-        <div class="max-w-lg text-xl tracking-tight text-center">
-            Did you do it? Did you experience it?
-            <span class="mx-1.5 font-bold">
-                <span class="-ml-1 text-primary-light dark:text-primary-dark">
-                    Didg
-                </span>
-                <span class="-ml-1 -mr-1.5 text-supporting-light dark:text-supporting-dark">
-                    Ya
-                </span>
-            </span>
-            is an app designed to simplify the way you track various
-            things that happen in your life.
-        </div>
-    </div>
-
-    <div class="flex flex-col items-center justify-center w-full">
-        <button id="button-gen-test-data"
-            class="justify-center items-center flex flex-row gap-2 max-w-md dark:text-text-dark bg-secondary-light hover:bg-secondary-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-secondary-dark dark:hover:bg-secondary-dark/70 dark:focus:ring-highilght-dark">
-            Generate Test Data
-        </button>
-    </div>
-
-    <div id="DidgYa-list" class="flex flex-col items-center justify-start w-full h-screen gap-1 mr-2">
-        <button
-            class="w-full max-w-md cursor-pointer text-2xl rounded-full bg-supporting-light py-1.5 pl-3 pr-1.5 dark:text-text-dark hover:bg-supporting-light/80 dark:bg-supporting-dark hover:dark:bg-supporting-dark/80 text-center"
-            data-modal-target="modal-create-DidgYa" data-modal-toggle="modal-create-DidgYa">Create
-            DidgYa</button>
-    </div>
-
-    <div id="footer"
-        class="fixed left-0 flex flex-row items-center justify-center w-full gap-1 mb-1 text-xs align-middle bottom-1 opacity-40">
-        Made with
-        <svg width="10" class="ml-px mr-px fill-red-500" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path
-                d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z" />
-        </svg>
-        by Michael Fitzgerald
-        <div class="flex flex-row gap-1 ml-1" role="group" aria-label="">
-            <button id="footer-linkedin" type="button" class="flex flex-row items-center justify-center bg-transparent"
-                data-toggle="tooltip" data-placement="top" title="LinkedIn">
-                <a href="https://www.linkedin.com/in/mfitz06/" target="_blank" rel="noopener noreferrer">
-                    <svg width="10" class="fill-text-light dark:fill-text-dark" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                        <path
-                            d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z" />
-                    </svg>
-                </a>
-            </button>
-            <button id="footer-github" type="button" class="flex flex-row items-center justify-center bg-transparent"
-                data-toggle="tooltip" data-placement="top" title="Github">
-                <a href="https://github.com/mjf1406" target="_blank" rel="noopener noreferrer">
-                    <svg width="10" class="fill-text-light dark:fill-text-dark" xmlns="http://www.w3.org/2000/svg"
+                <a href="https://github.com/mjf1406/DidgYa"
+                    class="flex flex-row gap-2 justify-center items-center text-text-light dark:text-text-dark bg-supporting-light hover:bg-supporting-light/70 focus:ring-4 focus:ring-supporting-light font-medium rounded-lg text-lg px-5 py-2.5 dark:bg-supporting-dark dark:hover:bg-supporting-dark/70 focus:outline-none dark:focus:ring-supporting-dark">
+                    <svg width="25" class="fill-text-light dark:fill-text-dark" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 496 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                         <path
                             d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
                     </svg>
+                    View on GitHub
                 </a>
-            </button>
-            <button id="footer-portfolio" type="button" class="flex flex-row items-center justify-center bg-transparent"
-                data-toggle="tooltip" data-placement="top" title="Portfolio">
-                <a href="https://mjf1406-portfolio.netlify.app/" target="_blank" rel="noopener noreferrer">
-                    <svg width="10" class="fill-text-light dark:fill-text-dark" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                        <path
-                            d="M0 96l576 0c0-35.3-28.7-64-64-64H64C28.7 32 0 60.7 0 96zm0 32V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V128H0zM64 405.3c0-29.5 23.9-53.3 53.3-53.3H234.7c29.5 0 53.3 23.9 53.3 53.3c0 5.9-4.8 10.7-10.7 10.7H74.7c-5.9 0-10.7-4.8-10.7-10.7zM176 192a64 64 0 1 1 0 128 64 64 0 1 1 0-128zm176 16c0-8.8 7.2-16 16-16H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16zm0 64c0-8.8 7.2-16 16-16H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16z" />
-                    </svg>
-                </a>
-            </button>
-            <button id="footer-DidgYa" type="button" class="flex flex-row items-center justify-center bg-transparent"
-                data-toggle="tooltip" data-placement="top" title="Open Source Code">
-                <a href="https://github.com/mjf1406/DidgYa" target="_blank" rel="noopener noreferrer">
-                    <svg width="10" class="fill-text-light dark:fill-text-dark" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                        <path
-                            d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z" />
-                    </svg>
-                </a>
-            </button>
+            </div>
+            <div class="max-w-lg text-base text-left">
+                DidgYa comes with <b>5 free DidgYas</b>. You can self-host it using <a
+                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    href="https://github.com/mjf1406/DidgYa/blob/main/docker.md">Docker</a>,
+                or you can <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    href="#pricing">subscribe</a> for as little as <span id="price">$3</span> per month.
+            </div>
+        </div>
+        <div class="w-1/2 h-full m-10 bg-neutral-light/40 dark:bg-neutral-dark/40 rounded-3xl">
         </div>
     </div>
-
-    <!-- MODALS -->
-
-    <span id="modals-container">
-        <div name="modal" id="modal-profile" tabindex="-1" aria-hidden="true"
-            class="fixed top-0 left-0 right-0 z-30 flex items-center justify-center hidden w-full max-h-full p-4 overflow-x-hidden overflow-y-auto backdrop-blur-sm md:inset-0 h-dvh bg-background-light/50 dark:bg-background-dark/50">
-            <div class="relative w-full max-w-xl max-h-full">
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <button type="button"
-                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-text-light rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:dark:text-text-dark"
-                        data-modal-hide="modal-profile">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                    <div class="px-6 py-6 lg:px-8">
-                        <h3 class="flex flex-row gap-2 mb-4 text-xl font-medium text-text-light dark:text-text-dark">
-                            <i class="mr-1 fa-solid fa-user"></i>
-                            Profile
-                            <!-- <i name="number-input-help" class="fa-regular fa-circle-question"></i> -->
-                        </h3>
-                        <form id="profile-form" class="space-y-3" action="#">
-                            <label class="block text-sm font-medium text-text-light dark:text-text-dark">Transition
-                                Duration
-                                (sec.)</label>
-                            <div class="flex flex-row" name="number-input-group">
-                                <button name="profile-transition-duration" data-action="decrement"
-                                    class="justify-center items-center flex flex-row gap-2 dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:ring-highlight-light font-medium rounded-l-lg text-sm px-4 py-2.5 dark:bg-primary-dark dark:hover:bg-primary-dark/70 focus:outline-none dark:focus:ring-highlight-dark">
-                                    <i class="fa-solid fa-minus"></i>
-                                </button>
-                                <input type="number" name="profile-transition-duration" id="profile-transition-duration"
-                                    class="w-12 bg-gray-50 border border-gray-300 text-center text-text-light text-sm focus:ring-primary-600 focus:border-primary-600 block p-2.5 dark:bg-gray-700 dark:border-neutral-light dark:placeholder-gray-400 dark:text-text-dark dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                    value="10" required="">
-                                <button name="flex flex-row gap-2 profile-transition-duration" data-action="increment"
-                                    class="justify-center items-center  dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:ring-highlight-light font-medium rounded-r-lg text-sm px-4 py-2.5 dark:bg-primary-dark dark:hover:bg-primary-dark/70 focus:outline-none dark:focus:ring-highlight-dark">
-                                    <i class="fa-solid fa-plus"></i>
-                                </button>
-                            </div>
-
-                            <label class="block text-sm font-medium text-text-light dark:text-text-dark">Clock</label>
-                            <div class="flex flex-row items-center gap-1 justify-items-start">
-                                <input type="color" name="color-picker"
-                                    class="block h-10 p-1 rounded-lg cursor-pointer w-14 disabled:opacity-50 disabled:pointer-events-none"
-                                    id="clock-color" value="#2563eb" title="Choose your color">
-                                <div name="shape-picker" class="inline-flex rounded-md shadow-sm" role="group"
-                                    id="clock-shape"></div>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
+    <!-- Problem/Solution -->
+    <div
+        class="flex flex-row items-center justify-center gap-10 p-16 px-8 mt-20 bg-supporting-light dark:bg-supporting-dark h-fit">
+        <div class="w-1/2 h-full m-10 bg-neutral-light/40 dark:bg-neutral-dark/40 rounded-3xl">
         </div>
-        <div name="modal" id="modal-add-preset-DidgYa" tabindex="-1" aria-hidden="true"
-            class="fixed top-0 left-0 right-0 z-40 flex items-center justify-center hidden w-full max-h-full p-4 overflow-x-hidden overflow-y-auto backdrop-blur-sm md:inset-0 h-dvh bg-background-light/50 dark:bg-background-dark/50">
-            <div class="relative w-full max-w-xl max-h-full">
-                <!-- Modal content -->
-                <div class="relative h-full rounded-lg shadow bg-neutral-light dark:bg-neutral-dark">
-                    <button type="button"
-                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-text-light rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:dark:text-text-dark"
-                        data-modal-hide="modal-add-preset-DidgYa">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                    <div class="px-6 py-6 lg:px-8">
-                        <h3 class="flex flex-row gap-2 mb-4 text-xl font-medium text-text-light dark:text-text-dark">
-                            Add preset
-                        </h3>
-                        <form id="add-preset-form" class="space-y-3" action="#">
-                            <div class="mb-5">
-                                <select id="presets-dropdown"
-                                    class="p-2 bg-highlight-light/10 dark:bg-highlight-dark/10"></select>
-                            </div>
-
-                            <div class="flex flex-row gap-2">
-                                <button type="submit" id="add-preset-DidgYa"
-                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:outline-none focus:ring-highlight-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-dark dark:hover:bg-primary-dark/70 dark:focus:ring-highlight-dark">
-                                    <i class="mr-1 fa-solid fa-plus"></i>
-                                    Add preset
-                                </button>
-                                <button type="submit" id="cancel-centers"
-                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-accent-light hover:bg-accent-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-accent-dark dark:hover:bg-accent-dark/70 dark:focus:ring-highilght-dark"
-                                    data-modal-hide="modal-add-preset-DidgYa">
-                                    <i class="mr-1 fa-solid fa-cancel"></i>
-                                    Cancel
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        <div class="flex flex-col items-center justify-center max-w-md gap-2 grow-0">
+            <p class="text-2xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt
+                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <p class="text-base">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                mollit anim id est laborum.
+            </p>
+            <p class="text-base">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                mollit anim id est laborum.
+            </p>
         </div>
-        <div name="modal" id="modal-create-DidgYa" tabindex="-1" aria-hidden="true"
-            class="fixed top-0 left-0 right-0 z-30 flex items-center justify-center hidden w-full max-h-full p-4 overflow-x-hidden overflow-y-auto dark:text-text-dark backdrop-blur-sm md:inset-0 h-dvh bg-background-light/50 dark:bg-background-dark/50">
-            <div class="relative w-full max-w-md max-h-full">
-                <!-- Modal content -->
-                <div class="modal-content overflow-y-scroll max-h-[90vh]">
-                    <button type="button"
-                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-text-light rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:dark:text-text-dark"
-                        data-modal-hide="modal-create-DidgYa">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                    <div class="px-6 py-6 lg:px-8">
-                        <h3 class="flex flex-row gap-2 mb-4 text-xl font-medium text-text-light dark:text-text-dark">
-                            Create DidgYa
-                        </h3>
-                        <form class="space-y-6" action="#">
-                            <div class="mb-5">
-                                <button id="modal-create-DidgYa-add-preset" data-modal-target="modal-add-preset-DidgYa"
-                                    data-modal-toggle="modal-add-preset-DidgYa"
-                                    class="mt-3 w-full dark:text-text-dark bg-secondary-light hover:bg-secondary-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-secondary-dark dark:hover:bg-secondary-dark/70 dark:focus:ring-highilght-dark">
-                                    Add preset
-                                </button>
-                            </div>
-                            <div class="mb-5">
-                                <label for="modal-create-DidgYa-name" class="form-label">Name</label>
-                                <div class="form-description">What shall you call this DidgYa?</div>
-                                <input type="text" id="modal-create-DidgYa-name" class="form-input">
-                            </div>
-                            <div class="mb-5">
-                                <label for="modal-create-DidgYa-emoji" class="form-label">Emoji</label>
-                                <div class="form-description">Input the emoji for this DidgYa</div>
-                                <input type="text" id="modal-create-DidgYa-emoji" class="form-input">
-                            </div>
-                            <div class="mb-5">
-                                <label for="modal-create-DidgYa-unit" class="form-label">Unit</label>
-                                <div class="form-description">How do you want to measure this DidgYa?</div>
-                                <input type="text" id="modal-create-DidgYa-unit" class="form-input">
-                            </div>
-                            <div class="mb-5">
-                                <label for="name" class="form-label">
-                                    Quantity <i name="number-input-help" class="ml-1 fa-regular fa-circle-question"></i>
-                                </label>
-                                <div class="form-description">How much will you consume/experience each time you do
-                                    this
-                                    DidgYa?
-                                </div>
-                                <div class="flex flex-row" name="number-input-group">
-                                    <button name="modal-create-DidgYa-quantity" data-action="decrement"
-                                        class="justify-center items-center flex flex-row gap-2 rotations-input-button dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:ring-highlight-light font-medium rounded-l-lg text-sm px-4 py-2.5 dark:bg-primary-dark dark:hover:bg-primary-dark/70 focus:outline-none dark:focus:ring-highlight-dark">
-                                        <i class="fa-solid fa-minus"></i>
-                                    </button>
-                                    <input type="number" name="modal-create-DidgYa-quantity"
-                                        id="modal-create-DidgYa-quantity" class="number-input" value="0" required="">
-                                    <button name="modal-create-DidgYa-quantity" data-action="increment"
-                                        class="justify-center items-center flex flex-row gap-2 rotations-input-button dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:ring-highlight-light font-medium rounded-r-lg text-sm px-4 py-2.5 dark:bg-primary-dark dark:hover:bg-primary-dark/70 focus:outline-none dark:focus:ring-highlight-dark">
-                                        <i class="fa-solid fa-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="mb-5">
-                                <label for="modal-create-DidgYa-daily-goal" class="form-label">Daily Goal</label>
-                                <div class="form-description">How many times per day do you want to do this DidgYa?
-                                </div>
-                                <input type="text" id="modal-create-DidgYa-daily-goal"
-                                    class="bg-gray-50 border border-gray-300 text-text-light text-sm rounded-lg focus:ring-highlight-light focus:border-highlight-light block w-full p-2.5 dark:bg-gray-700 dark:border-neutral-light dark:placeholder-gray-400 dark:text-text-dark dark:focus:ring-highlight-dark dark:focus:border-highlight-dark">
-                            </div>
-                            <div>
-                                <label class="form-label">Tracking Duration</label>
-                                <div class="form-description">Do you want to track of the duration for this DidgYa?
-                                </div>
-                                <div class="flex flex-col items-start justify-start gap-2">
-                                    <label for="modal-create-DidgYa-stopwatch"
-                                        class="relative inline-flex items-center cursor-pointer">
-                                        <input id="modal-create-DidgYa-stopwatch" type="checkbox" value=""
-                                            class="sr-only peer">
-                                        <div
-                                            class="w-11 h-6 bg-highlight-light/30 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-highlight-light dark:peer-focus:ring-highlight-dark rounded-full peer dark:bg-highlight-dark/30 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-neutral-light peer-checked:bg-primary-light/80">
-                                        </div>
-                                        <span
-                                            class="text-sm font-medium text-text-light ms-3 dark:text-text-dark">Stopwatch</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div>
-                                <label for="name" class="form-label">
-                                    Setting a Timer <i name="number-input-help"
-                                        class="ml-1 fa-regular fa-circle-question"></i>
-                                </label>
-                                <div class="form-description">Do you want automatically start a timer (s) when starting
-                                    this
-                                    DidgYa?
-                                </div>
-                                <div class="flex flex-row" name="number-input-group">
-                                    <button name="modal-create-DidgYa-timer" data-action="decrement"
-                                        class="justify-center items-center flex flex-row gap-2 rotations-input-button dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:ring-highlight-light font-medium rounded-l-lg text-sm px-4 py-2.5 dark:bg-primary-dark dark:hover:bg-primary-dark/70 focus:outline-none dark:focus:ring-highlight-dark">
-                                        <i class="fa-solid fa-minus"></i>
-                                    </button>
-                                    <input type="number" name="modal-create-DidgYa-timer" id="modal-create-DidgYa-timer"
-                                        class="number-input" value="" required="" value="0">
-                                    <button name="modal-create-DidgYa-timer" data-action="increment"
-                                        class="justify-center items-center flex flex-row gap-2 rotations-input-button dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:ring-highlight-light font-medium rounded-r-lg text-sm px-4 py-2.5 dark:bg-primary-dark dark:hover:bg-primary-dark/70 focus:outline-none dark:focus:ring-highlight-dark">
-                                        <i class="fa-solid fa-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div>
-                                <label for="" class="form-label">Inputs</label>
-                                <div class="form-description">Does this DidgYa require any inputs?</div>
-                                <div id="inputs-list" class="flex flex-col gap-2"></div>
-                                <button id="modal-create-DidgYa-add-input"
-                                    class="mt-3 w-full dark:text-text-dark bg-secondary-light hover:bg-secondary-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-secondary-dark dark:hover:bg-secondary-dark/70 dark:focus:ring-highilght-dark">
-                                    Add input
-                                </button>
-                            </div>
-
-                            <div class="flex flex-row gap-2">
-                                <button type="submit" id="create-DidgYa"
-                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:outline-none focus:ring-highlight-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-dark dark:hover:bg-primary-dark/70 dark:focus:ring-highlight-dark">
-                                    <i class="mr-1 fa-solid fa-plus"></i>
-                                    Create DidgYa
-                                </button>
-                                <button type="submit" id="cancel-centers"
-                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-accent-light hover:bg-accent-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-accent-dark dark:hover:bg-accent-dark/70 dark:focus:ring-highilght-dark"
-                                    data-modal-hide="modal-create-DidgYa">
-                                    <i class="mr-1 fa-solid fa-cancel"></i>
-                                    Cancel
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div name="modal" id="modal-delete-all" tabindex="-1" aria-hidden="true"
-            class="fixed top-0 left-0 right-0 z-30 flex items-center justify-center hidden w-full max-h-full p-4 overflow-x-hidden overflow-y-auto dark:text-text-dark backdrop-blur-sm md:inset-0 h-dvh bg-background-light/50 dark:bg-background-dark/50">
-            <div class="relative w-full max-w-md max-h-full">
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <button type="button"
-                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-text-light rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:dark:text-text-dark"
-                        data-modal-hide="modal-delete-all">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                    <div class="px-6 py-6 lg:px-8">
-                        <h3 class="flex flex-row gap-2 mb-4 text-xl font-medium text-text-light dark:text-text-dark">
-                            <i class="fa-solid fa-trash-can-arrow-up"></i>
-                            Delete All Data
-                        </h3>
-                        <form class="space-y-6" action="#">
-                            Reset all DidgYas to defaults? This cannot be undone!<br>
-                            <div class="flex flex-row gap-2">
-                                <button type="submit" id="delete-all-data"
-                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-accent-light hover:bg-accent-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-accent-dark dark:hover:bg-accent-dark/70 dark:focus:ring-highilght-dark">
-                                    <i class="mr-1 fa-solid fa-trash-can-arrow-up"></i>
-                                    Reset
-                                </button>
-                                <button type="submit" id="create-DidgYa"
-                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:outline-none focus:ring-highlight-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-dark dark:hover:bg-primary-dark/70 dark:focus:ring-highlight-dark"
-                                    data-modal-hide="modal-delete-all">
-                                    <i class="mr-1 fa-solid fa-cancel"></i>
-                                    Cancel
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div name="modal" id="modal-delete-DidgYa" tabindex="-1" aria-hidden="true"
-            class="fixed top-0 left-0 right-0 z-30 flex items-center justify-center hidden w-full max-h-full p-4 overflow-x-hidden overflow-y-auto dark:text-text-dark backdrop-blur-sm md:inset-0 h-dvh bg-background-light/50 dark:bg-background-dark/50">
-            <div class="relative w-full max-w-md max-h-full">
-                <!-- Modal content -->
-                <div class="shadow-2xl modal-content shadow-black">
-                    <button type="button"
-                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-text-light rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:dark:text-text-dark"
-                        data-modal-hide="modal-delete-DidgYa">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                    <div class="px-6 py-6 lg:px-8">
-                        <h3 class="mb-4 text-xl font-medium text-text-light dark:text-text-dark">
-                            <i class="fa-solid fa-trash"></i>
-                            Delete <span name="DidgYa-to-delete-name"></span>
-                        </h3>
-                        <form action="#">
-                            <span class="text-base h-fit">Are you sure you want to delete <span
-                                    name="DidgYa-to-delete-name"></span>? This is cannot be undone!</span>
-                            <br>
-                            <div class="flex flex-row gap-2 mt-6">
-                                <button type="submit" id="button-delete-DidgYa"
-                                    class="justify-center items-center  flex flex-row gap-2 w-full dark:text-text-dark bg-accent-light hover:bg-accent-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-accent-dark dark:hover:bg-accent-dark/70 dark:focus:ring-highilght-dark">
-                                    <i class="mr-1 fa-solid fa-trash"></i>
-                                    Delete
-                                </button>
-                                <button type="submit"
-                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:outline-none focus:ring-highlight-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-dark dark:hover:bg-primary-dark/70 dark:focus:ring-highlight-dark"
-                                    data-modal-hide="modal-delete-DidgYa">
-                                    <i class="mr-1 fa-solid fa-cancel"></i>
-                                    Cancel
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div name="modal" id="modal-view-DidgYa" tabindex="-1" aria-hidden="true"
-            class="fixed top-0 left-0 right-0 z-10 flex items-center justify-center hidden w-full max-h-full p-4 overflow-x-hidden overflow-y-auto dark:text-text-dark backdrop-blur-sm md:inset-0 h-dvh bg-background-light/50 dark:bg-background-dark/50">
-            <div class="relative w-full max-w-xl max-h-full">
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <button type="button"
-                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-text-light rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:dark:text-text-dark"
-                        data-modal-hide="modal-view-DidgYa">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                    <div class="px-6 py-6 lg:px-8">
-                        <h3 class="mb-4 text-xl font-medium text-text-light dark:text-text-dark">
-                            <span name="viewing-DidgYa"></span>
-                        </h3>
-                        <div class="flex flex-row gap-2 mt-6">
-                            <button id="button-delete-view-DidgYa"
-                                class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-accent-light hover:bg-accent-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-accent-dark dark:hover:bg-accent-dark/70 dark:focus:ring-highilght-dark">
-                                <i class="mr-1 fa-solid fa-trash"></i>
-                                Delete <span name="viewing-DidgYa"></span>
-                            </button>
-                            <button id="button-edit-view-DidgYa"
-                                class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-secondary-light hover:bg-secondary-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-secondary-dark dark:hover:bg-secondary-dark/70 dark:focus:ring-highilght-dark"
-                                data-modal-hide="modal-view-DidgYa">
-                                <i class="mr-1 fa-regular fa-pen-to-square"></i>
-                                Edit <span name="viewing-DidgYa"></span>
-                            </button>
-                        </div>
-                        <div class="w-full mt-5 text-lg text-center">
-                            <p>The Current Week</p>
-                        </div>
-                        <div class="flex flex-row items-center justify-center w-full mt-5">
-                            <canvas id="data-chart"
-                                class="w-full bg-highlight-light/5 dark:bg-highlight-dark/5"></canvas>
-                        </div>
-                        <div id="report"></div>
-                        <div class="flex flex-row items-center justify-center w-full mt-5 h-fit">
-                            <div id="data-table" class="h-fit bg-highlight-light/5 dark:bg-highlight-dark/5"></div>
-                        </div>
-                        <form action="#">
-                            <span class="text-base h-fit"></span>
-                            <br>
-                            <div class="flex flex-row gap-2 mt-6">
-                                <button type="submit"
-                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:outline-none focus:ring-highlight-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-dark dark:hover:bg-primary-dark/70 dark:focus:ring-highlight-dark"
-                                    data-modal-hide="modal-view-DidgYa">
-                                    <i class="mr-1 fa-solid fa-cancel"></i>
-                                    Close
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div name="modal" id="modal-start-DidgYa" tabindex="-1" aria-hidden="true"
-            class="fixed top-0 left-0 right-0 z-30 flex items-center justify-center hidden w-full max-h-full p-4 overflow-x-hidden overflow-y-auto dark:text-text-dark backdrop-blur-sm md:inset-0 h-dvh bg-background-light/50 dark:bg-background-dark/50">
-            <div class="relative w-full max-w-md max-h-full">
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <button type="button"
-                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-text-light rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:dark:text-text-dark"
-                        data-modal-hide="modal-start-DidgYa">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                    <div class="px-6 py-6 lg:px-8">
-                        <h3 class="mb-4 text-xl font-medium text-text-light dark:text-text-dark">
-                            Do <span name="starting-DidgYa"></span>
-                        </h3>
-                        <form class="space-y-6" action="#">
-                            <div id="modal-start-DidgYa-content"></div>
-                            <div class="flex flex-row gap-2">
-                                <button type="submit" id="button-start-DidgYa"
-                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:outline-none focus:ring-highlight-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-dark dark:hover:bg-primary-dark/70 dark:focus:ring-highlight-dark">
-                                    <i class="mr-1 fa-solid fa-plus"></i>
-                                    Do <span name="starting-DidgYa"></span>
-                                </button>
-                                <button type="submit" id="cancel-centers"
-                                    class="justify-center items-center w-full flex flex-row gap-2 dark:text-text-dark bg-accent-light hover:bg-accent-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-accent-dark dark:hover:bg-accent-dark/70 dark:focus:ring-highilght-dark"
-                                    data-modal-hide="modal-start-DidgYa">
-                                    <i class="mr-1 fa-solid fa-cancel"></i>
-                                    Cancel
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div name="modal" id="modal-timer-DidgYa" tabindex="-1" aria-hidden="true"
-            class="fixed top-0 left-0 right-0 z-30 flex items-center justify-center hidden w-full max-h-full p-4 overflow-x-hidden overflow-y-auto dark:text-text-dark backdrop-blur-sm md:inset-0 h-dvh bg-background-light/50 dark:bg-background-dark/50">
-            <div class="relative w-full max-w-md max-h-full">
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <button type="button"
-                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-text-light rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:dark:text-text-dark"
-                        data-modal-hide="modal-timer-DidgYa">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                    <div class="px-6 py-6 lg:px-8">
-                        <h3 class="mb-4 text-xl font-medium text-text-light dark:text-text-dark">
-                            <span id="DidgYa-timer-name"></span>
-                        </h3>
-                        <form class="space-y-6" action="#">
-                            <div id="time" class="flex flex-row items-center justify-center w-full text-7xl"></div>
-                            <div class="flex flex-row gap-2">
-                                <button type="submit" id="done-timer"
-                                    class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:outline-none focus:ring-highlight-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-dark dark:hover:bg-primary-dark/70 dark:focus:ring-highlight-dark">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15" fill="white"
-                                        viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                                        <path
-                                            d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
-                                    </svg>
-                                    Done
-                                </button>
-                                <button type="submit" id="cancel-timer"
-                                    class="justify-center items-center w-full flex flex-row gap-2 dark:text-text-dark bg-accent-light hover:bg-accent-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-accent-dark dark:hover:bg-accent-dark/70 dark:focus:ring-highilght-dark"
-                                    data-modal-hide="modal-timer-DidgYa">
-                                    <i class="mr-1 fa-solid fa-cancel"></i>
-                                    Cancel
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </span>
-
-    <span id="svg-icons">
-        <svg class="hidden" id="icon-pen-to-square" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path
-                d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" />
-        </svg>
-        <svg class="hidden" id="icon-cloud-x" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-            <!-- Define Mask -->
-            <mask id="cloudMask">
-                <!-- White Cloud Shape -->
-                <path
-                    d="M0 336c0 79.5 64.5 144 144 144H512c70.7 0 128-57.3 128-128c0-61.9-44-113.6-102.4-125.4c4.1-10.7 6.4-22.4 6.4-34.6c0-53-43-96-96-96c-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32C167.6 32 96 103.6 96 192c0 2.7 .1 5.4 .2 8.1C40.2 219.8 0 273.2 0 336z"
-                    fill="white" />
-                <!-- Black X Shape -->
-                <path d="M150 150L440 440" stroke="black" stroke-width="60" fill="none" />
-                <path d="M440 150L150 440" stroke="black" stroke-width="60" fill="none" />
-            </mask>
-
-            <!-- Cloud Shape with Mask Applied -->
-            <path
-                d="M0 336c0 79.5 64.5 144 144 144H512c70.7 0 128-57.3 128-128c0-61.9-44-113.6-102.4-125.4c4.1-10.7 6.4-22.4 6.4-34.6c0-53-43-96-96-96c-19.7 0-38.1 6-53.3 16.2C367 64.2 315.3 32 256 32C167.6 32 96 103.6 96 192c0 2.7 .1 5.4 .2 8.1C40.2 219.8 0 273.2 0 336z"
-                mask="url(#cloudMask)" />
-        </svg>
-        <svg class="hidden" id="icon-play" "http://www.w3.org/2000/svg"
-            viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path
-                d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
-        </svg>
-        <svg class="hidden" id="icon-stop" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path
-                d="M0 128C0 92.7 28.7 64 64 64H320c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z" />
-        </svg>
-        <svg class="hidden" id="icon-user" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path
-                d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
-        </svg>
-        <svg class="hidden" id="icon-plus" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path
-                d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
-        </svg>
-        <svg class="hidden" id="icon-minus" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path
-                d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z" />
-        </svg>
-        <svg class="hidden" id="icon-trash-up-arrow" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path
-                d="M163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3C140.6 6.8 151.7 0 163.8 0zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm192 64c-6.4 0-12.5 2.5-17 7l-80 80c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l39-39V408c0 13.3 10.7 24 24 24s24-10.7 24-24V273.9l39 39c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-80-80c-4.5-4.5-10.6-7-17-7z" />
-        </svg>
-        <svg class="hidden" id="icon-trash" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path
-                d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
-        </svg>
-        <svg class="hidden" id="icon-cancel" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path
-                d="M367.2 412.5L99.5 144.8C77.1 176.1 64 214.5 64 256c0 106 86 192 192 192c41.5 0 79.9-13.1 111.2-35.5zm45.3-45.3C434.9 335.9 448 297.5 448 256c0-106-86-192-192-192c-41.5 0-79.9 13.1-111.2 35.5L412.5 367.2zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z" />
-        </svg>
-        <svg class="hidden" id="icon-x-mark" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path
-                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
-        </svg>
-        <svg class="hidden" id="icon-check" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path
-                d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
-        </svg>
-        <svg class="hidden" id="icon-exclamation" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 64 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path
-                d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V320c0 17.7 14.3 32 32 32s32-14.3 32-32V64zM32 480a40 40 0 1 0 0-80 40 40 0 1 0 0 80z" />
-        </svg>
-        <svg class="hidden" id="icon-circle-filled" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" />
-        </svg>
-        <svg class="hidden" id="icon-square-filled" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path
-                d="M0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96z" />
-        </svg>
-        <svg class="hidden" id="icon-i" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path
-                d="M32 32C14.3 32 0 46.3 0 64S14.3 96 32 96h96V416H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H288c17.7 0 32-14.3 32-32s-14.3-32-32-32H192V96h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H160 32z" />
-        </svg>
-        <svg class="hidden" id="icon-caret" xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-            <path
-                d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
-        </svg>
-    </span>
+    </div>
 </body>
-
-<script src="assets/data/consts.js"></script>
 
 <script src="js/libraries/helpers.js"></script>
 <script src="js/libraries/modals.js"></script>
 <script src="js/libraries/toasts.js"></script>
 <script src="js/libraries/numberInputs.js"></script>
-<script src="js/libraries/timer.js"></script>
 
 <script src="assets/data/units.js"></script>
 <script src="assets/data/defaults.js"></script>
@@ -775,27 +132,14 @@
 
 <script src="js/db/cloudDatabase.js"></script>
 <script src="js/db/localDatabase.js"></script>
-<script src="js/db/tests-generateTestData.js"></script>
 
 <!-- <script src="keys.js"></script> -->
 
-<!-- <script type="module" src="js/libraries/localizer.js"></script> -->
-
-<script src="js/listeners.js"></script>
 <script src="js/tippys.js"></script>
 <script src="js/profile.js"></script>
-<script src="app.js"></script>
 
 <script>
-    if (!localStorage.getItem('didgYas')) localStorage.setItem('didgYas', JSON.stringify(DEFAULT_DIDGYAS))
-    if (!localStorage.getItem('didgYas-backup')) localStorage.setItem('didgYas-backup', '[]')
 
-    const didgYas = getAllLocalDidgYas()
-    populateDidgYaList(didgYas)
-
-    populateIcons()
-
-    setupIntro()
 </script>
 
 </html>
