@@ -848,8 +848,9 @@
 
     setupIntro()
 
-    const testDivs = document.getElementById('test-div')
-    if (window.location.href.includes('github.io')) testDivs.classList.add('hidden')
+    const testDivs = document.getElementById('test-divs')
+    const url = window.location.href
+    if (url.includes('github.io')) testDivs.classList.add('hidden')
     else testDivs.classList.remove('hidden')
 </script>
 
