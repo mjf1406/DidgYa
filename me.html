@@ -518,15 +518,38 @@
                     </button>
                     <div class="px-6 py-6 lg:px-8">
                         <h3 class="mb-4 text-xl font-medium text-text-light dark:text-text-dark">
-                            <span name="viewing-DidgYa"></span>
+                            <span name="viewing-DidgYa"></span> Today
                         </h3>
 
-                        <button
-                            class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-dark dark:hover:bg-primary-dark/70 dark:focus:ring-highilght-dark"
-                            data-modal-target="modal-do-custom-time-DidgYa"
-                            data-modal-toggle="modal-do-custom-time-DidgYa">
-                            DidgYa <span name="viewing-DidgYa"></span> with a custom time
-                        </button>
+                        <div class="flex flex-row gap-2 mt-6">
+                            <button
+                                class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-dark dark:hover:bg-primary-dark/70 dark:focus:ring-highilght-dark"
+                                data-modal-target="modal-do-custom-time-DidgYa"
+                                data-modal-toggle="modal-do-custom-time-DidgYa">
+                                Custom time<span name="viewing-DidgYa"></span>
+                            </button>
+                            <button id="button-dashboard-view-DidgYa"
+                                class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-supporting-light hover:bg-supporting-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-supporting-dark dark:hover:bg-supporting-dark/70 dark:focus:ring-highilght-dark">
+                                Dashboard <span name="viewing-DidgYa"></span>
+                            </button>
+                        </div>
+                        <div class="flex flex-row items-center justify-center hidden w-full mt-5">
+                            <canvas id="data-chart"
+                                class="w-full bg-highlight-light/5 dark:bg-highlight-dark/5"></canvas>
+                        </div>
+                        <div id="report" class="flex flex-col justify-center gap-1 mt-5 items-left">
+                            <div>
+                                <span class="font-bold">Avg. Between DidgYas:</span>
+                                <span id="daily-average-between"></span>
+                            </div>
+                            <div>
+                                <span class="font-bold">Total DidgYas:</span>
+                                <span id="daily-total"></span>
+                            </div>
+                        </div>
+                        <div class="flex flex-row items-center justify-center w-full mt-5 h-fit">
+                            <div id="data-table" class="h-fit bg-highlight-light/5 dark:bg-highlight-dark/5"></div>
+                        </div>
                         <div class="flex flex-row gap-2 mt-6">
                             <button id="button-delete-view-DidgYa"
                                 class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-accent-light hover:bg-accent-light/70 focus:ring-4 focus:outline-none focus:ring-highilght-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-accent-dark dark:hover:bg-accent-dark/70 dark:focus:ring-highilght-dark">
@@ -540,29 +563,7 @@
                                 Edit <span name="viewing-DidgYa"></span>
                             </button>
                         </div>
-                        <div class="w-full mt-5 text-lg text-center">
-                            <p>The Last 7 Days</p>
-                        </div>
-                        <div class="flex flex-row items-center justify-center w-full mt-5">
-                            <canvas id="data-chart"
-                                class="w-full bg-highlight-light/5 dark:bg-highlight-dark/5"></canvas>
-                        </div>
-                        <div id="report" class="flex flex-col justify-center gap-1 mt-5 items-left">
-                            <div>
-                                <span class="font-bold">Average Time Between DidgYas:</span>
-                                <span id="weekly-average"></span>
-                            </div>
-                            <div>
-                                <span class="text-xl font-bold">Daily Averages</span>
-                                <div id="daily-averages"></div>
-                            </div>
-                        </div>
-                        <div class="flex flex-row items-center justify-center w-full mt-5 h-fit">
-                            <div id="data-table" class="h-fit bg-highlight-light/5 dark:bg-highlight-dark/5"></div>
-                        </div>
                         <form action="#">
-                            <span class="text-base h-fit"></span>
-                            <br>
                             <div class="flex flex-row gap-2 mt-6">
                                 <button type="submit"
                                     class="justify-center items-center flex flex-row gap-2 w-full dark:text-text-dark bg-primary-light hover:bg-primary-light/70 focus:ring-4 focus:outline-none focus:ring-highlight-light font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-dark dark:hover:bg-primary-dark/70 dark:focus:ring-highlight-dark"
@@ -830,6 +831,9 @@
 <script src="js/listeners.js"></script>
 <script src="js/tippys.js"></script>
 <script src="js/profile.js"></script>
+<script src="js/computations.js"></script>
+<script src="js/viewModal.js"></script>
+
 <script src="app.js"></script>
 
 <script>
