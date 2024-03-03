@@ -12,3 +12,4 @@ const ICON_X_MARK = document.getElementById("icon-x-mark");
 const ICON_CHECK = document.getElementById("icon-check");
 const ICON_EXCLAMATION = document.getElementById("icon-exclamation");
 const ICON_CARET = document.getElementById("icon-caret");
+const ICON_SPINNER = document.getElementById("icon-spinner");

@@ -187,6 +187,14 @@ const DEFAULT_DIDGYAS = [
                             height: 15, // Pixels
                         },
                     },
+                    {
+                        name: "coffee grounds",
+                        icon: {
+                            name: "ICON_SPINNER",
+                            width: 15, // Pixels
+                            height: 15, // Pixels
+                        },
+                    },
                 ],
             },
             {

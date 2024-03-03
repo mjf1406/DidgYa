@@ -4,6 +4,8 @@ Did you do it? Did you experience it? DidgYa is an app designed to simplify the 
 
 ## Change Log
 
+-   2024/3/3
+    -   added coffee grounds to stool shape in Poop
 -   2024/2/19
     -   added a way to do a DidgYa for a user-specified date and time in the view modal
     -   changed view modal from current week to last 7 days.
