@@ -219,7 +219,10 @@ function viewDidgYa(didgYaId) {
 
     const averageBetweenDiv = document.getElementById("daily-average-between");
     const avgBetween = computeAverageBetweenDidgYasForSingleDay(records);
-    averageBetweenDiv.innerHTML = formatMillisecondsToReadable(avgBetween);
+    console.log("🚀 ~ viewDidgYa ~ avgBetween:", avgBetween);
+    averageBetweenDiv.innerHTML = avgBetween.includes("today...")
+        ? avgBetween
+        : formatMillisecondsToReadable(avgBetween);
 
     const dailyGoalText = didgYa.dailyGoal
         ? `(${getDailyGoalText(records, didgYa)})`
