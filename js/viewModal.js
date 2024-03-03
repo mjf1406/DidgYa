@@ -219,7 +219,6 @@ function viewDidgYa(didgYaId) {
 
     const averageBetweenDiv = document.getElementById("daily-average-between");
     const avgBetween = computeAverageBetweenDidgYasForSingleDay(records);
-    console.log("🚀 ~ viewDidgYa ~ avgBetween:", avgBetween);
     averageBetweenDiv.innerHTML =
         avgBetween === "Insufficient DidgYas today..."
             ? avgBetween
